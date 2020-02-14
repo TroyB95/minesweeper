@@ -34,12 +34,19 @@ function generateBombs(width, height, bombs) {
 
 function generateGrid(width, height, bombs) {
 	let gridArr = create2DArray(height);
+	const bombsCoords = generateBombs(width, height, bombs);
 
 	for (let y = 0; y < height; y++) {
 		for (let x = 0; x < width; x++) {
 			gridArr[y][x] = false;
 		}
 	}
-
+	(function plotBombs() {
+		bombsCoords.forEach(bombLocation => {
+			gridArr[bombLocation[0]][bombLocation[1]] = true;
+		});
+	})();
 	return gridArr;
 }
+
+console.log(generateGrid(5, 5, 3));
