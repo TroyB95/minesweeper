@@ -32,7 +32,7 @@ function generateBombs(width, height, bombs) {
 	return bombsCoordArr;
 }
 
-function generateGrid(width, height, bombs) {
+export function generateGrid(width, height, bombs) {
 	let gridArr = create2DArray(height);
 	const bombsCoordArr = generateBombs(width, height, bombs);
 
