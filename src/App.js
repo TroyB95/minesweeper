@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import uniqid from "uniqid";
 
 import "./App.css";
 
@@ -40,14 +41,28 @@ const GridSection = styled.div`
 function App() {
 	const [generatedGrid, setGrid] = useState(generateGrid(20, 20, 15));
 
+	function checkGridSection(value) {
+		if (value === true) {
+			alert("YOU HAVE HIT ABOMB");
+		}
+	}
+
 	return (
 		<PageContainer>
 			<GridContainer>
 				{generatedGrid.map(row => {
 					return (
-						<GridRow height="20">
+						<GridRow key={uniqid("grid-row-")} height="20">
 							{row.map(gridSquare => {
-								return <GridSection width="20">{gridSquare === true ? "BOMB" : gridSquare}</GridSection>;
+								return (
+									<GridSection
+										onClick={() => checkGridSection(gridSquare)}
+										key={uniqid("grid-square-")}
+										width="20"
+									>
+										{gridSquare === true ? "BOMB" : gridSquare}
+									</GridSection>
+								);
 							})}
 						</GridRow>
 					);
