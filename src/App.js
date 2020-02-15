@@ -41,8 +41,9 @@ const GridSection = styled.div`
 function App() {
 	const [generatedGrid, setGrid] = useState(generateGrid(20, 20, 15));
 
-	function checkGridSection(value) {
+	function checkForBomb(value, e) {
 		if (value === true) {
+			e.target.innerHTML = "BOMB";
 			alert("YOU HAVE HIT ABOMB");
 		}
 	}
@@ -56,12 +57,13 @@ function App() {
 							{row.map(gridSquare => {
 								return (
 									<GridSection
-										onClick={() => checkGridSection(gridSquare)}
+										onClick={e => {
+											checkForBomb(gridSquare, e);
+											e.target.innerHTML = gridSquare;
+										}}
 										key={uniqid("grid-square-")}
 										width="20"
-									>
-										{gridSquare === true ? "BOMB" : gridSquare}
-									</GridSection>
+									></GridSection>
 								);
 							})}
 						</GridRow>
