@@ -40,6 +40,7 @@ const GridSection = styled.div`
 
 function App() {
 	const [generatedGrid, setGrid] = useState(generateGrid(20, 20, 15));
+	const [flaggedLocations, setFlaggedLocations] = useState(new Set());
 
 	function checkForBomb(value, e) {
 		if (value === true) {
@@ -48,13 +49,24 @@ function App() {
 		}
 	}
 
+	function checkLocations(y, x) {
+		if (flaggedLocations.has(`${y}${x}`)) {
+			let deleteUpdatedSet = new Set(flaggedLocations);
+			deleteUpdatedSet.delete(`${y}${x}`);
+			return deleteUpdatedSet;
+		}
+		let addUpdateSet = new Set(flaggedLocations);
+		addUpdateSet.add(`${y}${x}`);
+		return addUpdateSet;
+	}
+
 	return (
 		<PageContainer>
 			<GridContainer>
-				{generatedGrid.map(row => {
+				{generatedGrid.map((row, y) => {
 					return (
 						<GridRow key={uniqid("grid-row-")} height="20">
-							{row.map(gridSquare => {
+							{row.map((gridSquare, x) => {
 								return (
 									<GridSection
 										onClick={e => {
@@ -64,6 +76,7 @@ function App() {
 										onContextMenu={e => {
 											e.preventDefault();
 											e.target.innerHTML = "&#9760";
+											setFlaggedLocations(checkLocations(y, x));
 										}}
 										key={uniqid("grid-square-")}
 										width="20"
