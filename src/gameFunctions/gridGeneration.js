@@ -1,4 +1,4 @@
-function create2DArray(rows) {
+export function create2DArray(rows) {
 	let arr = [];
 	for (let i = 0; i < rows; i++) {
 		arr[i] = [];
@@ -6,11 +6,11 @@ function create2DArray(rows) {
 	return arr;
 }
 
-function generateCoordinate(gridDimension) {
+export function generateCoordinate(gridDimension) {
 	return Math.round(Math.random() * (gridDimension - 1));
 }
 
-function compareCoords(array1, array2) {
+export function compareCoords(array1, array2) {
 	if (!array2) return false;
 
 	if (array1.toString().includes(array2.toString())) {
@@ -20,7 +20,7 @@ function compareCoords(array1, array2) {
 	return false;
 }
 
-function generateBombs(width, height, bombs) {
+export function generateBombs(width, height, bombs) {
 	let bombsCoordArr = [];
 
 	while (bombsCoordArr.length < bombs) {
@@ -53,7 +53,7 @@ export function generateGrid(width, height, bombs) {
 	return incrementAroundBombs(width, height, gridArr);
 }
 
-function incrementAroundBombs(width, height, gridArr) {
+export function incrementAroundBombs(width, height, gridArr) {
 	let fullGrid = [...gridArr];
 	for (let y = 0; y < height; y++) {
 		for (let x = 0; x < width; x++) {
