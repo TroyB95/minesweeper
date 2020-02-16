@@ -61,6 +61,10 @@ function App() {
 											checkForBomb(gridSquare, e);
 											e.target.innerHTML = gridSquare;
 										}}
+										onContextMenu={e => {
+											e.preventDefault();
+											e.target.innerHTML = "&#9760";
+										}}
 										key={uniqid("grid-square-")}
 										width="20"
 									></GridSection>
