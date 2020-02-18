@@ -5,8 +5,8 @@ export function checkForBomb(value, e) {
 	}
 }
 
-export function mutateTrackingArray(y, x, trackingArr) {
+export function mutateTrackingArray(y, x, trackingArr, value) {
 	let tileTrackingArr = [...trackingArr];
-	tileTrackingArr[y][x] = true;
+	tileTrackingArr[y][x] = value;
 	return tileTrackingArr;
 }
