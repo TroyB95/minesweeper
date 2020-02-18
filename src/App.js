@@ -4,7 +4,8 @@ import uniqid from "uniqid";
 
 import "./App.css";
 
-import { generateGrid } from "./gameFunctions/gridGeneration";
+import { generateGrid, create2DArray, setBasicGrid } from "./gameFunctions/gridGeneration";
+import { checkForBomb, mutateTrackingArray } from "./gameFunctions/gridHelpers";
 
 const PageContainer = styled.div`
 	width: 100vw;
@@ -40,14 +41,10 @@ const GridSection = styled.div`
 
 function App() {
 	const [generatedGrid, setGrid] = useState(generateGrid(20, 20, 15));
+	const [tileTrackingArray, setTileTrackingArray] = useState(setBasicGrid(20, 20, create2DArray(20), false));
 	const [flaggedLocations, setFlaggedLocations] = useState(new Set());
-
-	function checkForBomb(value, e) {
-		if (value === true) {
-			e.target.innerHTML = "BOMB";
-			alert("YOU HAVE HIT ABOMB");
-		}
-	}
+	const [tilesTurnt, setTilesTurnt] = useState(0);
+	const [maxTilesTurnt, setMaxTilesTurnt] = useState(20 * 20 - 15);
 
 	function checkLocations(y, x) {
 		if (flaggedLocations.has(`${y}${x}`)) {
@@ -71,7 +68,8 @@ function App() {
 									<GridSection
 										onClick={e => {
 											checkForBomb(gridSquare, e);
-											e.target.innerHTML = gridSquare;
+											setTilesTurnt(tilesTurnt + 1);
+											setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray));
 										}}
 										onContextMenu={e => {
 											e.preventDefault();
@@ -80,7 +78,9 @@ function App() {
 										}}
 										key={uniqid("grid-square-")}
 										width="20"
-									></GridSection>
+									>
+										{tileTrackingArray[y][x] === true ? gridSquare : null}
+									</GridSection>
 								);
 							})}
 						</GridRow>
