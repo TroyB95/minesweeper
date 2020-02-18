@@ -71,17 +71,21 @@ function App() {
 											if (tileTrackingArray[y][x] !== true) {
 												setTilesTurnt(tilesTurnt + 1);
 											}
-											setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray));
+											setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, true));
 										}}
 										onContextMenu={e => {
 											e.preventDefault();
-											e.target.innerHTML = "&#9760";
+											setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, "flag"));
 											setFlaggedLocations(checkLocations(y, x));
 										}}
 										key={uniqid("grid-square-")}
 										width="20"
 									>
-										{tileTrackingArray[y][x] === true ? gridSquare : null}
+										{tileTrackingArray[y][x] === true
+											? gridSquare
+											: tileTrackingArray[y][x] === "flag"
+											? "F"
+											: null}
 									</GridSection>
 								);
 							})}
