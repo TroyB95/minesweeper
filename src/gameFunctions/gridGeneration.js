@@ -32,17 +32,19 @@ export function generateBombs(width, height, bombs) {
 	return bombsCoordArr;
 }
 
-export function generateGrid(width, height, bombs) {
-	let gridArr = create2DArray(height);
-	const bombsCoordArr = generateBombs(width, height, bombs);
-
-	(function setBasicGrid() {
-		for (let y = 0; y < height; y++) {
-			for (let x = 0; x < width; x++) {
-				gridArr[y][x] = 0;
-			}
+export function setBasicGrid(width, height, gridArr, value = 0) {
+	let filledGridArr = [...gridArr];
+	for (let y = 0; y < height; y++) {
+		for (let x = 0; x < width; x++) {
+			filledGridArr[y][x] = value;
 		}
-	})();
+	}
+	return filledGridArr;
+}
+
+export function generateGrid(width, height, bombs) {
+	let gridArr = setBasicGrid(width, height, create2DArray(height));
+	const bombsCoordArr = generateBombs(width, height, bombs);
 
 	(function plotBombs() {
 		bombsCoordArr.forEach(locationArr => {
