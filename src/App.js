@@ -68,7 +68,9 @@ function App() {
 									<GridSection
 										onClick={e => {
 											checkForBomb(gridSquare, e);
-											setTilesTurnt(tilesTurnt + 1);
+											if (tileTrackingArray[y][x] !== true) {
+												setTilesTurnt(tilesTurnt + 1);
+											}
 											setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray));
 										}}
 										onContextMenu={e => {
