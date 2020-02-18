@@ -40,21 +40,29 @@ const GridSection = styled.div`
 `;
 
 function App() {
-	const [generatedGrid, setGrid] = useState(generateGrid(20, 20, 15));
-	const [tileTrackingArray, setTileTrackingArray] = useState(setBasicGrid(20, 20, create2DArray(20), false));
+	const [generatedGrid, setGrid] = useState(generateGrid(5, 5, 2));
+	const [tileTrackingArray, setTileTrackingArray] = useState(setBasicGrid(5, 5, create2DArray(5), false));
 	const [flaggedLocations, setFlaggedLocations] = useState(new Set());
-	const [tilesTurnt, setTilesTurnt] = useState(0);
-	const [maxTilesTurnt, setMaxTilesTurnt] = useState(20 * 20 - 15);
+	const [tilesTurntCounter, setTilesTurntCounter] = useState(0);
+	const [maxTilesTurnt, setMaxTilesTurnt] = useState(5 * 5 - 2);
 
 	function checkLocations(y, x) {
-		if (flaggedLocations.has(`${y}${x}`)) {
+		if (flaggedLocations.has(`${y},${x}`)) {
 			let deleteUpdatedSet = new Set(flaggedLocations);
-			deleteUpdatedSet.delete(`${y}${x}`);
+			deleteUpdatedSet.delete(`${y},${x}`);
 			return deleteUpdatedSet;
 		}
 		let addUpdateSet = new Set(flaggedLocations);
-		addUpdateSet.add(`${y}${x}`);
+		addUpdateSet.add(`${y},${x}`);
 		return addUpdateSet;
+	}
+
+	function checkIfWon(tilesTurntCount, maxTilesTurnt, flaggedLocations, generatedGrid, bombCount) {
+		if (tilesTurntCount === maxTilesTurnt - 1) {
+			if (flaggedLocations.size === bombCount) {
+				alert("Congratulations, you have won the game!");
+			}
+		}
 	}
 
 	return (
@@ -62,24 +70,27 @@ function App() {
 			<GridContainer>
 				{generatedGrid.map((row, y) => {
 					return (
-						<GridRow key={uniqid("grid-row-")} height="20">
+						<GridRow key={uniqid("grid-row-")} height="5">
 							{row.map((gridSquare, x) => {
 								return (
 									<GridSection
 										onClick={e => {
 											checkForBomb(gridSquare, e);
 											if (tileTrackingArray[y][x] !== true) {
-												setTilesTurnt(tilesTurnt + 1);
+												setTilesTurntCounter(tilesTurntCounter + 1);
 											}
 											setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, true));
+											checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, generatedGrid, 2);
 										}}
 										onContextMenu={e => {
 											e.preventDefault();
-											setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, "flag"));
-											setFlaggedLocations(checkLocations(y, x));
+											if (tileTrackingArray[y][x] !== true) {
+												setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, "flag"));
+												setFlaggedLocations(checkLocations(y, x));
+											}
 										}}
 										key={uniqid("grid-square-")}
-										width="20"
+										width="5"
 									>
 										{tileTrackingArray[y][x] === true
 											? gridSquare
