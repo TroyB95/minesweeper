@@ -7,6 +7,8 @@ import "./App.css";
 import { generateGrid, create2DArray, setBasicGrid } from "./gameFunctions/gridGeneration";
 import { checkForBomb, mutateTrackingArray } from "./gameFunctions/gridHelpers";
 
+import TimerBar from "./Components/TimerBar";
+
 const PageContainer = styled.div`
 	width: 100vw;
 	height: 100vh;
@@ -54,6 +56,7 @@ function App() {
 	const [flaggedLocations, setFlaggedLocations] = useState(new Set());
 	const [tilesTurntCounter, setTilesTurntCounter] = useState(0);
 	const [maxTilesTurnt, setMaxTilesTurnt] = useState(5 * 5 - 2);
+	const [gameReset, resetGame] = useState(false);
 
 	function checkLocations(y, x) {
 		if (flaggedLocations.has(`${y},${x}`)) {
@@ -76,6 +79,7 @@ function App() {
 
 	return (
 		<PageContainer>
+			<TimerBar restart={gameReset ? true : false} />
 			<GridContainer>
 				{generatedGrid.map((row, y) => {
 					return (
