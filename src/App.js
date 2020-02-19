@@ -12,6 +12,7 @@ const PageContainer = styled.div`
 	height: 100vh;
 
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 `;
@@ -25,9 +26,17 @@ const GridRow = styled.div`
 
 	width: 100%;
 	height: ${props => 100 / props.height + "%"};
+
+	border-left: 1px solid black;
+	border-top: 1px solid black;
+
+	&:last-of-type {
+		border-bottom: 1px solid black;
+	}
 `;
+
 const GridSection = styled.div`
-	border: 1px solid black;
+	border-right: 1px solid black;
 
 	flex-grow: 1;
 
