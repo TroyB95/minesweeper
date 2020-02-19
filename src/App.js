@@ -84,9 +84,16 @@ function App() {
 										}}
 										onContextMenu={e => {
 											e.preventDefault();
+											if (tileTrackingArray[y][x] === "flag") {
+												setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, false));
+												setFlaggedLocations(checkLocations(y, x));
+												return;
+											}
+
 											if (tileTrackingArray[y][x] !== true) {
 												setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, "flag"));
 												setFlaggedLocations(checkLocations(y, x));
+												return;
 											}
 										}}
 										key={uniqid("grid-square-")}
