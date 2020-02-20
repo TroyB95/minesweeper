@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import uniqid from "uniqid";
+import { store } from "./globalState";
+import types from "./globalState/types";
 
 import "./App.css";
 
@@ -51,10 +53,14 @@ const GridSection = styled.div`
 `;
 
 function App() {
+	const globalState = useContext(store);
+	const { dispatch } = globalState;
+
+	const { tilesTurntCounter } = globalState.state;
+
 	const [generatedGrid, setGrid] = useState(generateGrid(5, 5, 2));
 	const [tileTrackingArray, setTileTrackingArray] = useState(setBasicGrid(5, 5, create2DArray(5), false));
 	const [flaggedLocations, setFlaggedLocations] = useState(new Set());
-	const [tilesTurntCounter, setTilesTurntCounter] = useState(0);
 	const [maxTilesTurnt, setMaxTilesTurnt] = useState(5 * 5 - 2);
 	const [gameReset, resetGame] = useState(false);
 
@@ -90,9 +96,10 @@ function App() {
 										onClick={e => {
 											checkForBomb(gridSquare, e);
 											if (tileTrackingArray[y][x] !== true) {
-												setTilesTurntCounter(tilesTurntCounter + 1);
+												dispatch({ type: types.INCREMENT_COUNT });
 											}
 											setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, true));
+											console.log(tilesTurntCounter);
 											checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, generatedGrid, 2);
 										}}
 										onContextMenu={e => {
