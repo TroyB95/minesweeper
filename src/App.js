@@ -82,6 +82,17 @@ function App() {
 			}
 		}
 	}
+	
+	function handleClick(e, y, x, gridSquare) {
+		checkForBomb(gridSquare, e);
+		if (tileTrackingArray[y][x] !== true) {
+			dispatch({ type: types.INCREMENT_COUNT });
+		}
+		setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, true));
+		console.log(tilesTurntCounter);
+		checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, generatedGrid, 2);
+	}
+	
 
 	return (
 		<PageContainer>
@@ -93,15 +104,7 @@ function App() {
 							{row.map((gridSquare, x) => {
 								return (
 									<GridSection
-										onClick={e => {
-											checkForBomb(gridSquare, e);
-											if (tileTrackingArray[y][x] !== true) {
-												dispatch({ type: types.INCREMENT_COUNT });
-											}
-											setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, true));
-											console.log(tilesTurntCounter);
-											checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, generatedGrid, 2);
-										}}
+										onClick={e => handleClick(e, y, x, gridSquare)}
 										onContextMenu={e => {
 											e.preventDefault();
 											if (tileTrackingArray[y][x] === "flag") {
