@@ -64,15 +64,18 @@ function App() {
 	const [maxTilesTurnt, setMaxTilesTurnt] = useState(5 * 5 - 2);
 	const [gameReset, resetGame] = useState(false);
 
-	function checkLocations(y, x) {
-		if (flaggedLocations.has(`${y},${x}`)) {
+	function checkLocations(y, x, click) {
+		if (flaggedLocations && flaggedLocations.has(`${y},${x}`)) {
 			let deleteUpdatedSet = new Set(flaggedLocations);
 			deleteUpdatedSet.delete(`${y},${x}`);
 			return deleteUpdatedSet;
 		}
-		let addUpdateSet = new Set(flaggedLocations);
-		addUpdateSet.add(`${y},${x}`);
-		return addUpdateSet;
+		if(click === 'right') {
+			let addUpdateSet = new Set(flaggedLocations);
+			addUpdateSet.add(`${y},${x}`);
+			return addUpdateSet;
+		}
+		
 	}
 
 	function checkIfWon(tilesTurntCount, maxTilesTurnt, flaggedLocations, generatedGrid, bombCount) {
@@ -89,10 +92,24 @@ function App() {
 			dispatch({ type: types.INCREMENT_COUNT });
 		}
 		setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, true));
-		console.log(tilesTurntCounter);
+		setFlaggedLocations(checkLocations(y, x, 'left'))
 		checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, generatedGrid, 2);
 	}
-	
+
+	function handleRightClick(e, y, x) {
+		e.preventDefault();
+		if (tileTrackingArray[y][x] === "flag") {
+			setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, false));
+			setFlaggedLocations(checkLocations(y, x, 'right'));
+			return;
+		}
+
+		if (tileTrackingArray[y][x] !== true) {
+			setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, "flag"));
+			setFlaggedLocations(checkLocations(y, x, 'right'));
+			return;
+		}
+	}
 
 	return (
 		<PageContainer>
@@ -105,20 +122,7 @@ function App() {
 								return (
 									<GridSection
 										onClick={e => handleClick(e, y, x, gridSquare)}
-										onContextMenu={e => {
-											e.preventDefault();
-											if (tileTrackingArray[y][x] === "flag") {
-												setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, false));
-												setFlaggedLocations(checkLocations(y, x));
-												return;
-											}
-
-											if (tileTrackingArray[y][x] !== true) {
-												setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, "flag"));
-												setFlaggedLocations(checkLocations(y, x));
-												return;
-											}
-										}}
+										onContextMenu={e => handleRightClick(e, y, x)}
 										key={uniqid("grid-square-")}
 										width="5"
 									>
