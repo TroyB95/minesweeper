@@ -10,6 +10,7 @@ import { generateGrid, create2DArray, setBasicGrid } from "./gameFunctions/gridG
 import { checkForBomb, mutateTrackingArray } from "./gameFunctions/gridHelpers";
 
 import TimerBar from "./Components/TimerBar";
+import StartScreen from "./Components/StartScreen";
 
 const PageContainer = styled.div`
 	width: 100vw;
@@ -59,6 +60,7 @@ function App() {
 	const { tilesTurntCounter, flaggedLocations } = globalState.state;
 
 	const [generatedGrid, setGrid] = useState(generateGrid(5, 5, 2));
+	const [optionsSelected, setOptionsSelected] = useState(false);
 	const [tileTrackingArray, setTileTrackingArray] = useState(setBasicGrid(5, 5, create2DArray(5), false));
 	const [maxTilesTurnt, setMaxTilesTurnt] = useState(5 * 5 - 2);
 	const [gameReset, setGameReset] = useState(false);
@@ -67,14 +69,13 @@ function App() {
 		if (flaggedLocations && flaggedLocations.has(`${y},${x}`)) {
 			let deleteUpdatedSet = new Set(flaggedLocations);
 			deleteUpdatedSet.delete(`${y},${x}`);
-			return dispatch({type: types.UPDATE_FLAGGED_LOCATIONS, payload: deleteUpdatedSet})
+			return dispatch({ type: types.UPDATE_FLAGGED_LOCATIONS, payload: deleteUpdatedSet });
 		}
-		if(click === 'right') {
+		if (click === "right") {
 			let addUpdateSet = new Set(flaggedLocations);
 			addUpdateSet.add(`${y},${x}`);
-			return dispatch({type: types.UPDATE_FLAGGED_LOCATIONS, payload: addUpdateSet})
+			return dispatch({ type: types.UPDATE_FLAGGED_LOCATIONS, payload: addUpdateSet });
 		}
-		
 	}
 
 	function checkIfWon(tilesTurntCount, maxTilesTurnt, flaggedLocations, generatedGrid, bombCount) {
@@ -84,14 +85,14 @@ function App() {
 			}
 		}
 	}
-	
+
 	function handleClick(e, y, x, gridSquare) {
 		checkForBomb(gridSquare, e);
 		if (tileTrackingArray[y][x] !== true) {
 			dispatch({ type: types.INCREMENT_COUNT });
 		}
 		setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, true));
-		checkLocations(y, x, 'left')
+		checkLocations(y, x, "left");
 		checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, generatedGrid, 2);
 	}
 
@@ -99,24 +100,25 @@ function App() {
 		e.preventDefault();
 		if (tileTrackingArray[y][x] === "flag") {
 			setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, false));
-			checkLocations(y, x, 'right');
+			checkLocations(y, x, "right");
 			return;
 		}
 
 		if (tileTrackingArray[y][x] !== true) {
 			setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, "flag"));
-			checkLocations(y, x, 'right');
+			checkLocations(y, x, "right");
 			return;
 		}
 	}
 
 	function resetGame() {
 		dispatch({ type: types.RESET_COUNT });
-
+		dispatch({ type: types.RESET_FLAGGED_LOCATIONS });
 	}
 
 	return (
 		<PageContainer>
+			{!optionsSelected && <StartScreen />}
 			<TimerBar restart={gameReset ? true : false} />
 			<GridContainer>
 				{generatedGrid.map((row, y) => {
