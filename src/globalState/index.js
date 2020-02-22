@@ -13,6 +13,10 @@ const StateProvider = ({ children }) => {
 				return {
 					tilesTurntCounter: state.tilesTurntCounter + 1,
 				};
+			case types.RESET_COUNT:
+				return {
+					tilesTurntCounter: 0,
+				}
 			//   case 'action description':
 			//     const newState = // do something with the action
 			//     return newState;
