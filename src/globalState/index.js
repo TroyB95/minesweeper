@@ -12,18 +12,22 @@ const StateProvider = ({ children }) => {
 		switch (action.type) {
 			case types.INCREMENT_COUNT:
 				return {
+					...state,
 					tilesTurntCounter: state.tilesTurntCounter + 1,
 				};
 			case types.RESET_COUNT:
 				return {
+					...state,
 					tilesTurntCounter: 0,
 				};
 			case types.UPDATE_FLAGGED_LOCATIONS:
 				return {
+					...state,
 					flaggedLocations: action.payload,
 				};
 			case types.RESET_FLAGGED_LOCATIONS:
 				return {
+					...state,
 					flaggedLocations: new Set(),
 				};
 			//   case 'action description':
