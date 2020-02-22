@@ -2,7 +2,9 @@ import React, { createContext, useReducer } from "react";
 
 import types from "./types";
 
-const initialState = { tilesTurntCounter: 0 };
+const initialState = { tilesTurntCounter: 0, flaggedLocations: new Set() };
+
+
 const store = createContext(initialState);
 const { Provider } = store;
 
@@ -16,6 +18,10 @@ const StateProvider = ({ children }) => {
 			case types.RESET_COUNT:
 				return {
 					tilesTurntCounter: 0,
+				};
+			case types.UPDATE_FLAGGED_LOCATIONS:
+				return {
+					flaggedLocations: action.payload
 				}
 			//   case 'action description':
 			//     const newState = // do something with the action
