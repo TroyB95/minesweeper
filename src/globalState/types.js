@@ -1,5 +1,7 @@
 const INCREMENT_COUNT = "INCREMENT_COUNT";
+const RESET_COUNT = "RESET_COUNT";
 
 export default {
 	INCREMENT_COUNT,
+	RESET_COUNT
 };
