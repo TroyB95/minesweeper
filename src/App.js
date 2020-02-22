@@ -56,24 +56,23 @@ function App() {
 	const globalState = useContext(store);
 	const { dispatch } = globalState;
 
-	const { tilesTurntCounter } = globalState.state;
+	const { tilesTurntCounter, flaggedLocations } = globalState.state;
 
 	const [generatedGrid, setGrid] = useState(generateGrid(5, 5, 2));
 	const [tileTrackingArray, setTileTrackingArray] = useState(setBasicGrid(5, 5, create2DArray(5), false));
-	const [flaggedLocations, setFlaggedLocations] = useState(new Set());
 	const [maxTilesTurnt, setMaxTilesTurnt] = useState(5 * 5 - 2);
-	const [gameReset, resetGame] = useState(false);
+	const [gameReset, setGameReset] = useState(false);
 
 	function checkLocations(y, x, click) {
 		if (flaggedLocations && flaggedLocations.has(`${y},${x}`)) {
 			let deleteUpdatedSet = new Set(flaggedLocations);
 			deleteUpdatedSet.delete(`${y},${x}`);
-			return deleteUpdatedSet;
+			return dispatch({type: types.UPDATE_FLAGGED_LOCATIONS, payload: deleteUpdatedSet})
 		}
 		if(click === 'right') {
 			let addUpdateSet = new Set(flaggedLocations);
 			addUpdateSet.add(`${y},${x}`);
-			return addUpdateSet;
+			return dispatch({type: types.UPDATE_FLAGGED_LOCATIONS, payload: addUpdateSet})
 		}
 		
 	}
@@ -92,7 +91,7 @@ function App() {
 			dispatch({ type: types.INCREMENT_COUNT });
 		}
 		setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, true));
-		setFlaggedLocations(checkLocations(y, x, 'left'))
+		checkLocations(y, x, 'left')
 		checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, generatedGrid, 2);
 	}
 
@@ -100,15 +99,20 @@ function App() {
 		e.preventDefault();
 		if (tileTrackingArray[y][x] === "flag") {
 			setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, false));
-			setFlaggedLocations(checkLocations(y, x, 'right'));
+			checkLocations(y, x, 'right');
 			return;
 		}
 
 		if (tileTrackingArray[y][x] !== true) {
 			setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, "flag"));
-			setFlaggedLocations(checkLocations(y, x, 'right'));
+			checkLocations(y, x, 'right');
 			return;
 		}
+	}
+
+	function resetGame() {
+		dispatch({ type: types.RESET_COUNT });
+
 	}
 
 	return (
