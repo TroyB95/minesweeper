@@ -4,7 +4,6 @@ import types from "./types";
 
 const initialState = { tilesTurntCounter: 0, flaggedLocations: new Set() };
 
-
 const store = createContext(initialState);
 const { Provider } = store;
 
@@ -21,8 +20,12 @@ const StateProvider = ({ children }) => {
 				};
 			case types.UPDATE_FLAGGED_LOCATIONS:
 				return {
-					flaggedLocations: action.payload
-				}
+					flaggedLocations: action.payload,
+				};
+			case types.RESET_FLAGGED_LOCATIONS:
+				return {
+					flaggedLocations: new Set(),
+				};
 			//   case 'action description':
 			//     const newState = // do something with the action
 			//     return newState;
