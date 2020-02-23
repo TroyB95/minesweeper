@@ -60,7 +60,7 @@ function App() {
 	const { tilesTurntCounter, flaggedLocations } = globalState.state;
 
 	const [generatedGrid, setGrid] = useState(generateGrid(5, 5, 2));
-	const [optionsSelected, setOptionsSelected] = useState(false);
+	const [optionsSubmitted, setOptionsSubmitted] = useState(false);
 	const [tileTrackingArray, setTileTrackingArray] = useState(setBasicGrid(5, 5, create2DArray(5), false));
 	const [maxTilesTurnt, setMaxTilesTurnt] = useState(5 * 5 - 2);
 	const [gameReset, setGameReset] = useState(false);
@@ -118,7 +118,7 @@ function App() {
 
 	return (
 		<PageContainer>
-			{!optionsSelected && <StartScreen />}
+			{!optionsSubmitted && <StartScreen />}
 			<TimerBar restart={gameReset ? true : false} />
 			<GridContainer>
 				{generatedGrid.map((row, y) => {
