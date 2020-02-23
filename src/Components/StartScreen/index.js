@@ -8,8 +8,7 @@ const StartScreenModalBackground = styled.div`
 	width: 100%;
 	height: 100%;
 
-	background: black;
-	opacity: 80%;
+	background-color: rgba(0, 0, 0, 0.8);
 
 	position: absolute;
 
@@ -24,12 +23,31 @@ const StartScreenModal = styled.div`
 
 	background: grey;
 
-	opacity: 1;
-
 	display: flex;
+	flex-wrap: wrap;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+`;
+
+const OptionsForm = styled.form`
+	width: 80%;
+	height: 80%;
+
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+`;
+
+const OptionsInputDiv = styled.div`
+	width: 80%;
+	height: 15%;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 `;
 
 function StartScreen() {
@@ -43,9 +61,9 @@ function StartScreen() {
 	return (
 		<StartScreenModalBackground>
 			<StartScreenModal>
-				<form onSubmit={e => console.log(e)}>
-					<label>
-						Grid size:
+				<OptionsForm onSubmit={e => console.log(e)}>
+					<OptionsInputDiv>
+						<label>Grid size: </label>
 						<input
 							type="number"
 							min="1"
@@ -56,10 +74,9 @@ function StartScreen() {
 								console.log(globalState.state);
 							}}
 						></input>
-					</label>
-
-					<label>
-						Number of bombs:
+					</OptionsInputDiv>
+					<OptionsInputDiv>
+						<label>Number of bombs: </label>
 						<input
 							type="number"
 							min="1"
@@ -70,9 +87,9 @@ function StartScreen() {
 								console.log(globalState.state);
 							}}
 						></input>
-					</label>
+					</OptionsInputDiv>
 					<input type="submit" value="Submit" />
-				</form>
+				</OptionsForm>
 			</StartScreenModal>
 		</StartScreenModalBackground>
 	);
