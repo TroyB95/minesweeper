@@ -1,4 +1,10 @@
-import { create2DArray, generateCoordinate, compareCoords, generateBombs } from "./gridGeneration";
+import {
+	create2DArray,
+	generateCoordinate,
+	compareCoords,
+	generateBombs,
+	setBasicGrid,
+} from "./gridGeneration";
 
 describe("create2DArray", () => {
 	it("should return an array with as many nested arrays as the row argument specifys", () => {
@@ -52,5 +58,17 @@ describe("generateBombs", () => {
 		expect(a).toBeLessThan(5);
 		expect(b).toBeGreaterThanOrEqual(0);
 		expect(b).toBeLessThan(5);
+	});
+});
+
+describe("setBasicGrid", () => {
+	let basicGrid = setBasicGrid(5, 5, create2DArray(5), 0);
+
+	test.each(basicGrid)("should fill the grid with the value 0", (a, b, c, d, e) => {
+		expect(a).toBe(0);
+		expect(b).toBe(0);
+		expect(c).toBe(0);
+		expect(d).toBe(0);
+		expect(e).toBe(0);
 	});
 });
