@@ -54,7 +54,7 @@ function StartScreen() {
 	const globalState = useContext(store);
 	const { dispatch } = globalState;
 
-	let {
+	const {
 		gameOptions: { gridSize, bombs },
 	} = globalState.state;
 
