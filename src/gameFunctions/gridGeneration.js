@@ -1,3 +1,7 @@
+/**
+ * Creates a 2d array.
+ * @param {string} rows - How many nested arrays.
+ */
 export function create2DArray(rows) {
 	let arr = [];
 	for (let i = 0; i < rows; i++) {
