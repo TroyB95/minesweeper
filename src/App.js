@@ -118,7 +118,7 @@ function App() {
 
 	return (
 		<PageContainer>
-			{!optionsSubmitted && <StartScreen />}
+			{!optionsSubmitted && <StartScreen setOptionsSubmitted={setOptionsSubmitted} />}
 			<TimerBar restart={gameReset ? true : false} />
 			<GridContainer>
 				{generatedGrid.map((row, y) => {

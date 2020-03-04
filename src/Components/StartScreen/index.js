@@ -50,7 +50,7 @@ const OptionsInputDiv = styled.div`
 	align-items: center;
 `;
 
-function StartScreen() {
+function StartScreen(props) {
 	const [gridOptions, setGridOptions] = useState({ gridSize: 0, bombCount: 0 });
 	const globalState = useContext(store);
 	const { dispatch } = globalState;
@@ -62,6 +62,7 @@ function StartScreen() {
 					onSubmit={e => {
 						e.preventDefault();
 						dispatch({ type: types.UPDATE_GRID_OPTIONS, payload: gridOptions });
+						props.setOptionsSubmitted(true);
 					}}
 				>
 					<OptionsInputDiv>
