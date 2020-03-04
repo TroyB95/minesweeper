@@ -73,8 +73,7 @@ function StartScreen(props) {
 							max="25"
 							value={gridOptions.gridSize}
 							onChange={e => {
-								setGridOptions({ ...gridOptions, gridSize: e.target.value });
-								console.log(gridOptions);
+								setGridOptions({ ...gridOptions, gridSize: Number(e.target.value) });
 							}}
 						></input>
 					</OptionsInputDiv>
@@ -86,8 +85,7 @@ function StartScreen(props) {
 							max="25"
 							value={gridOptions.bombCount}
 							onChange={e => {
-								setGridOptions({ ...gridOptions, bombCount: e.target.value });
-								console.log(gridOptions);
+								setGridOptions({ ...gridOptions, bombCount: Number(e.target.value) });
 							}}
 						></input>
 					</OptionsInputDiv>
