@@ -5,7 +5,7 @@ import types from "./types";
 const initialState = {
 	tilesTurntCounter: 0,
 	flaggedLocations: new Set(),
-	gameOptions: { bombs: 0, gridSize: 0 },
+	gameOptions: { bombCount: 0, gridSize: 0 },
 };
 
 const store = createContext(initialState);
@@ -34,16 +34,12 @@ const StateProvider = ({ children }) => {
 					...state,
 					flaggedLocations: new Set(),
 				};
-			case types.UPDATE_GRID_SIZE:
+			case types.UPDATE_GRID_OPTIONS:
 				return {
 					...state,
 					gameOptions: { ...state.gameOptions, ...action.payload },
 				};
-			case types.UPDATE_BOMBS:
-				return {
-					...state,
-					gameOptions: { ...state.gameOptions, ...action.payload },
-				};
+			
 			default:
 				throw new Error();
 		}
