@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 
 import types from "../../globalState/types";
@@ -51,27 +51,29 @@ const OptionsInputDiv = styled.div`
 `;
 
 function StartScreen() {
+	const [gridOptions, setGridOptions] = useState({ gridSize: 0, bombCount: 0 });
 	const globalState = useContext(store);
 	const { dispatch } = globalState;
-
-	const {
-		gameOptions: { gridSize, bombs },
-	} = globalState.state;
 
 	return (
 		<StartScreenModalBackground>
 			<StartScreenModal>
-				<OptionsForm onSubmit={e => console.log(e)}>
+				<OptionsForm
+					onSubmit={e => {
+						e.preventDefault();
+						dispatch({ type: types.UPDATE_GRID_OPTIONS, payload: gridOptions });
+					}}
+				>
 					<OptionsInputDiv>
 						<label>Grid size: </label>
 						<input
 							type="number"
 							min="1"
 							max="25"
-							value={gridSize}
+							value={gridOptions.gridSize}
 							onChange={e => {
-								dispatch({ type: types.UPDATE_GRID_SIZE, payload: { gridSize: e.target.value } });
-								console.log(globalState.state);
+								setGridOptions({ ...gridOptions, gridSize: e.target.value });
+								console.log(gridOptions);
 							}}
 						></input>
 					</OptionsInputDiv>
@@ -81,10 +83,10 @@ function StartScreen() {
 							type="number"
 							min="1"
 							max="25"
-							value={bombs}
+							value={gridOptions.bombCount}
 							onChange={e => {
-								dispatch({ type: types.UPDATE_BOMBS, payload: { bombs: e.target.value } });
-								console.log(globalState.state);
+								setGridOptions({ ...gridOptions, bombCount: e.target.value });
+								console.log(gridOptions);
 							}}
 						></input>
 					</OptionsInputDiv>
