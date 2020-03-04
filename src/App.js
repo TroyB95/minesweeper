@@ -57,13 +57,23 @@ function App() {
 	const globalState = useContext(store);
 	const { dispatch } = globalState;
 
-	const { tilesTurntCounter, flaggedLocations } = globalState.state;
+	const {
+		tilesTurntCounter,
+		flaggedLocations,
+		gameOptions: { gridSize, bombCount },
+	} = globalState.state;
 
-	const [generatedGrid, setGrid] = useState(generateGrid(5, 5, 2));
+	const [generatedGrid, setGrid] = useState();
 	const [optionsSubmitted, setOptionsSubmitted] = useState(false);
-	const [tileTrackingArray, setTileTrackingArray] = useState(setBasicGrid(5, 5, create2DArray(5), false));
-	const [maxTilesTurnt, setMaxTilesTurnt] = useState(5 * 5 - 2);
+	const [tileTrackingArray, setTileTrackingArray] = useState();
+	const [maxTilesTurnt, setMaxTilesTurnt] = useState();
 	const [gameReset, setGameReset] = useState(false);
+
+	useEffect(() => {
+		setGrid(generateGrid(gridSize, gridSize, bombCount));
+		setTileTrackingArray(setBasicGrid(gridSize, gridSize, create2DArray(gridSize), false));
+		setMaxTilesTurnt(gridSize * gridSize - bombCount);
+	}, [bombCount, gridSize, optionsSubmitted]);
 
 	function checkLocations(y, x, click) {
 		if (flaggedLocations && flaggedLocations.has(`${y},${x}`)) {
@@ -93,7 +103,7 @@ function App() {
 		}
 		setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, true));
 		checkLocations(y, x, "left");
-		checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, generatedGrid, 2);
+		checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, generatedGrid, bombCount);
 	}
 
 	function handleRightClick(e, y, x) {
@@ -119,31 +129,35 @@ function App() {
 	return (
 		<PageContainer>
 			{!optionsSubmitted && <StartScreen setOptionsSubmitted={setOptionsSubmitted} />}
-			<TimerBar restart={gameReset ? true : false} />
-			<GridContainer>
-				{generatedGrid.map((row, y) => {
-					return (
-						<GridRow key={uniqid("grid-row-")} height="5">
-							{row.map((gridSquare, x) => {
-								return (
-									<GridSection
-										onClick={e => handleClick(e, y, x, gridSquare)}
-										onContextMenu={e => handleRightClick(e, y, x)}
-										key={uniqid("grid-square-")}
-										width="5"
-									>
-										{tileTrackingArray[y][x] === true
-											? gridSquare
-											: tileTrackingArray[y][x] === "flag"
-											? "F"
-											: null}
-									</GridSection>
-								);
-							})}
-						</GridRow>
-					);
-				})}
-			</GridContainer>
+			{optionsSubmitted && (
+				<>
+					<TimerBar restart={gameReset ? true : false} />
+					<GridContainer>
+						{generatedGrid.map((row, y) => {
+							return (
+								<GridRow key={uniqid("grid-row-")} height={gridSize}>
+									{row.map((gridSquare, x) => {
+										return (
+											<GridSection
+												onClick={e => handleClick(e, y, x, gridSquare)}
+												onContextMenu={e => handleRightClick(e, y, x)}
+												key={uniqid("grid-square-")}
+												width={gridSize}
+											>
+												{tileTrackingArray[y][x] === true
+													? gridSquare
+													: tileTrackingArray[y][x] === "flag"
+													? "F"
+													: null}
+											</GridSection>
+										);
+									})}
+								</GridRow>
+							);
+						})}
+					</GridContainer>
+				</>
+			)}
 		</PageContainer>
 	);
 }
