@@ -75,6 +75,10 @@ function App() {
 		setMaxTilesTurnt(gridSize * gridSize - bombCount);
 	}, [bombCount, gridSize, optionsSubmitted]);
 
+	useEffect(() => {
+		if (optionsSubmitted) checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, bombCount);
+	}, [bombCount, flaggedLocations, maxTilesTurnt, optionsSubmitted, tilesTurntCounter]);
+
 	function checkLocations(y, x, click) {
 		if (flaggedLocations && flaggedLocations.has(`${y},${x}`)) {
 			let deleteUpdatedSet = new Set(flaggedLocations);
@@ -88,8 +92,8 @@ function App() {
 		}
 	}
 
-	function checkIfWon(tilesTurntCount, maxTilesTurnt, flaggedLocations, generatedGrid, bombCount) {
-		if (tilesTurntCount === maxTilesTurnt - 1) {
+	function checkIfWon(tilesTurntCount, maxTilesTurnt, flaggedLocations, bombCount) {
+		if (tilesTurntCount >= maxTilesTurnt) {
 			if (flaggedLocations.size === bombCount) {
 				alert("Congratulations, you have won the game!");
 			}
@@ -103,7 +107,6 @@ function App() {
 		}
 		setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, true));
 		checkLocations(y, x, "left");
-		checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, generatedGrid, bombCount);
 	}
 
 	function handleRightClick(e, y, x) {
