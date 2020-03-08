@@ -12,12 +12,17 @@ export function create2DArray(rows) {
 
 /**
  * Generates number between 0 and max width of grid.
- * @param {number} gridDimensions - Max width of grid.
+ * @param {Number} gridDimensions - Max width of grid.
  */
 export function generateCoordinate(gridDimension) {
   return Math.round(Math.random() * (gridDimension - 1));
 }
 
+/**
+ * Checks coordinates are unique and have not already been created.
+ * @param {Array} array1 - Store of the coordinates.
+ * @param {Array} array2 - New generated arr of coordinates.
+ */
 export function compareCoords(array1, array2) {
   if (!array2) return false;
 
