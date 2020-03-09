@@ -54,9 +54,9 @@ export function generateBombs(width, height, bombs) {
   return bombsCoordArr;
 }
 
-export function setBasicGrid(width, height, gridArr, value = 0) {
+export function setBasicGrid(width, gridArr, value = 0) {
   let filledGridArr = [...gridArr];
-  for (let y = 0; y < height; y++) {
+  for (let y = 0; y < width; y++) {
     for (let x = 0; x < width; x++) {
       filledGridArr[y][x] = value;
     }
