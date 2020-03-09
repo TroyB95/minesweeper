@@ -74,21 +74,21 @@ export function generateGrid(width, bombs) {
     });
   })();
 
-  return incrementAroundBombs(width, width, gridArr);
+  return incrementAroundBombs(width, gridArr);
 }
 
-export function incrementAroundBombs(width, height, gridArr) {
+export function incrementAroundBombs(width, gridArr) {
   let fullGrid = [...gridArr];
-  for (let y = 0; y < height; y++) {
+  for (let y = 0; y < width; y++) {
     for (let x = 0; x < width; x++) {
       // If bomb increment all coords around it
       if (fullGrid[y][x] === true) {
         // north
-        if (y + 1 !== height && fullGrid[y + 1][x] !== true) {
+        if (y + 1 !== width && fullGrid[y + 1][x] !== true) {
           fullGrid[y + 1][x] += 1;
         }
         // north east
-        if (y + 1 !== height && x + 1 !== width && fullGrid[y + 1][x + 1] !== true) {
+        if (y + 1 !== width && x + 1 !== width && fullGrid[y + 1][x + 1] !== true) {
           fullGrid[y + 1][x + 1] += 1;
         }
         // east
@@ -112,7 +112,7 @@ export function incrementAroundBombs(width, height, gridArr) {
           fullGrid[y][x - 1] += 1;
         }
         // north west
-        if (y + 1 !== height && x - 1 !== -1 && fullGrid[y + 1][x - 1] !== true) {
+        if (y + 1 !== width && x - 1 !== -1 && fullGrid[y + 1][x - 1] !== true) {
           fullGrid[y + 1][x - 1] += 1;
         }
       }
