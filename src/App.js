@@ -7,7 +7,7 @@ import types from "./globalState/types";
 import "./App.css";
 
 import { generateGrid, create2DArray, setBasicGrid } from "./gameFunctions/gridGeneration";
-import { checkForBomb, mutateTrackingArray } from "./gameFunctions/gridHelpers";
+import { checkForBomb, mutateTrackingArray, checkIfWon } from "./gameFunctions/gridHelpers";
 
 import TimerBar from "./Components/TimerBar";
 import StartScreen from "./Components/StartScreen";
@@ -89,14 +89,6 @@ function App() {
       let addUpdateSet = new Set(flaggedLocations);
       addUpdateSet.add(`${y},${x}`);
       return dispatch({ type: types.UPDATE_FLAGGED_LOCATIONS, payload: addUpdateSet });
-    }
-  }
-
-  function checkIfWon(tilesTurntCount, maxTilesTurnt, flaggedLocations, bombCount) {
-    if (tilesTurntCount >= maxTilesTurnt) {
-      if (flaggedLocations.size === bombCount) {
-        alert("Congratulations, you have won the game!");
-      }
     }
   }
 
