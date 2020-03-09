@@ -1,6 +1,7 @@
 /**
  * Creates a 2d array.
  * @param {string} rows - How many nested arrays.
+ * @returns {Array}
  */
 export function create2DArray(rows) {
   let arr = [];
@@ -13,6 +14,7 @@ export function create2DArray(rows) {
 /**
  * Generates number between 0 and max width of grid.
  * @param {Number} gridDimensions - Max width of grid.
+ * @returns {Number}
  */
 export function generateCoordinate(gridDimension) {
   return Math.round(Math.random() * (gridDimension - 1));
@@ -22,6 +24,7 @@ export function generateCoordinate(gridDimension) {
  * Checks coordinates are unique and have not already been created.
  * @param {Array} array1 - Store of the coordinates.
  * @param {Array} array2 - New generated arr of coordinates.
+ * @returns {Boolean}
  */
 export function compareCoords(array1, array2) {
   if (!array2) return false;
@@ -37,6 +40,7 @@ export function compareCoords(array1, array2) {
  * Generates array of bomb coordinates X/Y.
  * @param {Number} width - How many squares wide.
  * @param {Number} Bombs - Number of bombs.
+ * @returns {Array}
  */
 export function generateBombs(width, height, bombs) {
   let bombsCoordArr = [];
