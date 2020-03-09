@@ -33,6 +33,11 @@ export function compareCoords(array1, array2) {
   return false;
 }
 
+/**
+ * Generates array of bomb coordinates X/Y.
+ * @param {Number} width - How many squares wide.
+ * @param {Number} Bombs - Number of bombs.
+ */
 export function generateBombs(width, height, bombs) {
   let bombsCoordArr = [];
 
