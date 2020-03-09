@@ -70,7 +70,7 @@ function App() {
   const [gameReset, setGameReset] = useState(false);
 
   useEffect(() => {
-    setGrid(generateGrid(gridSize, gridSize, bombCount));
+    setGrid(generateGrid(gridSize, bombCount));
     setTileTrackingArray(setBasicGrid(gridSize, create2DArray(gridSize), false));
     setMaxTilesTurnt(gridSize * gridSize - bombCount);
   }, [bombCount, gridSize, optionsSubmitted]);
