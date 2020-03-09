@@ -64,9 +64,9 @@ export function setBasicGrid(width, gridArr, value = 0) {
   return filledGridArr;
 }
 
-export function generateGrid(width, height, bombs) {
-  let gridArr = setBasicGrid(width, height, create2DArray(height));
-  const bombsCoordArr = generateBombs(width, height, bombs);
+export function generateGrid(width, bombs) {
+  let gridArr = setBasicGrid(width, create2DArray(width));
+  const bombsCoordArr = generateBombs(width, width, bombs);
 
   (function plotBombs() {
     bombsCoordArr.forEach(locationArr => {
@@ -74,7 +74,7 @@ export function generateGrid(width, height, bombs) {
     });
   })();
 
-  return incrementAroundBombs(width, height, gridArr);
+  return incrementAroundBombs(width, width, gridArr);
 }
 
 export function incrementAroundBombs(width, height, gridArr) {
