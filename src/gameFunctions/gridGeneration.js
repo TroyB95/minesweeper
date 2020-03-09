@@ -42,11 +42,11 @@ export function compareCoords(array1, array2) {
  * @param {Number} Bombs - Number of bombs.
  * @returns {Array}
  */
-export function generateBombs(width, height, bombs) {
+export function generateBombs(width, bombs) {
   let bombsCoordArr = [];
 
   while (bombsCoordArr.length < bombs) {
-    let coordArr = [generateCoordinate(height), generateCoordinate(width)];
+    let coordArr = [generateCoordinate(width), generateCoordinate(width)];
     if (!compareCoords(bombsCoordArr, coordArr)) {
       bombsCoordArr.push(coordArr);
     }
@@ -66,7 +66,7 @@ export function setBasicGrid(width, gridArr, value = 0) {
 
 export function generateGrid(width, bombs) {
   let gridArr = setBasicGrid(width, create2DArray(width));
-  const bombsCoordArr = generateBombs(width, width, bombs);
+  const bombsCoordArr = generateBombs(width, bombs);
 
   (function plotBombs() {
     bombsCoordArr.forEach(locationArr => {
