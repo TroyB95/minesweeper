@@ -54,6 +54,13 @@ export function generateBombs(width, bombs) {
   return bombsCoordArr;
 }
 
+/**
+ * Fills out the nested Arrays representing the grid with the value provided.
+ * @param {Number} width - How many squares wide.
+ * @param {Array} gridArr - The empty nested grids.
+ * @param {Number | String | Boolean} value - The value to fill the arrays with.
+ * @returns {Array}
+ */
 export function setBasicGrid(width, gridArr, value = 0) {
   let filledGridArr = [...gridArr];
   for (let y = 0; y < width; y++) {
