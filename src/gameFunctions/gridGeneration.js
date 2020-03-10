@@ -90,6 +90,12 @@ export function generateGrid(width, bombs) {
   return incrementAroundBombs(width, gridArr);
 }
 
+/**
+ * Increment the squares around the bombs to show how many bombs are close.
+ * @param {Number} width - How many squares wide.
+ * @param {Array} gridArr - The nested grid array.
+ * @returns {Array}
+ */
 export function incrementAroundBombs(width, gridArr) {
   let fullGrid = [...gridArr];
   for (let y = 0; y < width; y++) {
