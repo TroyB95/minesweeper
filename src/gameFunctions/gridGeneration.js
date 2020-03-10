@@ -71,6 +71,12 @@ export function setBasicGrid(width, gridArr, value = 0) {
   return filledGridArr;
 }
 
+/**
+ * Plots the bomb locations in the grid.
+ * @param {Number} width - How many squares wide.
+ * @param {Number} bombs - The number of bombs to include.
+ * @returns {Array}
+ */
 export function generateGrid(width, bombs) {
   let gridArr = setBasicGrid(width, create2DArray(width));
   const bombsCoordArr = generateBombs(width, bombs);
