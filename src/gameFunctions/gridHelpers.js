@@ -10,6 +10,13 @@ export function checkForBomb(value, e) {
   }
 }
 
+/**
+ * Mutate the array with updates from click events etc.
+ * @param {Number} x - Value of x coordinate.
+ * @param {Number} y - Value of y coordinate.
+ * @param {Array} trackingArr - gridArr with filled info.
+ * @param {String | Number | Boolean} value - The value to update the tracking array with.
+ */
 export function mutateTrackingArray(y, x, trackingArr, value) {
   let tileTrackingArr = [...trackingArr];
   tileTrackingArr[y][x] = value;
