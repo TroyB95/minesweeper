@@ -23,6 +23,13 @@ export function mutateTrackingArray(y, x, trackingArr, value) {
   return tileTrackingArr;
 }
 
+/**
+ * Check if the player has won the game.
+ * @param {Number} tilesTurntCount - Number of tiles been clicked on.
+ * @param {Number} maxTilesTurnt - Count of maximum tiles minus bombs.
+ * @param {Set} flaggedLocations - Set with coordinates of flagged tiles.
+ * @param {Number} bombCount - Number of bombs in the current game.
+ */
 export function checkIfWon(tilesTurntCount, maxTilesTurnt, flaggedLocations, bombCount) {
   if (tilesTurntCount >= maxTilesTurnt) {
     if (flaggedLocations.size === bombCount) {
