@@ -9,6 +9,7 @@ import { checkForBomb, mutateTrackingArray, checkIfWon } from "./gameFunctions/g
 
 import TimerBar from "./Components/TimerBar";
 import StartScreen from "./Components/StartScreen";
+import WinningModal from "./Components/WinningModal";
 
 import BombSvg from "./Assets/bomb.svg";
 
@@ -73,6 +74,7 @@ function App() {
   const [tileTrackingArray, setTileTrackingArray] = useState();
   const [maxTilesTurnt, setMaxTilesTurnt] = useState();
   const [gameReset, setGameReset] = useState(false);
+  const [gameWon, setGameWon] = useState(false);
 
   useEffect(() => {
     setGrid(generateGrid(gridSize, bombCount));
@@ -81,7 +83,9 @@ function App() {
   }, [bombCount, gridSize, optionsSubmitted]);
 
   useEffect(() => {
-    if (optionsSubmitted) checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, bombCount);
+    if (optionsSubmitted && checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, bombCount)) {
+      setGameWon(true);
+    }
   }, [bombCount, flaggedLocations, maxTilesTurnt, optionsSubmitted, tilesTurntCounter]);
 
   function checkLocations(y, x, click) {
@@ -162,6 +166,7 @@ function App() {
           </GridContainer>
         </>
       )}
+      {gameWon && <WinningModal />}
     </PageContainer>
   );
 }
