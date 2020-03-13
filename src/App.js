@@ -51,6 +51,11 @@ const GridSection = styled.div`
   height: 100%;
 `;
 
+const BombImage = styled.img`
+  width: 90%;
+  height: 90%;
+`;
+
 function App() {
   const globalState = useContext(store);
   const { dispatch } = globalState;
@@ -137,11 +142,18 @@ function App() {
                         key={uniqid("grid-square-")}
                         width={gridSize}
                       >
-                        {tileTrackingArray[y][x] === true
-                          ? gridSquare
-                          : tileTrackingArray[y][x] === "flag"
-                          ? "F"
-                          : null}
+                        {tileTrackingArray[y][x] === true ? (
+                          gridSquare === true ? (
+                            <BombImage
+                              alt="Dynamite sticks with timer"
+                              src="https://image.flaticon.com/icons/svg/523/523777.svg"
+                            />
+                          ) : tileTrackingArray[y][x] === "flag" ? (
+                            "F"
+                          ) : (
+                            gridSquare
+                          )
+                        ) : null}
                       </GridSection>
                     );
                   })}
