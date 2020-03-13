@@ -4,8 +4,6 @@ import uniqid from "uniqid";
 import { store } from "./globalState";
 import types from "./globalState/types";
 
-import "./App.css";
-
 import { generateGrid, create2DArray, setBasicGrid } from "./gameFunctions/gridGeneration";
 import { checkForBomb, mutateTrackingArray, checkIfWon } from "./gameFunctions/gridHelpers";
 
