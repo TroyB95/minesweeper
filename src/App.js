@@ -10,6 +10,8 @@ import { checkForBomb, mutateTrackingArray, checkIfWon } from "./gameFunctions/g
 import TimerBar from "./Components/TimerBar";
 import StartScreen from "./Components/StartScreen";
 
+import BombSvg from "./Assets/bomb.svg";
+
 const PageContainer = styled.div`
   width: 100vw;
   height: 100vh;
@@ -126,13 +128,7 @@ function App() {
 
   function renderSquare(tileTrackingArray, gridSquare, y, x) {
     if (tileTrackingArray[y][x] === true) {
-      if (gridSquare === true)
-        return (
-          <BombImage
-            alt="Dynamite sticks with timer"
-            src="https://image.flaticon.com/icons/svg/523/523777.svg"
-          />
-        );
+      if (gridSquare === true) return <BombImage alt="Dynamite sticks with timer" src={BombSvg} />;
       return gridSquare;
     }
     if (tileTrackingArray[y][x] === "flag") return "F";
