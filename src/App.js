@@ -124,6 +124,20 @@ function App() {
     dispatch({ type: types.RESET_FLAGGED_LOCATIONS });
   }
 
+  function renderSquare(tileTrackingArray, gridSquare, y, x) {
+    if (tileTrackingArray[y][x] === true) {
+      if (gridSquare === true)
+        return (
+          <BombImage
+            alt="Dynamite sticks with timer"
+            src="https://image.flaticon.com/icons/svg/523/523777.svg"
+          />
+        );
+      return gridSquare;
+    }
+    if (tileTrackingArray[y][x] === "flag") return "F";
+  }
+
   return (
     <PageContainer>
       {!optionsSubmitted && <StartScreen setOptionsSubmitted={setOptionsSubmitted} />}
@@ -142,18 +156,7 @@ function App() {
                         key={uniqid("grid-square-")}
                         width={gridSize}
                       >
-                        {tileTrackingArray[y][x] === true ? (
-                          gridSquare === true ? (
-                            <BombImage
-                              alt="Dynamite sticks with timer"
-                              src="https://image.flaticon.com/icons/svg/523/523777.svg"
-                            />
-                          ) : tileTrackingArray[y][x] === "flag" ? (
-                            "F"
-                          ) : (
-                            gridSquare
-                          )
-                        ) : null}
+                        {renderSquare(tileTrackingArray, gridSquare, y, x)}
                       </GridSection>
                     );
                   })}
