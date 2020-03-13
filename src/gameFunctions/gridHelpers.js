@@ -34,7 +34,8 @@ export function mutateTrackingArray(y, x, trackingArr, value) {
 export function checkIfWon(tilesTurntCount, maxTilesTurnt, flaggedLocations, bombCount) {
   if (tilesTurntCount >= maxTilesTurnt) {
     if (flaggedLocations.size === bombCount) {
-      alert("Congratulations, you have won the game!");
+      return true;
     }
   }
+  return false;
 }
