@@ -26,12 +26,13 @@ const ModalBody = styled.div`
   justify-content: center;
 `;
 
-function WinningModal() {
+function WinningModal(props) {
+  const { gameReset } = props;
   return (
     <ModalBackground>
       <ModalBody>
         <h1>CONGRATS YOU HAVE WON</h1>
-        <button>Play Again</button>
+        <button onClick={() => gameReset(true)}>Play Again</button>
       </ModalBody>
     </ModalBackground>
   );

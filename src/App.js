@@ -166,7 +166,7 @@ function App() {
           </GridContainer>
         </>
       )}
-      {gameWon && <WinningModal />}
+      {gameWon && <WinningModal resetGame={setGameReset} />}
     </PageContainer>
   );
 }
