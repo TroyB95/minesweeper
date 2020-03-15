@@ -27,12 +27,12 @@ const ModalBody = styled.div`
 `;
 
 function WinningModal(props) {
-  const { gameReset } = props;
+  const { resetGame } = props;
   return (
     <ModalBackground>
       <ModalBody>
         <h1>CONGRATS YOU HAVE WON</h1>
-        <button onClick={() => gameReset(true)}>Play Again</button>
+        <button onClick={() => resetGame(true)}>Play Again</button>
       </ModalBody>
     </ModalBackground>
   );
