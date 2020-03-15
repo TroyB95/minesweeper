@@ -32,7 +32,7 @@ function WinningModal(props) {
     <ModalBackground>
       <ModalBody>
         <h1>CONGRATS YOU HAVE WON</h1>
-        <button onClick={() => resetGame(true)}>Play Again</button>
+        <button onClick={() => resetGame()}>Play Again</button>
       </ModalBody>
     </ModalBackground>
   );

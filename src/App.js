@@ -151,7 +151,6 @@ function App() {
       {optionsSubmitted && (
         <>
           <TimerBar restart={gameReset ? true : false} />
-          <button onClick={() => resetGame()}></button>
           <GridContainer>
             {generatedGrid.map((row, y) => {
               return (
@@ -174,7 +173,7 @@ function App() {
           </GridContainer>
         </>
       )}
-      {gameWon && <WinningModal resetGame={setGameReset} />}
+      {gameWon && <WinningModal resetGame={resetGame} />}
     </PageContainer>
   );
 }
