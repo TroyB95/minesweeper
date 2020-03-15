@@ -39,3 +39,15 @@ export function checkIfWon(tilesTurntCount, maxTilesTurnt, flaggedLocations, bom
   }
   return false;
 }
+
+export function flipBlankTiles(y, x, trackingArr, generatedGrid) {}
+
+// get click position in array,
+// check all tiles around said position
+// -Inside recursive function?
+// -- check n, ne, e, se, s etc.. === 0 or > 0 but !== true(bomb)
+// -- set position in tile tracking array to true
+// -- recurse into function with new position
+// if tile is 0 set to true if tile is > 0 && !== true(Bomb) set tileTrackingArr to true
+// set new position to the new tile
+// run check again
