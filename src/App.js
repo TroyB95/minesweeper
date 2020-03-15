@@ -128,6 +128,13 @@ function App() {
   function resetGame() {
     dispatch({ type: types.RESET_COUNT });
     dispatch({ type: types.RESET_FLAGGED_LOCATIONS });
+    dispatch({ type: types.RESET_GRID_OPTIONS });
+    setGrid("");
+    setOptionsSubmitted(false);
+    setTileTrackingArray("");
+    setMaxTilesTurnt("");
+    setGameWon(false);
+    setGameReset(false);
   }
 
   function renderSquare(tileTrackingArray, gridSquare, y, x) {
@@ -144,6 +151,7 @@ function App() {
       {optionsSubmitted && (
         <>
           <TimerBar restart={gameReset ? true : false} />
+          <button onClick={() => resetGame()}></button>
           <GridContainer>
             {generatedGrid.map((row, y) => {
               return (
