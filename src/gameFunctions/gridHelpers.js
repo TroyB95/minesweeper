@@ -40,7 +40,106 @@ export function checkIfWon(tilesTurntCount, maxTilesTurnt, flaggedLocations, bom
   return false;
 }
 
-export function flipBlankTiles(y, x, trackingArr, generatedGrid) {}
+export function flipBlankTiles(y, x, trackingArr, generatedGrid, width) {
+  let modifiedTrackingArr = [...trackingArr];
+  let recurseTrackingGrid = [...trackingArr];
+
+  let clickedSquare = generatedGrid[y][x];
+
+  if (clickedSquare === 0) {
+    recurseGrid(y, x);
+  }
+
+  function recurseGrid(y, x) {
+    let currentSquare = generatedGrid[y][x];
+
+    if (currentSquare === 0) {
+      modifiedTrackingArr[y][x] = true;
+
+      // check tile to north
+      if (y + 1 !== width) {
+        let newY = y + 1;
+        let newCurrentSquare = generatedGrid[newY][x];
+        if (modifiedTrackingArr[newY][x] !== true) {
+          recurseGrid(newY, x);
+        }
+      }
+
+      // check tile to north east
+      if (y + 1 !== width && x + 1 !== width) {
+        let newY = y + 1;
+        let newX = x + 1;
+        let newCurrentSquare = generatedGrid[newY][newX];
+        if (modifiedTrackingArr[newY][newX] !== true) {
+          recurseGrid(newY, newX);
+        }
+      }
+
+      // check tile to east
+      if (x + 1 !== width) {
+        let newX = x + 1;
+        let newCurrentSquare = generatedGrid[y][newX];
+        if (modifiedTrackingArr[y][newX] !== true) {
+          recurseGrid(y, newX);
+        }
+      }
+
+      // check tile to south east
+      if (y - 1 >= 0 && x + 1 !== width) {
+        let newY = y - 1;
+        let newX = x + 1;
+        let newCurrentSquare = generatedGrid[newY][newX];
+        if (modifiedTrackingArr[newY][newX] !== true) {
+          recurseGrid(newY, newX);
+        }
+      }
+
+      // check tile to south
+      if (y - 1 >= 0) {
+        let newY = y - 1;
+        let newCurrentSquare = generatedGrid[newY][x];
+        if (modifiedTrackingArr[newY][x] !== true) {
+          recurseGrid(newY, x);
+        }
+      }
+
+      // check tile to south west
+      if (y - 1 >= 0 && x - 1 >= 0) {
+        let newY = y - 1;
+        let newX = x - 1;
+        let newCurrentSquare = generatedGrid[newY][newX];
+        if (modifiedTrackingArr[newY][newX] !== true) {
+          recurseGrid(newY, newX);
+        }
+      }
+
+      // check tile to west
+      if (x + 1 < width) {
+        let newX = x + 1;
+        let newCurrentSquare = generatedGrid[y][newX];
+        if (modifiedTrackingArr[y][newX] !== true) {
+          recurseGrid(y, newX);
+        }
+      }
+
+      // check tile to north west
+      if (y + 1 !== width && x - 1 >= 0) {
+        let newY = y + 1;
+        let newX = x - 1;
+        let newCurrentSquare = generatedGrid[newY][newX];
+        if (modifiedTrackingArr[newY][newX] !== true) {
+          recurseGrid(newY, newX);
+        }
+      }
+    }
+    if (currentSquare > 0) {
+      modifiedTrackingArr[y][x] = true;
+      return;
+    }
+  }
+
+  return modifiedTrackingArr;
+}
 
 // get click position in array,
 // check all tiles around said position

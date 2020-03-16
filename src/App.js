@@ -5,7 +5,7 @@ import { store } from "./globalState";
 import types from "./globalState/types";
 
 import { generateGrid, create2DArray, setBasicGrid } from "./gameFunctions/gridGeneration";
-import { checkForBomb, mutateTrackingArray, checkIfWon } from "./gameFunctions/gridHelpers";
+import { checkForBomb, mutateTrackingArray, checkIfWon, flipBlankTiles } from "./gameFunctions/gridHelpers";
 
 import TimerBar from "./Components/TimerBar";
 import StartScreen from "./Components/StartScreen";
@@ -108,6 +108,7 @@ function App() {
     }
     setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, true));
     checkLocations(y, x, "left");
+    console.log(flipBlankTiles(y, x, tileTrackingArray, generatedGrid, gridSize));
   }
 
   function handleRightClick(e, y, x) {
