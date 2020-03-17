@@ -17,7 +17,7 @@ const StateProvider = ({ children }) => {
       case types.INCREMENT_COUNT:
         return {
           ...state,
-          tilesTurntCounter: state.tilesTurntCounter + 1,
+          tilesTurntCounter: state.tilesTurntCounter + (action.payload ? action.payload : 1),
         };
       case types.RESET_COUNT:
         return {
