@@ -51,7 +51,6 @@ export function checkIfWon(tilesTurntCount, maxTilesTurnt, flaggedLocations, bom
  */
 export function flipBlankTiles(y, x, trackingArr, generatedGrid, width) {
   let modifiedTrackingArr = [...trackingArr];
-  let recurseTrackingGrid = [...trackingArr];
 
   let clickedSquare = generatedGrid[y][x];
 
@@ -68,7 +67,6 @@ export function flipBlankTiles(y, x, trackingArr, generatedGrid, width) {
       // check tile to north
       if (y + 1 !== width) {
         let newY = y + 1;
-        let newCurrentSquare = generatedGrid[newY][x];
         if (modifiedTrackingArr[newY][x] !== true) {
           recurseGrid(newY, x);
         }
@@ -78,7 +76,6 @@ export function flipBlankTiles(y, x, trackingArr, generatedGrid, width) {
       if (y + 1 !== width && x + 1 !== width) {
         let newY = y + 1;
         let newX = x + 1;
-        let newCurrentSquare = generatedGrid[newY][newX];
         if (modifiedTrackingArr[newY][newX] !== true) {
           recurseGrid(newY, newX);
         }
@@ -87,7 +84,6 @@ export function flipBlankTiles(y, x, trackingArr, generatedGrid, width) {
       // check tile to east
       if (x + 1 !== width) {
         let newX = x + 1;
-        let newCurrentSquare = generatedGrid[y][newX];
         if (modifiedTrackingArr[y][newX] !== true) {
           recurseGrid(y, newX);
         }
@@ -97,7 +93,6 @@ export function flipBlankTiles(y, x, trackingArr, generatedGrid, width) {
       if (y - 1 >= 0 && x + 1 !== width) {
         let newY = y - 1;
         let newX = x + 1;
-        let newCurrentSquare = generatedGrid[newY][newX];
         if (modifiedTrackingArr[newY][newX] !== true) {
           recurseGrid(newY, newX);
         }
@@ -106,7 +101,6 @@ export function flipBlankTiles(y, x, trackingArr, generatedGrid, width) {
       // check tile to south
       if (y - 1 >= 0) {
         let newY = y - 1;
-        let newCurrentSquare = generatedGrid[newY][x];
         if (modifiedTrackingArr[newY][x] !== true) {
           recurseGrid(newY, x);
         }
@@ -116,7 +110,6 @@ export function flipBlankTiles(y, x, trackingArr, generatedGrid, width) {
       if (y - 1 >= 0 && x - 1 >= 0) {
         let newY = y - 1;
         let newX = x - 1;
-        let newCurrentSquare = generatedGrid[newY][newX];
         if (modifiedTrackingArr[newY][newX] !== true) {
           recurseGrid(newY, newX);
         }
@@ -125,7 +118,6 @@ export function flipBlankTiles(y, x, trackingArr, generatedGrid, width) {
       // check tile to west
       if (x + 1 < width) {
         let newX = x + 1;
-        let newCurrentSquare = generatedGrid[y][newX];
         if (modifiedTrackingArr[y][newX] !== true) {
           recurseGrid(y, newX);
         }
@@ -135,7 +127,6 @@ export function flipBlankTiles(y, x, trackingArr, generatedGrid, width) {
       if (y + 1 !== width && x - 1 >= 0) {
         let newY = y + 1;
         let newX = x - 1;
-        let newCurrentSquare = generatedGrid[newY][newX];
         if (modifiedTrackingArr[newY][newX] !== true) {
           recurseGrid(newY, newX);
         }
