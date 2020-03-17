@@ -50,6 +50,8 @@ const GridSection = styled.div`
   align-items: center;
   justify-content: center;
 
+  background: ${props => props.backgroundColor};
+
   width: ${props => 100 / props.width + "%"};
   height: 100%;
 `;
@@ -108,7 +110,7 @@ function App() {
     }
     setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, true));
     checkLocations(y, x, "left");
-    console.log(flipBlankTiles(y, x, tileTrackingArray, generatedGrid, gridSize));
+    flipBlankTiles(y, x, tileTrackingArray, generatedGrid, gridSize);
   }
 
   function handleRightClick(e, y, x) {
@@ -163,6 +165,13 @@ function App() {
                         onContextMenu={e => handleRightClick(e, y, x)}
                         key={uniqid("grid-square-")}
                         width={gridSize}
+                        backgroundColor={
+                          tileTrackingArray[y][x] === true
+                            ? "#828282"
+                            : tileTrackingArray[y][x] === "flag"
+                            ? "#3c64a3"
+                            : "#262626"
+                        }
                       >
                         {renderSquare(tileTrackingArray, gridSquare, y, x)}
                       </GridSection>
