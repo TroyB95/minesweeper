@@ -40,6 +40,15 @@ export function checkIfWon(tilesTurntCount, maxTilesTurnt, flaggedLocations, bom
   return false;
 }
 
+/**
+ * Flips over all the empty tiles after a click.
+ * @param {Number} x - x coordinate in array.
+ * @param {Number} y - y coordinate in array.
+ * @param {Array} trackingArr - Array which tracks all the tiles which have been flipped.
+ * @param {Array} generatedGrid - The filed array for the game.
+ * @param {Number} width - Width of game board.
+ *
+ */
 export function flipBlankTiles(y, x, trackingArr, generatedGrid, width) {
   let modifiedTrackingArr = [...trackingArr];
   let recurseTrackingGrid = [...trackingArr];
