@@ -110,7 +110,7 @@ function App() {
     }
     setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, true));
     checkLocations(y, x, "left");
-    flipBlankTiles(y, x, tileTrackingArray, generatedGrid, gridSize);
+    setTileTrackingArray(flipBlankTiles(y, x, tileTrackingArray, generatedGrid, gridSize));
   }
 
   function handleRightClick(e, y, x) {
