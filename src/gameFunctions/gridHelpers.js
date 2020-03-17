@@ -51,8 +51,14 @@ export function checkIfWon(tilesTurntCount, maxTilesTurnt, flaggedLocations, bom
  */
 export function flipBlankTiles(y, x, trackingArr, generatedGrid, width) {
   let modifiedTrackingArr = [...trackingArr];
+  let numberOfTilesTurnt = 0;
 
   let clickedSquare = generatedGrid[y][x];
+
+  if (clickedSquare > 0) {
+    modifiedTrackingArr[y][x] = true;
+    numberOfTilesTurnt++;
+  }
 
   if (clickedSquare === 0) {
     recurseGrid(y, x);
@@ -63,6 +69,7 @@ export function flipBlankTiles(y, x, trackingArr, generatedGrid, width) {
 
     if (currentSquare === 0) {
       modifiedTrackingArr[y][x] = true;
+      numberOfTilesTurnt += 1;
 
       // check tile to north
       if (y + 1 !== width) {
@@ -134,11 +141,12 @@ export function flipBlankTiles(y, x, trackingArr, generatedGrid, width) {
     }
     if (currentSquare > 0) {
       modifiedTrackingArr[y][x] = true;
+      numberOfTilesTurnt += 1;
       return;
     }
   }
 
-  return modifiedTrackingArr;
+  return { modifiedTrackingArr, numberOfTilesTurnt };
 }
 
 // get click position in array,
