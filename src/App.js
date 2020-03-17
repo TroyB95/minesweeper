@@ -105,12 +105,10 @@ function App() {
 
   function handleClick(e, y, x, gridSquare) {
     checkForBomb(gridSquare, e);
-    if (tileTrackingArray[y][x] !== true) {
-      dispatch({ type: types.INCREMENT_COUNT });
-    }
-    setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, true));
     checkLocations(y, x, "left");
-    setTileTrackingArray(flipBlankTiles(y, x, tileTrackingArray, generatedGrid, gridSize));
+    let flippedTilesData = flipBlankTiles(y, x, tileTrackingArray, generatedGrid, gridSize);
+    setTileTrackingArray(flippedTilesData.modifiedTrackingArr);
+    dispatch({ type: types.INCREMENT_COUNT, payload: flippedTilesData.numberOfTilesTurnt });
   }
 
   function handleRightClick(e, y, x) {
