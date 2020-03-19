@@ -92,7 +92,7 @@ function StartScreen(props) {
               }}
             ></input>
           </OptionsInputDiv>
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Start" />
         </OptionsForm>
       </StartScreenModal>
     </StartScreenModalBackground>
