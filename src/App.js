@@ -12,6 +12,7 @@ import StartScreen from "./Components/StartScreen";
 import WinningModal from "./Components/WinningModal";
 
 import BombSvg from "./Assets/bomb.svg";
+import FlagSVG from "./Assets/skull.svg";
 
 const PageContainer = styled.div`
   width: 100vw;
@@ -143,7 +144,8 @@ function App() {
       if (gridSquare === true) return <TileImage alt="Dynamite sticks with timer" src={BombSvg} />;
       return gridSquare;
     }
-    if (tileTrackingArray[y][x] === "flag") return "F";
+    if (tileTrackingArray[y][x] === "flag")
+      return <TileImage alt="Black flag with skull and crosbones on" src={FlagSVG} />;
   }
 
   return (
