@@ -56,7 +56,7 @@ const GridSection = styled.div`
   height: 100%;
 `;
 
-const BombImage = styled.img`
+const TileImage = styled.img`
   width: 90%;
   height: 90%;
 `;
@@ -140,7 +140,7 @@ function App() {
 
   function renderSquare(tileTrackingArray, gridSquare, y, x) {
     if (tileTrackingArray[y][x] === true) {
-      if (gridSquare === true) return <BombImage alt="Dynamite sticks with timer" src={BombSvg} />;
+      if (gridSquare === true) return <TileImage alt="Dynamite sticks with timer" src={BombSvg} />;
       return gridSquare;
     }
     if (tileTrackingArray[y][x] === "flag") return "F";
