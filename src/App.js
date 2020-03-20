@@ -11,7 +11,7 @@ import TimerBar from "./Components/TimerBar";
 import StartScreen from "./Components/StartScreen";
 import WinningModal from "./Components/WinningModal";
 
-import BombSvg from "./Assets/bomb.svg";
+import BombSVG from "./Assets/bomb.svg";
 import FlagSVG from "./Assets/skull.svg";
 
 const PageContainer = styled.div`
@@ -141,7 +141,7 @@ function App() {
 
   function renderSquare(tileTrackingArray, gridSquare, y, x) {
     if (tileTrackingArray[y][x] === true) {
-      if (gridSquare === true) return <TileImage alt="Dynamite sticks with timer" src={BombSvg} />;
+      if (gridSquare === true) return <TileImage alt="Dynamite sticks with timer" src={BombSVG} />;
       return gridSquare;
     }
     if (tileTrackingArray[y][x] === "flag")
