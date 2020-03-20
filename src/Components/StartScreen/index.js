@@ -84,8 +84,8 @@ function StartScreen(props) {
             <input
               disabled={gridSize > 0 ? false : true}
               type="number"
-              min={Math.round(gridSize * 0.2)}
-              max={Math.round(gridSize * 0.5)}
+              min={Math.round(gridSize * gridSize * 0.1)}
+              max={Math.round(gridSize * gridSize * 0.5)}
               value={bombCount}
               onChange={e => {
                 setGridOptions({ ...gridOptions, bombCount: Number(e.target.value) });
