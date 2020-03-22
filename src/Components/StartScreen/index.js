@@ -59,21 +59,21 @@ function StartScreen(props) {
 
   const { gridSize, bombCount } = gridOptions;
 
-  function handleSubmit(e, optionsView) {
-    console.log(e);
+  function handleSubmit(e, optionsView, difficulty) {
     if (optionsView === "basic") {
       e.preventDefault();
-      if (e.target.value === "easy") {
-        setGridOptions({ gridSize: 10, bombCount: 15 });
+      if (difficulty === "easy") {
+        dispatch({ type: types.UPDATE_GRID_OPTIONS, payload: { gridSize: 10, bombCount: 20 } });
+        console.log(gridOptions);
       }
-      if (e.target.value === "medium") {
-        setGridOptions({ gridSize: 15, bombCount: 40 });
+      if (difficulty === "medium") {
+        dispatch({ type: types.UPDATE_GRID_OPTIONS, payload: { gridSize: 15, bombCount: 45 } });
       }
-      if (e.target.value === "hard") {
-        setGridOptions({ gridSize: 25, bombCount: 85 });
+      if (difficulty === "hard") {
+        dispatch({ type: types.UPDATE_GRID_OPTIONS, payload: { gridSize: 25, bombCount: 100 } });
       }
-      dispatch({ type: types.UPDATE_GRID_OPTIONS, payload: gridOptions });
       props.setOptionsSubmitted(true);
+      return;
     }
 
     if (optionsView === "advanced") {
@@ -89,7 +89,7 @@ function StartScreen(props) {
   return (
     <StartScreenModalBackground>
       <StartScreenModal>
-        <OptionsForm onSubmit={e => handleSubmit(e, optionsView)}>
+        <OptionsForm onSubmit={e => handleSubmit(e, optionsView, difficulty, gridOptions)}>
           {optionsView === "basic" && (
             <OptionsInputDiv>
               <input type="radio" id="easy" name="difficulty" value="easy" onChange={handleOnChange} />
