@@ -53,13 +53,14 @@ const OptionsInputDiv = styled.div`
 function StartScreen(props) {
   const [gridOptions, setGridOptions] = useState({ gridSize: 0, bombCount: 0 });
   const [optionsView, setOptionsView] = useState("basic");
+  const [difficulty, setDifficulty] = useState("");
   const globalState = useContext(store);
   const { dispatch } = globalState;
 
   const { gridSize, bombCount } = gridOptions;
 
   function handleSubmit(e, optionsView) {
-    console.log(e.target);
+    console.log(e);
     if (optionsView === "basic") {
       e.preventDefault();
       if (e.target.value === "easy") {
@@ -82,17 +83,20 @@ function StartScreen(props) {
     }
   }
 
+  function handleOnChange(e) {
+    setDifficulty(e.currentTarget.value);
+  }
   return (
     <StartScreenModalBackground>
       <StartScreenModal>
         <OptionsForm onSubmit={e => handleSubmit(e, optionsView)}>
           {optionsView === "basic" && (
             <OptionsInputDiv>
-              <input type="radio" id="easy" name="difficulty" value="easy" />
+              <input type="radio" id="easy" name="difficulty" value="easy" onChange={handleOnChange} />
               <label htmlFor="easy">Easy</label>
-              <input type="radio" id="medium" name="difficulty" value="medium" />
+              <input type="radio" id="medium" name="difficulty" value="medium" onChange={handleOnChange} />
               <label htmlFor="medium">Medium</label>
-              <input type="radio" id="hard" name="difficulty" value="hard" />
+              <input type="radio" id="hard" name="difficulty" value="hard" onChange={handleOnChange} />
               <label htmlFor="hard">Hard</label>
             </OptionsInputDiv>
           )}
