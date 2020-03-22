@@ -124,7 +124,7 @@ export function flipBlankTiles(y, x, trackingArr, generatedGrid, width) {
 
       // check tile to west
       if (x - 1 >= 0) {
-        let newX = x + 1;
+        let newX = x - 1;
         if (modifiedTrackingArr[y][newX] !== true) {
           recurseGrid(y, newX);
         }
