@@ -52,46 +52,79 @@ const OptionsInputDiv = styled.div`
 
 function StartScreen(props) {
   const [gridOptions, setGridOptions] = useState({ gridSize: 0, bombCount: 0 });
+  const [optionsView, setOptionsView] = useState("basic");
   const globalState = useContext(store);
   const { dispatch } = globalState;
 
   const { gridSize, bombCount } = gridOptions;
 
+  function handleSubmit(e, optionsView) {
+    console.log(e.target);
+    if (optionsView === "basic") {
+      e.preventDefault();
+      if (e.target.value === "easy") {
+        setGridOptions({ gridSize: 10, bombCount: 15 });
+      }
+      if (e.target.value === "medium") {
+        setGridOptions({ gridSize: 15, bombCount: 40 });
+      }
+      if (e.target.value === "hard") {
+        setGridOptions({ gridSize: 25, bombCount: 85 });
+      }
+      dispatch({ type: types.UPDATE_GRID_OPTIONS, payload: gridOptions });
+      props.setOptionsSubmitted(true);
+    }
+
+    if (optionsView === "advanced") {
+      e.preventDefault();
+      dispatch({ type: types.UPDATE_GRID_OPTIONS, payload: gridOptions });
+      props.setOptionsSubmitted(true);
+    }
+  }
+
   return (
     <StartScreenModalBackground>
       <StartScreenModal>
-        <OptionsForm
-          onSubmit={e => {
-            e.preventDefault();
-            dispatch({ type: types.UPDATE_GRID_OPTIONS, payload: gridOptions });
-            props.setOptionsSubmitted(true);
-          }}
-        >
-          <OptionsInputDiv>
-            <label>Grid size: </label>
-            <input
-              type="number"
-              min="10"
-              max="50"
-              value={gridSize}
-              onChange={e => {
-                setGridOptions({ ...gridOptions, gridSize: Number(e.target.value) });
-              }}
-            ></input>
-          </OptionsInputDiv>
-          <OptionsInputDiv>
-            <label>Number of bombs: </label>
-            <input
-              disabled={gridSize > 0 ? false : true}
-              type="number"
-              min={Math.round(gridSize * gridSize * 0.1)}
-              max={Math.round(gridSize * gridSize * 0.5)}
-              value={bombCount}
-              onChange={e => {
-                setGridOptions({ ...gridOptions, bombCount: Number(e.target.value) });
-              }}
-            ></input>
-          </OptionsInputDiv>
+        <OptionsForm onSubmit={e => handleSubmit(e, optionsView)}>
+          {optionsView === "basic" && (
+            <OptionsInputDiv>
+              <input type="radio" id="easy" name="difficulty" value="easy" />
+              <label htmlFor="easy">Easy</label>
+              <input type="radio" id="medium" name="difficulty" value="medium" />
+              <label htmlFor="medium">Medium</label>
+              <input type="radio" id="hard" name="difficulty" value="hard" />
+              <label htmlFor="hard">Hard</label>
+            </OptionsInputDiv>
+          )}
+          {optionsView === "advanced" && (
+            <>
+              <OptionsInputDiv>
+                <label>Grid size: </label>
+                <input
+                  type="number"
+                  min="10"
+                  max="50"
+                  value={gridSize}
+                  onChange={e => {
+                    setGridOptions({ ...gridOptions, gridSize: Number(e.target.value) });
+                  }}
+                ></input>
+              </OptionsInputDiv>
+              <OptionsInputDiv>
+                <label>Number of bombs: </label>
+                <input
+                  disabled={gridSize > 0 ? false : true}
+                  type="number"
+                  min={Math.round(gridSize * gridSize * 0.1)}
+                  max={Math.round(gridSize * gridSize * 0.5)}
+                  value={bombCount}
+                  onChange={e => {
+                    setGridOptions({ ...gridOptions, bombCount: Number(e.target.value) });
+                  }}
+                ></input>
+              </OptionsInputDiv>
+            </>
+          )}
           <input type="submit" value="Start" />
         </OptionsForm>
       </StartScreenModal>
