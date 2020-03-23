@@ -39,6 +39,11 @@ const OptionsForm = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+
+  input[type="submit"] {
+    width: 8em;
+    height: 4em;
+  }
 `;
 
 const OptionsInputDiv = styled.div`
