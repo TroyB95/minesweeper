@@ -90,7 +90,6 @@ function StartScreen(props) {
       e.preventDefault();
       if (difficulty === "easy") {
         dispatch({ type: types.UPDATE_GRID_OPTIONS, payload: { gridSize: 10, bombCount: 20 } });
-        console.log(gridOptions);
       }
       if (difficulty === "medium") {
         dispatch({ type: types.UPDATE_GRID_OPTIONS, payload: { gridSize: 15, bombCount: 45 } });
