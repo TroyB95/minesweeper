@@ -76,6 +76,13 @@ const OptionsInputDiv = styled.div`
   }
 `;
 
+const ToggleOptions = styled.button`
+  position: relative;
+
+  bottom: 0;
+  right: 0;
+`;
+
 function StartScreen(props) {
   const [gridOptions, setGridOptions] = useState({ gridSize: 0, bombCount: 0 });
   const [optionsView, setOptionsView] = useState("basic");
@@ -162,6 +169,9 @@ function StartScreen(props) {
           )}
           <input type="submit" value="Start" />
         </OptionsForm>
+        <ToggleOptions onClick={() => setOptionsView(optionsView === "basic" ? "advanced" : "basic")}>
+          {optionsView === "basic" ? "Advanced" : "Basic"}
+        </ToggleOptions>
       </StartScreenModal>
     </StartScreenModalBackground>
   );
