@@ -48,6 +48,27 @@ const OptionsInputDiv = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  input[type="radio"] {
+    width: 2em;
+    height: 2em;
+  }
+
+  label {
+    padding-left: 0.25em;
+  }
+
+  div {
+    height: 4em;
+    width: 4em;
+
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 function StartScreen(props) {
@@ -92,12 +113,18 @@ function StartScreen(props) {
         <OptionsForm onSubmit={e => handleSubmit(e, optionsView, difficulty, gridOptions)}>
           {optionsView === "basic" && (
             <OptionsInputDiv>
-              <input type="radio" id="easy" name="difficulty" value="easy" onChange={handleOnChange} />
-              <label htmlFor="easy">Easy</label>
-              <input type="radio" id="medium" name="difficulty" value="medium" onChange={handleOnChange} />
-              <label htmlFor="medium">Medium</label>
-              <input type="radio" id="hard" name="difficulty" value="hard" onChange={handleOnChange} />
-              <label htmlFor="hard">Hard</label>
+              <div>
+                <input type="radio" id="easy" name="difficulty" value="easy" onChange={handleOnChange} />
+                <label htmlFor="easy">Easy</label>
+              </div>
+              <div>
+                <input type="radio" id="medium" name="difficulty" value="medium" onChange={handleOnChange} />
+                <label htmlFor="medium">Medium</label>
+              </div>
+              <div>
+                <input type="radio" id="hard" name="difficulty" value="hard" onChange={handleOnChange} />
+                <label htmlFor="hard">Hard</label>
+              </div>
             </OptionsInputDiv>
           )}
           {optionsView === "advanced" && (
