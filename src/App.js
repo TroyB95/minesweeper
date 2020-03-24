@@ -154,6 +154,7 @@ function App() {
       {optionsSubmitted && (
         <>
           <TimerBar restart={gameReset ? true : false} />
+          <button onClick={resetGame}>Restart</button>
           <GridContainer>
             {generatedGrid.map((row, y) => {
               return (
