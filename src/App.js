@@ -77,7 +77,7 @@ function App() {
   const [tileTrackingArray, setTileTrackingArray] = useState();
   const [maxTilesTurnt, setMaxTilesTurnt] = useState();
   const [gameReset, setGameReset] = useState(false);
-  const [gameWon, setGameWon] = useState(false);
+  const [gameState, setGameState] = useState("");
 
   useEffect(() => {
     setGrid(generateGrid(gridSize, bombCount));
@@ -87,7 +87,7 @@ function App() {
 
   useEffect(() => {
     if (optionsSubmitted && checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, bombCount)) {
-      setGameWon(true);
+      setGameState("win");
     }
   }, [bombCount, flaggedLocations, maxTilesTurnt, optionsSubmitted, tilesTurntCounter]);
 
@@ -135,7 +135,7 @@ function App() {
     setOptionsSubmitted(false);
     setTileTrackingArray("");
     setMaxTilesTurnt("");
-    setGameWon(false);
+    setGameState("");
     setGameReset(false);
   }
 
@@ -184,7 +184,7 @@ function App() {
           </GridContainer>
         </>
       )}
-      {gameWon && <InformationModal resetGame={resetGame} type="win" />}
+      {gameState === "win" && <InformationModal resetGame={resetGame} type="win" />}
     </PageContainer>
   );
 }
