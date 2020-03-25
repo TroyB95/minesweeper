@@ -9,7 +9,7 @@ import { checkForBomb, mutateTrackingArray, checkIfWon, flipBlankTiles } from ".
 
 import TimerBar from "./Components/TimerBar";
 import StartScreen from "./Components/StartScreen";
-import WinningModal from "./Components/WinningModal";
+import InformationModal from "./Components/InformationModal";
 
 import BombSVG from "./Assets/bomb.svg";
 import FlagSVG from "./Assets/skull.svg";
@@ -184,7 +184,7 @@ function App() {
           </GridContainer>
         </>
       )}
-      {gameWon && <WinningModal resetGame={resetGame} />}
+      {gameWon && <InformationModal resetGame={resetGame} type="win" />}
     </PageContainer>
   );
 }

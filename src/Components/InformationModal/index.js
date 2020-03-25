@@ -26,16 +26,26 @@ const ModalBody = styled.div`
   justify-content: center;
 `;
 
-function WinningModal(props) {
-  const { resetGame } = props;
+function InformationModal(props) {
+  const { resetGame, type } = props;
   return (
     <ModalBackground>
       <ModalBody>
-        <h1>CONGRATS YOU HAVE WON</h1>
-        <button onClick={() => resetGame()}>Play Again</button>
+        {type === "win" && (
+          <>
+            <h1>CONGRATS YOU HAVE WON</h1>
+            <button onClick={() => resetGame()}>Play Again?</button>
+          </>
+        )}
+        {type === "loss" && (
+          <>
+            <h1>YOU HAVE LOST!</h1>
+            <button onClick={() => resetGame()}>Play Again?</button>
+          </>
+        )}
       </ModalBody>
     </ModalBackground>
   );
 }
 
-export default WinningModal;
+export default InformationModal;
