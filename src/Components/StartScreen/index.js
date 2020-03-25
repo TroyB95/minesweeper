@@ -83,6 +83,8 @@ const ToggleOptions = styled.button`
   right: 0;
 `;
 
+// Fix logic, can't start without options selected
+
 function StartScreen(props) {
   const [gridOptions, setGridOptions] = useState({ gridSize: 0, bombCount: 0 });
   const [optionsView, setOptionsView] = useState("basic");
@@ -117,6 +119,15 @@ function StartScreen(props) {
 
   function handleOnChange(e) {
     setDifficulty(e.currentTarget.value);
+  }
+
+  function submitButtonDisabled(view, difficulty, gridOptions) {
+    if (view === "basic") {
+      return difficulty === "";
+    }
+    if (view === "advanced") {
+      return gridOptions.gridSize === 0 || gridOptions.bombCount === 0;
+    }
   }
   return (
     <StartScreenModalBackground>
@@ -167,7 +178,11 @@ function StartScreen(props) {
               </OptionsInputDiv>
             </>
           )}
-          <input type="submit" value="Start" />
+          <input
+            type="submit"
+            value="Start"
+            disabled={submitButtonDisabled(optionsView, difficulty, gridOptions)}
+          />
         </OptionsForm>
         <ToggleOptions onClick={() => setOptionsView(optionsView === "basic" ? "advanced" : "basic")}>
           {optionsView === "basic" ? "Advanced" : "Basic"}
