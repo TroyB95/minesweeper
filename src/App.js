@@ -105,9 +105,9 @@ function App() {
   }
 
   function handleClick(e, y, x, gridSquare) {
-    checkForBomb(gridSquare, e);
     checkLocations(y, x, "left");
     let flippedTilesData = flipBlankTiles(y, x, tileTrackingArray, generatedGrid, gridSize);
+    if (checkForBomb(gridSquare, e)) setTimeout(() => setGameState("loss"), 500);
     setTileTrackingArray(flippedTilesData.modifiedTrackingArr);
     dispatch({ type: types.INCREMENT_COUNT, payload: flippedTilesData.numberOfTilesTurnt });
   }
@@ -185,6 +185,7 @@ function App() {
         </>
       )}
       {gameState === "win" && <InformationModal resetGame={resetGame} type="win" />}
+      {gameState === "loss" && <InformationModal resetGame={resetGame} type="loss" />}
     </PageContainer>
   );
 }
