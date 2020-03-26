@@ -5,8 +5,9 @@
  */
 export function checkForBomb(value) {
   if (value === true) {
-    alert("YOU HAVE HIT ABOMB");
+    return true;
   }
+  return false;
 }
 
 /**
