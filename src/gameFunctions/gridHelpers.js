@@ -3,9 +3,8 @@
  * @param {Number | Boolean | String} value - The value of the square.
  * @param {Object} e - The click event.
  */
-export function checkForBomb(value, e) {
+export function checkForBomb(value) {
   if (value === true) {
-    e.target.innerHTML = "BOMB";
     alert("YOU HAVE HIT ABOMB");
   }
 }
