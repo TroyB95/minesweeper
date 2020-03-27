@@ -26,8 +26,12 @@ const ModalBody = styled.div`
   justify-content: center;
 `;
 
-function InformationModal(props) {
-  const { resetGame, type } = props;
+type ModalProps = {
+  resetGame: Function;
+  type: string;
+};
+
+const InformationModal = ({ resetGame, type }: ModalProps) => {
   return (
     <ModalBackground>
       <ModalBody>
@@ -46,6 +50,6 @@ function InformationModal(props) {
       </ModalBody>
     </ModalBackground>
   );
-}
+};
 
 export default InformationModal;
