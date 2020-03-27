@@ -1,9 +1,9 @@
 /**
  * Creates a 2d array.
- * @param {string} rows - How many nested arrays.
+ * @param {number} rows - How many nested arrays.
  * @returns {Array}
  */
-export function create2DArray(rows) {
+export function create2DArray(rows: number) {
   let arr = [];
   for (let i = 0; i < rows; i++) {
     arr[i] = [];
@@ -107,7 +107,11 @@ export function incrementAroundBombs(width, gridArr) {
           fullGrid[y + 1][x] += 1;
         }
         // north east
-        if (y + 1 !== width && x + 1 !== width && fullGrid[y + 1][x + 1] !== true) {
+        if (
+          y + 1 !== width &&
+          x + 1 !== width &&
+          fullGrid[y + 1][x + 1] !== true
+        ) {
           fullGrid[y + 1][x + 1] += 1;
         }
         // east
@@ -115,7 +119,11 @@ export function incrementAroundBombs(width, gridArr) {
           fullGrid[y][x + 1] += 1;
         }
         // south east
-        if (y - 1 !== -1 && x + 1 !== width && fullGrid[y - 1][x + 1] !== true) {
+        if (
+          y - 1 !== -1 &&
+          x + 1 !== width &&
+          fullGrid[y - 1][x + 1] !== true
+        ) {
           fullGrid[y - 1][x + 1] += 1;
         }
         // south
@@ -131,7 +139,11 @@ export function incrementAroundBombs(width, gridArr) {
           fullGrid[y][x - 1] += 1;
         }
         // north west
-        if (y + 1 !== width && x - 1 !== -1 && fullGrid[y + 1][x - 1] !== true) {
+        if (
+          y + 1 !== width &&
+          x - 1 !== -1 &&
+          fullGrid[y + 1][x - 1] !== true
+        ) {
           fullGrid[y + 1][x - 1] += 1;
         }
       }
