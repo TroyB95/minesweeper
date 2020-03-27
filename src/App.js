@@ -4,8 +4,17 @@ import uniqid from "uniqid";
 import { store } from "./globalState";
 import types from "./globalState/types";
 
-import { generateGrid, create2DArray, setBasicGrid } from "./gameFunctions/gridGeneration";
-import { checkForBomb, mutateTrackingArray, checkIfWon, flipBlankTiles } from "./gameFunctions/gridHelpers";
+import {
+  generateGrid,
+  create2DArray,
+  setBasicGrid
+} from "./gameFunctions/gridGeneration";
+import {
+  checkForBomb,
+  mutateTrackingArray,
+  checkIfWon,
+  flipBlankTiles
+} from "./gameFunctions/gridHelpers";
 
 import TimerBar from "./Components/TimerBar";
 import StartScreen from "./Components/StartScreen";
@@ -69,7 +78,7 @@ function App() {
   const {
     tilesTurntCounter,
     flaggedLocations,
-    gameOptions: { gridSize, bombCount },
+    gameOptions: { gridSize, bombCount }
   } = globalState.state;
 
   const [generatedGrid, setGrid] = useState();
@@ -82,37 +91,64 @@ function App() {
 
   useEffect(() => {
     setGrid(generateGrid(gridSize, bombCount));
-    setTileTrackingArray(setBasicGrid(gridSize, create2DArray(gridSize), false));
+    setTileTrackingArray(
+      setBasicGrid(gridSize, create2DArray(gridSize), false)
+    );
     setMaxTilesTurnt(gridSize * gridSize - bombCount);
   }, [bombCount, gridSize, optionsSubmitted]);
 
   useEffect(() => {
-    if (optionsSubmitted && checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, bombCount)) {
+    if (
+      optionsSubmitted &&
+      checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, bombCount)
+    ) {
       let playTime = Date.now() - startTime;
       console.log("Seconds", Math.floor(playTime / 1000));
       setGameState("win");
     }
-  }, [bombCount, flaggedLocations, maxTilesTurnt, optionsSubmitted, tilesTurntCounter]);
+  }, [
+    bombCount,
+    flaggedLocations,
+    maxTilesTurnt,
+    optionsSubmitted,
+    tilesTurntCounter
+  ]);
 
   function checkLocations(y, x, click) {
     if (flaggedLocations && flaggedLocations.has(`${y},${x}`)) {
       let deleteUpdatedSet = new Set(flaggedLocations);
       deleteUpdatedSet.delete(`${y},${x}`);
-      return dispatch({ type: types.UPDATE_FLAGGED_LOCATIONS, payload: deleteUpdatedSet });
+      return dispatch({
+        type: types.UPDATE_FLAGGED_LOCATIONS,
+        payload: deleteUpdatedSet
+      });
     }
     if (click === "right") {
       let addUpdateSet = new Set(flaggedLocations);
       addUpdateSet.add(`${y},${x}`);
-      return dispatch({ type: types.UPDATE_FLAGGED_LOCATIONS, payload: addUpdateSet });
+      return dispatch({
+        type: types.UPDATE_FLAGGED_LOCATIONS,
+        payload: addUpdateSet
+      });
     }
   }
 
   function handleClick(e, y, x, gridSquare) {
     checkLocations(y, x, "left");
-    let flippedTilesData = flipBlankTiles(y, x, tileTrackingArray, generatedGrid, gridSize);
-    if (checkForBomb(gridSquare, e)) setTimeout(() => setGameState("loss"), 500);
+    let flippedTilesData = flipBlankTiles(
+      y,
+      x,
+      tileTrackingArray,
+      generatedGrid,
+      gridSize
+    );
+    if (checkForBomb(gridSquare, e))
+      setTimeout(() => setGameState("loss"), 500);
     setTileTrackingArray(flippedTilesData.modifiedTrackingArr);
-    dispatch({ type: types.INCREMENT_COUNT, payload: flippedTilesData.numberOfTilesTurnt });
+    dispatch({
+      type: types.INCREMENT_COUNT,
+      payload: flippedTilesData.numberOfTilesTurnt
+    });
   }
 
   function handleRightClick(e, y, x) {
@@ -124,7 +160,9 @@ function App() {
     }
 
     if (tileTrackingArray[y][x] !== true) {
-      setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, "flag"));
+      setTileTrackingArray(
+        mutateTrackingArray(y, x, tileTrackingArray, "flag")
+      );
       checkLocations(y, x, "right");
       return;
     }
@@ -144,21 +182,30 @@ function App() {
 
   function renderSquare(tileTrackingArray, gridSquare, y, x) {
     if (tileTrackingArray[y][x] === true) {
-      if (gridSquare === true) return <TileImage alt="Dynamite sticks with timer" src={BombSVG} />;
+      if (gridSquare === true)
+        return <TileImage alt="Dynamite sticks with timer" src={BombSVG} />;
       return gridSquare;
     }
     if (tileTrackingArray[y][x] === "flag")
-      return <TileImage alt="Black flag with skull and crosbones on" src={FlagSVG} />;
+      return (
+        <TileImage alt="Black flag with skull and crosbones on" src={FlagSVG} />
+      );
   }
 
   return (
     <PageContainer>
       {!optionsSubmitted && (
-        <StartScreen setOptionsSubmitted={setOptionsSubmitted} setStartTime={setStartTime} />
+        <StartScreen
+          setOptionsSubmitted={setOptionsSubmitted}
+          setStartTime={setStartTime}
+        />
       )}
       {optionsSubmitted && (
         <>
-          <TimerBar restart={gameReset} pause={gameState === "win" || gameState === "loss"} />
+          <TimerBar
+            restart={gameReset}
+            pause={gameState === "win" || gameState === "loss"}
+          />
           <button onClick={resetGame}>Restart</button>
           <GridContainer>
             {generatedGrid.map((row, y) => {
@@ -189,8 +236,12 @@ function App() {
           </GridContainer>
         </>
       )}
-      {gameState === "win" && <InformationModal resetGame={resetGame} type="win" />}
-      {gameState === "loss" && <InformationModal resetGame={resetGame} type="loss" />}
+      {gameState === "win" && (
+        <InformationModal resetGame={resetGame} type="win" />
+      )}
+      {gameState === "loss" && (
+        <InformationModal resetGame={resetGame} type="loss" />
+      )}
     </PageContainer>
   );
 }
