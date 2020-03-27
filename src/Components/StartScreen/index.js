@@ -106,6 +106,7 @@ function StartScreen(props) {
       if (difficulty === "hard") {
         dispatch({ type: types.UPDATE_GRID_OPTIONS, payload: { gridSize: 25, bombCount: 100 } });
       }
+      props.setStartTime(Date.now());
       props.setOptionsSubmitted(true);
       return;
     }
@@ -113,6 +114,7 @@ function StartScreen(props) {
     if (optionsView === "advanced") {
       e.preventDefault();
       dispatch({ type: types.UPDATE_GRID_OPTIONS, payload: gridOptions });
+      props.setStartTime(Date.now());
       props.setOptionsSubmitted(true);
     }
   }

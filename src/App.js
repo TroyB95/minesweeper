@@ -78,6 +78,7 @@ function App() {
   const [maxTilesTurnt, setMaxTilesTurnt] = useState();
   const [gameReset, setGameReset] = useState(false);
   const [gameState, setGameState] = useState("");
+  const [startTime, setStartTime] = useState("");
 
   useEffect(() => {
     setGrid(generateGrid(gridSize, bombCount));
@@ -87,6 +88,8 @@ function App() {
 
   useEffect(() => {
     if (optionsSubmitted && checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, bombCount)) {
+      let playTime = Date.now() - startTime;
+      console.log("Seconds", Math.floor(playTime / 1000));
       setGameState("win");
     }
   }, [bombCount, flaggedLocations, maxTilesTurnt, optionsSubmitted, tilesTurntCounter]);
@@ -150,7 +153,9 @@ function App() {
 
   return (
     <PageContainer>
-      {!optionsSubmitted && <StartScreen setOptionsSubmitted={setOptionsSubmitted} />}
+      {!optionsSubmitted && (
+        <StartScreen setOptionsSubmitted={setOptionsSubmitted} setStartTime={setStartTime} />
+      )}
       {optionsSubmitted && (
         <>
           <TimerBar restart={gameReset ? true : false} />
