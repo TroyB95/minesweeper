@@ -1,9 +1,9 @@
 /**
  * Check if value is a bomb.
- * @param {Number | Boolean | String} value - The value of the square.
+ * @param {Boolean} value - The value of the square.
  * @param {Object} e - The click event.
  */
-export function checkForBomb(value) {
+export function checkForBomb(value: boolean) {
   if (value === true) {
     return true;
   }
@@ -18,9 +18,15 @@ export function checkForBomb(value) {
  * @param {String | Number | Boolean} value - The value to update the tracking array with.
  * @return {Array} Returns the new mutated array
  */
-export function mutateTrackingArray(y, x, trackingArr, value) {
-  let tileTrackingArr = [...trackingArr];
+export function mutateTrackingArray(
+  y: number,
+  x: number,
+  trackingArr: Array<any>,
+  value: string | number | boolean
+) {
+  let tileTrackingArr: Array<any> = [...trackingArr];
   tileTrackingArr[y][x] = value;
+
   return tileTrackingArr;
 }
 
@@ -31,7 +37,12 @@ export function mutateTrackingArray(y, x, trackingArr, value) {
  * @param {Set} flaggedLocations - Set with coordinates of flagged tiles.
  * @param {Number} bombCount - Number of bombs in the current game.
  */
-export function checkIfWon(tilesTurntCount, maxTilesTurnt, flaggedLocations, bombCount) {
+export function checkIfWon(
+  tilesTurntCount: number,
+  maxTilesTurnt: number,
+  flaggedLocations: Set<string>,
+  bombCount: number
+) {
   if (tilesTurntCount >= maxTilesTurnt) {
     if (flaggedLocations.size === bombCount) {
       return true;
@@ -49,7 +60,13 @@ export function checkIfWon(tilesTurntCount, maxTilesTurnt, flaggedLocations, bom
  * @param {Number} width - Width of game board.
  *
  */
-export function flipBlankTiles(y, x, trackingArr, generatedGrid, width) {
+export function flipBlankTiles(
+  y: number,
+  x: number,
+  trackingArr: Array<any>,
+  generatedGrid: Array<Array<any>>,
+  width: number
+) {
   let modifiedTrackingArr = [...trackingArr];
   let numberOfTilesTurnt = 0;
 
@@ -148,13 +165,3 @@ export function flipBlankTiles(y, x, trackingArr, generatedGrid, width) {
 
   return { modifiedTrackingArr, numberOfTilesTurnt };
 }
-
-// get click position in array,
-// check all tiles around said position
-// -Inside recursive function?
-// -- check n, ne, e, se, s etc.. === 0 or > 0 but !== true(bomb)
-// -- set position in tile tracking array to true
-// -- recurse into function with new position
-// if tile is 0 set to true if tile is > 0 && !== true(Bomb) set tileTrackingArr to true
-// set new position to the new tile
-// run check again
