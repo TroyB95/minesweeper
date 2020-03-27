@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, ChangeEvent } from "react";
 import styled from "styled-components";
 
 import types from "../../globalState/types";
@@ -88,6 +88,11 @@ type StartScreenProps = {
   setOptionsSubmitted: Function;
 };
 
+type GridOptions = {
+  gridSize: number;
+  bombCount: number;
+};
+
 function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
   const [gridOptions, setGridOptions] = useState({ gridSize: 0, bombCount: 0 });
   const [optionsView, setOptionsView] = useState("basic");
@@ -135,11 +140,18 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
     }
   }
 
-  function handleOnChange(e) {
+  function handleOnChange(e: ChangeEvent<HTMLInputElement>) {
+    if (!e) {
+      return;
+    }
     setDifficulty(e.currentTarget.value);
   }
 
-  function submitButtonDisabled(view, difficulty, gridOptions) {
+  function submitButtonDisabled(
+    view: string,
+    difficulty: string,
+    gridOptions: GridOptions
+  ) {
     if (view === "basic") {
       return difficulty === "";
     }
@@ -150,9 +162,7 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
   return (
     <StartScreenModalBackground>
       <StartScreenModal>
-        <OptionsForm
-          onSubmit={e => handleSubmit(e, optionsView, difficulty, gridOptions)}
-        >
+        <OptionsForm onSubmit={e => handleSubmit(e, optionsView, difficulty)}>
           {optionsView === "basic" && (
             <OptionsInputDiv>
               <div>
