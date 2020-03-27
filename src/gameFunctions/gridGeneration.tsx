@@ -16,7 +16,7 @@ export function create2DArray(rows: number) {
  * @param {Number} gridDimensions - Max width of grid.
  * @returns {Number}
  */
-export function generateCoordinate(gridDimension) {
+export function generateCoordinate(gridDimension: number) {
   return Math.round(Math.random() * (gridDimension - 1));
 }
 
@@ -26,10 +26,13 @@ export function generateCoordinate(gridDimension) {
  * @param {Array} array2 - New generated arr of coordinates.
  * @returns {Boolean}
  */
-export function compareCoords(array1, array2) {
+export function compareCoords(
+  bombCoordArr: Array<Array<number>>,
+  array2: Array<number>
+) {
   if (!array2) return false;
 
-  if (array1.toString().includes(array2.toString())) {
+  if (bombCoordArr.toString().includes(array2.toString())) {
     return true;
   }
 
@@ -42,11 +45,14 @@ export function compareCoords(array1, array2) {
  * @param {Number} Bombs - Number of bombs.
  * @returns {Array}
  */
-export function generateBombs(width, bombs) {
-  let bombsCoordArr = [];
+export function generateBombs(width: number, bombs: number) {
+  let bombsCoordArr: Array<Array<number>> = [];
 
   while (bombsCoordArr.length < bombs) {
-    let coordArr = [generateCoordinate(width), generateCoordinate(width)];
+    let coordArr: Array<number> = [
+      generateCoordinate(width),
+      generateCoordinate(width)
+    ];
     if (!compareCoords(bombsCoordArr, coordArr)) {
       bombsCoordArr.push(coordArr);
     }
