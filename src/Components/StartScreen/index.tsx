@@ -83,9 +83,12 @@ const ToggleOptions = styled.button`
   right: 0;
 `;
 
-// Fix logic, can't start without options selected
+type StartScreenProps = {
+  setStartTime: Function;
+  setOptionsSubmitted: Function;
+};
 
-function StartScreen(props) {
+function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
   const [gridOptions, setGridOptions] = useState({ gridSize: 0, bombCount: 0 });
   const [optionsView, setOptionsView] = useState("basic");
   const [difficulty, setDifficulty] = useState("");
@@ -94,28 +97,41 @@ function StartScreen(props) {
 
   const { gridSize, bombCount } = gridOptions;
 
-  function handleSubmit(e, optionsView, difficulty) {
+  function handleSubmit(
+    e: MouseEvent,
+    optionsView: string,
+    difficulty: string
+  ) {
     if (optionsView === "basic") {
       e.preventDefault();
       if (difficulty === "easy") {
-        dispatch({ type: types.UPDATE_GRID_OPTIONS, payload: { gridSize: 10, bombCount: 20 } });
+        dispatch({
+          type: types.UPDATE_GRID_OPTIONS,
+          payload: { gridSize: 10, bombCount: 20 }
+        });
       }
       if (difficulty === "medium") {
-        dispatch({ type: types.UPDATE_GRID_OPTIONS, payload: { gridSize: 15, bombCount: 45 } });
+        dispatch({
+          type: types.UPDATE_GRID_OPTIONS,
+          payload: { gridSize: 15, bombCount: 45 }
+        });
       }
       if (difficulty === "hard") {
-        dispatch({ type: types.UPDATE_GRID_OPTIONS, payload: { gridSize: 25, bombCount: 100 } });
+        dispatch({
+          type: types.UPDATE_GRID_OPTIONS,
+          payload: { gridSize: 25, bombCount: 100 }
+        });
       }
-      props.setStartTime(Date.now());
-      props.setOptionsSubmitted(true);
+      setStartTime(Date.now());
+      setOptionsSubmitted(true);
       return;
     }
 
     if (optionsView === "advanced") {
       e.preventDefault();
       dispatch({ type: types.UPDATE_GRID_OPTIONS, payload: gridOptions });
-      props.setStartTime(Date.now());
-      props.setOptionsSubmitted(true);
+      setStartTime(Date.now());
+      setOptionsSubmitted(true);
     }
   }
 
@@ -134,19 +150,39 @@ function StartScreen(props) {
   return (
     <StartScreenModalBackground>
       <StartScreenModal>
-        <OptionsForm onSubmit={e => handleSubmit(e, optionsView, difficulty, gridOptions)}>
+        <OptionsForm
+          onSubmit={e => handleSubmit(e, optionsView, difficulty, gridOptions)}
+        >
           {optionsView === "basic" && (
             <OptionsInputDiv>
               <div>
-                <input type="radio" id="easy" name="difficulty" value="easy" onChange={handleOnChange} />
+                <input
+                  type="radio"
+                  id="easy"
+                  name="difficulty"
+                  value="easy"
+                  onChange={handleOnChange}
+                />
                 <label htmlFor="easy">Easy</label>
               </div>
               <div>
-                <input type="radio" id="medium" name="difficulty" value="medium" onChange={handleOnChange} />
+                <input
+                  type="radio"
+                  id="medium"
+                  name="difficulty"
+                  value="medium"
+                  onChange={handleOnChange}
+                />
                 <label htmlFor="medium">Medium</label>
               </div>
               <div>
-                <input type="radio" id="hard" name="difficulty" value="hard" onChange={handleOnChange} />
+                <input
+                  type="radio"
+                  id="hard"
+                  name="difficulty"
+                  value="hard"
+                  onChange={handleOnChange}
+                />
                 <label htmlFor="hard">Hard</label>
               </div>
             </OptionsInputDiv>
@@ -161,7 +197,10 @@ function StartScreen(props) {
                   max="50"
                   value={gridSize}
                   onChange={e => {
-                    setGridOptions({ ...gridOptions, gridSize: Number(e.target.value) });
+                    setGridOptions({
+                      ...gridOptions,
+                      gridSize: Number(e.target.value)
+                    });
                   }}
                 ></input>
               </OptionsInputDiv>
@@ -174,7 +213,10 @@ function StartScreen(props) {
                   max={Math.round(gridSize * gridSize * 0.5)}
                   value={bombCount}
                   onChange={e => {
-                    setGridOptions({ ...gridOptions, bombCount: Number(e.target.value) });
+                    setGridOptions({
+                      ...gridOptions,
+                      bombCount: Number(e.target.value)
+                    });
                   }}
                 ></input>
               </OptionsInputDiv>
@@ -183,10 +225,18 @@ function StartScreen(props) {
           <input
             type="submit"
             value="Start"
-            disabled={submitButtonDisabled(optionsView, difficulty, gridOptions)}
+            disabled={submitButtonDisabled(
+              optionsView,
+              difficulty,
+              gridOptions
+            )}
           />
         </OptionsForm>
-        <ToggleOptions onClick={() => setOptionsView(optionsView === "basic" ? "advanced" : "basic")}>
+        <ToggleOptions
+          onClick={() =>
+            setOptionsView(optionsView === "basic" ? "advanced" : "basic")
+          }
+        >
           {optionsView === "basic" ? "Advanced" : "Basic"}
         </ToggleOptions>
       </StartScreenModal>
