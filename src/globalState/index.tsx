@@ -10,13 +10,13 @@ const initialState = {
 
 interface IContextProps {
   state: StateType;
-  dispatch: ({ type, payload }: { type: string; payload: any }) => void;
+  dispatch: React.Dispatch<any>;
 }
 
 type StateType = {
-  tilesTurntCounter?: number;
-  flaggedLocations?: Set<Array<number>>;
-  gameOptions?: Object;
+  tilesTurntCounter: number;
+  flaggedLocations: Set<Array<number>>;
+  gameOptions: { gridSize: number; bombCount: number };
 };
 
 const store = createContext({} as IContextProps);
