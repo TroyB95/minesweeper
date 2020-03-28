@@ -11,8 +11,14 @@ const initialState = {
 const store = createContext(initialState);
 const { Provider } = store;
 
+type StateType = {
+  tilesTurntCounter: number;
+  flaggedLocations: Set<Array<number>>;
+  gameOptions: Object;
+};
+
 const StateProvider: FunctionComponent = ({ children }) => {
-  const [state, dispatch] = useReducer((state, action) => {
+  const [state, dispatch] = useReducer((state: StateType, action: String) => {
     switch (action.type) {
       case types.INCREMENT_COUNT:
         return {
