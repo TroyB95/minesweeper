@@ -18,3 +18,10 @@ export default {
   UPDATE_GRID_OPTIONS,
   RESET_GRID_OPTIONS
 };
+
+interface IIncrementCountAction {
+  type: typeof INCREMENT_COUNT;
+  payload: any;
+}
+
+export type ChatActionTypes = IIncrementCountAction;
