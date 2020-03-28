@@ -103,7 +103,7 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
   const { gridSize, bombCount } = gridOptions;
 
   function handleSubmit(
-    e: MouseEvent,
+    e: React.FormEvent<HTMLFormElement>,
     optionsView: string,
     difficulty: string
   ) {
