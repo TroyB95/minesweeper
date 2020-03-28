@@ -111,7 +111,8 @@ function App() {
     flaggedLocations,
     maxTilesTurnt,
     optionsSubmitted,
-    tilesTurntCounter
+    tilesTurntCounter,
+    startTime
   ]);
 
   function checkLocations(y, x, click) {
