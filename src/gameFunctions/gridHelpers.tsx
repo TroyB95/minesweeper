@@ -81,7 +81,7 @@ export function flipBlankTiles(
     recurseGrid(y, x);
   }
 
-  function recurseGrid(y, x) {
+  function recurseGrid(y: number, x: number) {
     let currentSquare = generatedGrid[y][x];
 
     if (currentSquare === 0) {
