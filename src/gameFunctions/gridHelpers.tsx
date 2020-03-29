@@ -3,7 +3,7 @@
  * @param {Boolean} value - The value of the square.
  * @param {Object} e - The click event.
  */
-export function checkForBomb(value: boolean) {
+export function checkForBomb(value: boolean | number | string) {
   if (value === true) {
     return true;
   }
