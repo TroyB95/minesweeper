@@ -37,7 +37,8 @@ const GridContainer = styled.div`
   width: 80%;
   height: 80%;
 `;
-const GridRow = styled.div`
+
+const GridRow = styled.div<{ height: number }>`
   display: flex;
 
   width: 100%;
@@ -51,7 +52,7 @@ const GridRow = styled.div`
   }
 `;
 
-const GridSection = styled.div`
+const GridSection = styled.div<{ backgroundColor: string; width: number }>`
   border-right: 1px solid black;
 
   flex-grow: 1;
@@ -81,13 +82,13 @@ function App() {
     gameOptions: { gridSize, bombCount }
   } = globalState.state;
 
-  const [generatedGrid, setGrid] = useState();
+  const [generatedGrid, setGrid] = useState({} as any);
   const [optionsSubmitted, setOptionsSubmitted] = useState(false);
-  const [tileTrackingArray, setTileTrackingArray] = useState();
-  const [maxTilesTurnt, setMaxTilesTurnt] = useState();
+  const [tileTrackingArray, setTileTrackingArray] = useState([] as Array<any>);
+  const [maxTilesTurnt, setMaxTilesTurnt] = useState(0);
   const [gameReset, setGameReset] = useState(false);
   const [gameState, setGameState] = useState("");
-  const [startTime, setStartTime] = useState("");
+  const [startTime, setStartTime] = useState(0);
 
   useEffect(() => {
     setGrid(generateGrid(gridSize, bombCount));
@@ -115,7 +116,7 @@ function App() {
     startTime
   ]);
 
-  function checkLocations(y, x, click) {
+  function checkLocations(y: number, x: number, click: string) {
     if (flaggedLocations && flaggedLocations.has(`${y},${x}`)) {
       let deleteUpdatedSet = new Set(flaggedLocations);
       deleteUpdatedSet.delete(`${y},${x}`);
@@ -134,7 +135,12 @@ function App() {
     }
   }
 
-  function handleClick(e, y, x, gridSquare) {
+  function handleClick(
+    e: React.MouseEvent<HTMLElement>,
+    y: number,
+    x: number,
+    gridSquare: boolean | string | number
+  ) {
     checkLocations(y, x, "left");
     let flippedTilesData = flipBlankTiles(
       y,
@@ -143,8 +149,7 @@ function App() {
       generatedGrid,
       gridSize
     );
-    if (checkForBomb(gridSquare, e))
-      setTimeout(() => setGameState("loss"), 500);
+    if (checkForBomb(gridSquare)) setTimeout(() => setGameState("loss"), 500);
     setTileTrackingArray(flippedTilesData.modifiedTrackingArr);
     dispatch({
       type: types.INCREMENT_COUNT,
@@ -152,7 +157,11 @@ function App() {
     });
   }
 
-  function handleRightClick(e, y, x) {
+  function handleRightClick(
+    e: React.MouseEvent<HTMLElement>,
+    y: number,
+    x: number
+  ) {
     e.preventDefault();
     if (tileTrackingArray[y][x] === "flag") {
       setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, false));
@@ -175,13 +184,18 @@ function App() {
     dispatch({ type: types.RESET_GRID_OPTIONS });
     setGrid("");
     setOptionsSubmitted(false);
-    setTileTrackingArray("");
-    setMaxTilesTurnt("");
+    setTileTrackingArray([]);
+    setMaxTilesTurnt(0);
     setGameState("");
     setGameReset(false);
   }
 
-  function renderSquare(tileTrackingArray, gridSquare, y, x) {
+  function renderSquare(
+    tileTrackingArray: Array<any>,
+    gridSquare: string | boolean | number,
+    y: number,
+    x: number
+  ) {
     if (tileTrackingArray[y][x] === true) {
       if (gridSquare === true)
         return <TileImage alt="Dynamite sticks with timer" src={BombSVG} />;
@@ -209,31 +223,33 @@ function App() {
           />
           <button onClick={resetGame}>Restart</button>
           <GridContainer>
-            {generatedGrid.map((row, y) => {
-              return (
-                <GridRow key={uniqid("grid-row-")} height={gridSize}>
-                  {row.map((gridSquare, x) => {
-                    return (
-                      <GridSection
-                        onClick={e => handleClick(e, y, x, gridSquare)}
-                        onContextMenu={e => handleRightClick(e, y, x)}
-                        key={uniqid("grid-square-")}
-                        width={gridSize}
-                        backgroundColor={
-                          tileTrackingArray[y][x] === true
-                            ? "#828282"
-                            : tileTrackingArray[y][x] === "flag"
-                            ? "#3c64a3"
-                            : "#262626"
-                        }
-                      >
-                        {renderSquare(tileTrackingArray, gridSquare, y, x)}
-                      </GridSection>
-                    );
-                  })}
-                </GridRow>
-              );
-            })}
+            {generatedGrid.map(
+              (row: Array<string | number | boolean>, y: number) => {
+                return (
+                  <GridRow key={uniqid("grid-row-")} height={gridSize}>
+                    {row.map((gridSquare, x) => {
+                      return (
+                        <GridSection
+                          onClick={e => handleClick(e, y, x, gridSquare)}
+                          onContextMenu={e => handleRightClick(e, y, x)}
+                          key={uniqid("grid-square-")}
+                          width={gridSize}
+                          backgroundColor={
+                            tileTrackingArray[y][x] === true
+                              ? "#828282"
+                              : tileTrackingArray[y][x] === "flag"
+                              ? "#3c64a3"
+                              : "#262626"
+                          }
+                        >
+                          {renderSquare(tileTrackingArray, gridSquare, y, x)}
+                        </GridSection>
+                      );
+                    })}
+                  </GridRow>
+                );
+              }
+            )}
           </GridContainer>
         </>
       )}
