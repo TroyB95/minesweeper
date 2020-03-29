@@ -15,7 +15,7 @@ interface IContextProps {
 
 type StateType = {
   tilesTurntCounter: number;
-  flaggedLocations: Set<Array<number>>;
+  flaggedLocations: Set<Array<string>>;
   gameOptions: { gridSize: number; bombCount: number };
 };
 
