@@ -112,13 +112,13 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
       if (difficulty === "easy") {
         dispatch({
           type: types.UPDATE_GRID_OPTIONS,
-          payload: { gridSize: 10, bombCount: 20 }
+          payload: { gridSize: 10, bombCount: 15 }
         });
       }
       if (difficulty === "medium") {
         dispatch({
           type: types.UPDATE_GRID_OPTIONS,
-          payload: { gridSize: 15, bombCount: 45 }
+          payload: { gridSize: 15, bombCount: 40 }
         });
       }
       if (difficulty === "hard") {
