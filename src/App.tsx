@@ -19,6 +19,7 @@ import {
 import TimerBar from "./Components/TimerBar";
 import StartScreen from "./Components/StartScreen";
 import InformationModal from "./Components/InformationModal";
+import GridSquare from "./Components/GridSquare";
 
 import BombSVG from "./Assets/bomb.svg";
 import FlagSVG from "./Assets/skull.svg";
@@ -52,7 +53,7 @@ const GridRow = styled.div<{ height: number }>`
   }
 `;
 
-const GridSection = styled.div<{ backgroundColor: string; width: number }>`
+const GridSection = styled.div<{ backgroundColour: string; width: number }>`
   border-right: 1px solid black;
 
   flex-grow: 1;
@@ -61,7 +62,7 @@ const GridSection = styled.div<{ backgroundColor: string; width: number }>`
   align-items: center;
   justify-content: center;
 
-  background: ${props => props.backgroundColor};
+  background: ${props => props.backgroundColour};
 
   width: ${props => 100 / props.width + "%"};
   height: 100%;
@@ -197,14 +198,10 @@ function App() {
     x: number
   ) {
     if (tileTrackingArray[y][x] === true) {
-      if (gridSquare === true)
-        return <TileImage alt="Dynamite sticks with timer" src={BombSVG} />;
+      if (gridSquare === true) return "bomb";
       return gridSquare;
     }
-    if (tileTrackingArray[y][x] === "flag")
-      return (
-        <TileImage alt="Black flag with skull and crosbones on" src={FlagSVG} />
-      );
+    if (tileTrackingArray[y][x] === "flag") return "flag";
   }
 
   return (
@@ -229,21 +226,29 @@ function App() {
                   <GridRow key={uniqid("grid-row-")} height={gridSize}>
                     {row.map((gridSquare, x) => {
                       return (
-                        <GridSection
-                          onClick={e => handleClick(e, y, x, gridSquare)}
-                          onContextMenu={e => handleRightClick(e, y, x)}
+                        <GridSquare
+                          onClick={(e: React.MouseEvent<HTMLElement>) =>
+                            handleClick(e, y, x, gridSquare)
+                          }
+                          onContextMenu={(e: React.MouseEvent<HTMLElement>) =>
+                            handleRightClick(e, y, x)
+                          }
                           key={uniqid("grid-square-")}
                           width={gridSize}
-                          backgroundColor={
+                          backgroundColour={
                             tileTrackingArray[y][x] === true
                               ? "#828282"
                               : tileTrackingArray[y][x] === "flag"
                               ? "#3c64a3"
                               : "#262626"
                           }
-                        >
-                          {renderSquare(tileTrackingArray, gridSquare, y, x)}
-                        </GridSection>
+                          renderType={renderSquare(
+                            tileTrackingArray,
+                            gridSquare,
+                            y,
+                            x
+                          )}
+                        ></GridSquare>
                       );
                     })}
                   </GridRow>
