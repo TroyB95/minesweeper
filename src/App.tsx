@@ -20,6 +20,7 @@ import TimerBar from "./Components/TimerBar";
 import StartScreen from "./Components/StartScreen";
 import InformationModal from "./Components/InformationModal";
 import GridSquare from "./Components/GridSquare";
+import GridRow from "./Components/GridRow";
 
 const PageContainer = styled.div`
   width: 100vw;
@@ -36,19 +37,19 @@ const GridContainer = styled.div`
   height: 80%;
 `;
 
-const GridRow = styled.div<{ height: number }>`
-  display: flex;
+// const GridRow = styled.div<{ height: number }>`
+//   display: flex;
 
-  width: 100%;
-  height: ${props => 100 / props.height + "%"};
+//   width: 100%;
+//   height: ${props => 100 / props.height + "%"};
 
-  border-left: 1px solid black;
-  border-top: 1px solid black;
+//   border-left: 1px solid black;
+//   border-top: 1px solid black;
 
-  &:last-of-type {
-    border-bottom: 1px solid black;
-  }
-`;
+//   &:last-of-type {
+//     border-bottom: 1px solid black;
+//   }
+// `;
 
 function App() {
   const globalState = useContext(store);
@@ -200,8 +201,10 @@ function App() {
             {generatedGrid.map(
               (row: Array<string | number | boolean>, y: number) => {
                 return (
-                  <GridRow key={uniqid("grid-row-")} height={gridSize}>
-                    {row.map((gridSquare, x) => {
+                  <GridRow
+                    key={uniqid("grid-row-")}
+                    height={gridSize}
+                    children={row.map((gridSquare, x) => {
                       return (
                         <GridSquare
                           onClick={(e: React.MouseEvent<HTMLElement>) =>
@@ -228,7 +231,7 @@ function App() {
                         ></GridSquare>
                       );
                     })}
-                  </GridRow>
+                  ></GridRow>
                 );
               }
             )}
