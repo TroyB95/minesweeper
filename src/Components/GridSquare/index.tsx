@@ -27,7 +27,6 @@ const TileImage = styled.img`
 interface Props {
   onClick: any;
   onContextMenu: any;
-  key: string;
   width: number;
   backgroundColour: string;
   renderType: any;
