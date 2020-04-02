@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 
 import BombSVG from "../../Assets/bomb.svg";
@@ -34,7 +34,7 @@ interface Props {
 
 interface State {}
 
-class GridSquare extends PureComponent<Props, State> {
+class GridSquare extends Component<Props, State> {
   showImage(type: string | number) {
     if (type === "bomb") {
       return <TileImage alt="Dynamite sticks with timer" src={BombSVG} />;
