@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 
 const GridRowContainer = styled.div<{ height: number }>`
@@ -17,12 +17,21 @@ const GridRowContainer = styled.div<{ height: number }>`
 
 interface Props {
   height: number;
+  children: any;
 }
 
-class GridRow extends PureComponent<Props> {
+class GridRow extends Component<Props> {
+  shouldComponentUpdate(nextProps: any, nextState: any) {
+    console.log(nextProps, nextState);
+    console.log(this.props, this.state);
+
+    return false;
+  }
+
   render() {
-    const { height } = this.props;
-    return <GridRowContainer height={height}></GridRowContainer>;
+    const { height, children } = this.props;
+
+    return <GridRowContainer height={height}>{children}</GridRowContainer>;
   }
 }
 
