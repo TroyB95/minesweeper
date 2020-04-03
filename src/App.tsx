@@ -37,20 +37,6 @@ const GridContainer = styled.div`
   height: 80%;
 `;
 
-// const GridRow = styled.div<{ height: number }>`
-//   display: flex;
-
-//   width: 100%;
-//   height: ${props => 100 / props.height + "%"};
-
-//   border-left: 1px solid black;
-//   border-top: 1px solid black;
-
-//   &:last-of-type {
-//     border-bottom: 1px solid black;
-//   }
-// `;
-
 function App() {
   const globalState = useContext(store);
   const { dispatch } = globalState;
