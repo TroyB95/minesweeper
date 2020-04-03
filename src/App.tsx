@@ -54,8 +54,7 @@ function App() {
       optionsSubmitted &&
       checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, bombCount)
     ) {
-      let playTime = Date.now() - startTime;
-      console.log("Seconds", Math.floor(playTime / 1000));
+      const playTime = Date.now() - startTime;
       setGameState("win");
     }
   }, [
