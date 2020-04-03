@@ -1,28 +1,8 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 
+import { TileImage, GridSection } from "./GridSquare.styled";
 import BombSVG from "../../Assets/bomb.svg";
 import FlagSVG from "../../Assets/skull.svg";
-
-const GridSection = styled.div<{ backgroundColour: string; width: number }>`
-  border-right: 1px solid black;
-
-  flex-grow: 1;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: ${props => props.backgroundColour};
-
-  width: ${props => 100 / props.width + "%"};
-  height: 100%;
-`;
-
-const TileImage = styled.img`
-  width: 90%;
-  height: 90%;
-`;
 
 interface Props {
   onClick: any;
