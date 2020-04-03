@@ -173,10 +173,8 @@ function App() {
             {generatedGrid.map(
               (row: Array<string | number | boolean>, y: number) => {
                 return (
-                  <GridRow
-                    key={uniqid("grid-row-")}
-                    height={gridSize}
-                    children={row.map((gridSquare, x) => {
+                  <GridRow key={uniqid("grid-row-")} height={gridSize}>
+                    {row.map((gridSquare, x) => {
                       return (
                         <GridSquare
                           onClick={(e: React.MouseEvent<HTMLElement>) =>
@@ -203,7 +201,7 @@ function App() {
                         ></GridSquare>
                       );
                     })}
-                  ></GridRow>
+                  </GridRow>
                 );
               }
             )}
