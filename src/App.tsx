@@ -55,6 +55,7 @@ function App() {
       checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, bombCount)
     ) {
       const playTime = Date.now() - startTime;
+      // TODO: Add this playtime to win modal
       setGameState("win");
     }
   }, [
