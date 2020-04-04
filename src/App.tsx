@@ -57,7 +57,7 @@ function App() {
       optionsSubmitted &&
       checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, bombCount)
     ) {
-      const playTime = Date.now() - startTime;
+      const playTime = (Date.now() - startTime) / 1000;
       setPlayTime(playTime);
       // TODO: Add this playtime to win modal
       setGameState("win");
@@ -104,7 +104,13 @@ function App() {
       generatedGrid,
       gridSize
     );
-    if (checkForBomb(gridSquare)) setTimeout(() => setGameState("loss"), 500);
+    if (checkForBomb(gridSquare)) {
+      const playTime = (Date.now() - startTime) / 1000;
+      setPlayTime(playTime);
+      setTimeout(() => {
+        setGameState("loss");
+      }, 500);
+    }
     setTileTrackingArray(flippedTilesData.modifiedTrackingArr);
     dispatch({
       type: types.INCREMENT_COUNT,
