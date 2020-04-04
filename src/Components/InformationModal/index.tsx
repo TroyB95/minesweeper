@@ -15,14 +15,14 @@ const InformationModal = ({ resetGame, type, playTime }: ModalProps) => {
         {type === "win" && (
           <>
             <h1>CONGRATS YOU HAVE WON</h1>
-            <h3>Total time played: {playTime}</h3>
+            <h3>Total time played: {playTime} Seconds</h3>
             <button onClick={() => resetGame()}>Play Again?</button>
           </>
         )}
         {type === "loss" && (
           <>
             <h1>YOU HAVE LOST!</h1>
-            <h3>Total time played: {playTime}</h3>
+            <h3>Total time played: {playTime} Seconds</h3>
             <button onClick={() => resetGame()}>Play Again?</button>
           </>
         )}
