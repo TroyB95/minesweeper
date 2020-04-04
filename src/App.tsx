@@ -33,13 +33,16 @@ function App() {
     gameOptions: { gridSize, bombCount }
   } = globalState.state;
 
-  const [generatedGrid, setGrid] = useState({} as any);
-  const [optionsSubmitted, setOptionsSubmitted] = useState(false);
+  const [generatedGrid, setGrid] = useState(
+    [] as Array<Array<number | string | boolean>>
+  );
+  const [optionsSubmitted, setOptionsSubmitted] = useState(false as boolean);
   const [tileTrackingArray, setTileTrackingArray] = useState([] as Array<any>);
   const [maxTilesTurnt, setMaxTilesTurnt] = useState(0);
   const [gameReset, setGameReset] = useState(false);
   const [gameState, setGameState] = useState("");
   const [startTime, setStartTime] = useState(0);
+  const [playTime, setPlayTime] = useState(0);
 
   useEffect(() => {
     setGrid(generateGrid(gridSize, bombCount));
@@ -55,6 +58,7 @@ function App() {
       checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, bombCount)
     ) {
       const playTime = Date.now() - startTime;
+      setPlayTime(playTime);
       // TODO: Add this playtime to win modal
       setGameState("win");
     }
@@ -133,7 +137,7 @@ function App() {
     dispatch({ type: types.RESET_COUNT });
     dispatch({ type: types.RESET_FLAGGED_LOCATIONS });
     dispatch({ type: types.RESET_GRID_OPTIONS });
-    setGrid("");
+    setGrid([]);
     setOptionsSubmitted(false);
     setTileTrackingArray([]);
     setMaxTilesTurnt(0);
@@ -209,10 +213,18 @@ function App() {
         </>
       )}
       {gameState === "win" && (
-        <InformationModal resetGame={resetGame} type="win" />
+        <InformationModal
+          resetGame={resetGame}
+          type="win"
+          playTime={playTime}
+        />
       )}
       {gameState === "loss" && (
-        <InformationModal resetGame={resetGame} type="loss" />
+        <InformationModal
+          resetGame={resetGame}
+          type="loss"
+          playTime={playTime}
+        />
       )}
     </PageContainer>
   );
