@@ -57,7 +57,7 @@ function App() {
       optionsSubmitted &&
       checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, bombCount)
     ) {
-      const playTime = (Date.now() - startTime) / 1000;
+      const playTime = Math.round((Date.now() - startTime) / 1000);
       setPlayTime(playTime);
       // TODO: Add this playtime to win modal
       setGameState("win");
@@ -105,7 +105,7 @@ function App() {
       gridSize
     );
     if (checkForBomb(gridSquare)) {
-      const playTime = (Date.now() - startTime) / 1000;
+      const playTime = Math.round((Date.now() - startTime) / 1000);
       setPlayTime(playTime);
       setTimeout(() => {
         setGameState("loss");
