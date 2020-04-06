@@ -43,8 +43,8 @@ export const OptionsForm = styled.form`
 `;
 
 export const OptionsInputDiv = styled.div`
-  width: 80%;
-  height: 15%;
+  width: 100%;
+  height: 25%;
 
   display: flex;
   justify-content: space-between;
@@ -60,8 +60,7 @@ export const OptionsInputDiv = styled.div`
   }
 
   div {
-    height: 4em;
-    width: 4em;
+    flex: 1;
 
     text-align: center;
 
