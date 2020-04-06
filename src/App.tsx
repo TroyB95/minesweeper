@@ -59,7 +59,6 @@ function App() {
     ) {
       const playTime = Math.round((Date.now() - startTime) / 1000);
       setPlayTime(playTime);
-      // TODO: Add this playtime to win modal
       setGameState("win");
     }
   }, [
