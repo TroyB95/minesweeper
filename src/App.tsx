@@ -2,17 +2,18 @@ import React, { useEffect, useState, useContext } from "react";
 import uniqid from "uniqid";
 import { store } from "./globalState";
 import types from "./globalState/types";
+import Theme from "./Theme";
 
 import {
   generateGrid,
   create2DArray,
-  setBasicGrid
+  setBasicGrid,
 } from "./gameFunctions/gridGeneration";
 import {
   checkForBomb,
   mutateTrackingArray,
   checkIfWon,
-  flipBlankTiles
+  flipBlankTiles,
 } from "./gameFunctions/gridHelpers";
 
 import { GridContainer, PageContainer } from "./App.styled";
@@ -30,7 +31,7 @@ function App() {
   const {
     tilesTurntCounter,
     flaggedLocations,
-    gameOptions: { gridSize, bombCount }
+    gameOptions: { gridSize, bombCount },
   } = globalState.state;
 
   const [generatedGrid, setGrid] = useState(
@@ -67,7 +68,7 @@ function App() {
     maxTilesTurnt,
     optionsSubmitted,
     tilesTurntCounter,
-    startTime
+    startTime,
   ]);
 
   function checkLocations(y: number, x: number, click: string) {
@@ -76,7 +77,7 @@ function App() {
       deleteUpdatedSet.delete(`${y},${x}`);
       return dispatch({
         type: types.UPDATE_FLAGGED_LOCATIONS,
-        payload: deleteUpdatedSet
+        payload: deleteUpdatedSet,
       });
     }
     if (click === "right") {
@@ -84,7 +85,7 @@ function App() {
       addUpdateSet.add(`${y},${x}`);
       return dispatch({
         type: types.UPDATE_FLAGGED_LOCATIONS,
-        payload: addUpdateSet
+        payload: addUpdateSet,
       });
     }
   }
@@ -113,7 +114,7 @@ function App() {
     setTileTrackingArray(flippedTilesData.modifiedTrackingArr);
     dispatch({
       type: types.INCREMENT_COUNT,
-      payload: flippedTilesData.numberOfTilesTurnt
+      payload: flippedTilesData.numberOfTilesTurnt,
     });
   }
 
@@ -164,74 +165,76 @@ function App() {
   }
 
   return (
-    <PageContainer>
-      {!optionsSubmitted && (
-        <StartScreen
-          setOptionsSubmitted={setOptionsSubmitted}
-          setStartTime={setStartTime}
-        />
-      )}
-      {optionsSubmitted && (
-        <>
-          <TimerBar
-            restart={gameReset}
-            pause={gameState === "win" || gameState === "loss"}
+    <Theme>
+      <PageContainer>
+        {!optionsSubmitted && (
+          <StartScreen
+            setOptionsSubmitted={setOptionsSubmitted}
+            setStartTime={setStartTime}
           />
-          <button onClick={resetGame}>Restart</button>
-          <GridContainer>
-            {generatedGrid.map(
-              (row: Array<string | number | boolean>, y: number) => {
-                return (
-                  <GridRow key={uniqid("grid-row-")} height={gridSize}>
-                    {row.map((gridSquare, x) => {
-                      return (
-                        <GridSquare
-                          onClick={(e: React.MouseEvent<HTMLElement>) =>
-                            handleClick(e, y, x, gridSquare)
-                          }
-                          onContextMenu={(e: React.MouseEvent<HTMLElement>) =>
-                            handleRightClick(e, y, x)
-                          }
-                          key={uniqid("grid-square-")}
-                          width={gridSize}
-                          backgroundColour={
-                            tileTrackingArray[y][x] === true
-                              ? "#828282"
-                              : tileTrackingArray[y][x] === "flag"
-                              ? "#3c64a3"
-                              : "#262626"
-                          }
-                          renderType={renderSquare(
-                            tileTrackingArray,
-                            gridSquare,
-                            y,
-                            x
-                          )}
-                        ></GridSquare>
-                      );
-                    })}
-                  </GridRow>
-                );
-              }
-            )}
-          </GridContainer>
-        </>
-      )}
-      {gameState === "win" && (
-        <InformationModal
-          resetGame={resetGame}
-          type="win"
-          playTime={playTime}
-        />
-      )}
-      {gameState === "loss" && (
-        <InformationModal
-          resetGame={resetGame}
-          type="loss"
-          playTime={playTime}
-        />
-      )}
-    </PageContainer>
+        )}
+        {optionsSubmitted && (
+          <>
+            <TimerBar
+              restart={gameReset}
+              pause={gameState === "win" || gameState === "loss"}
+            />
+            <button onClick={resetGame}>Restart</button>
+            <GridContainer>
+              {generatedGrid.map(
+                (row: Array<string | number | boolean>, y: number) => {
+                  return (
+                    <GridRow key={uniqid("grid-row-")} height={gridSize}>
+                      {row.map((gridSquare, x) => {
+                        return (
+                          <GridSquare
+                            onClick={(e: React.MouseEvent<HTMLElement>) =>
+                              handleClick(e, y, x, gridSquare)
+                            }
+                            onContextMenu={(e: React.MouseEvent<HTMLElement>) =>
+                              handleRightClick(e, y, x)
+                            }
+                            key={uniqid("grid-square-")}
+                            width={gridSize}
+                            backgroundColour={
+                              tileTrackingArray[y][x] === true
+                                ? "#828282"
+                                : tileTrackingArray[y][x] === "flag"
+                                ? "#3c64a3"
+                                : "#262626"
+                            }
+                            renderType={renderSquare(
+                              tileTrackingArray,
+                              gridSquare,
+                              y,
+                              x
+                            )}
+                          ></GridSquare>
+                        );
+                      })}
+                    </GridRow>
+                  );
+                }
+              )}
+            </GridContainer>
+          </>
+        )}
+        {gameState === "win" && (
+          <InformationModal
+            resetGame={resetGame}
+            type="win"
+            playTime={playTime}
+          />
+        )}
+        {gameState === "loss" && (
+          <InformationModal
+            resetGame={resetGame}
+            type="loss"
+            playTime={playTime}
+          />
+        )}
+      </PageContainer>
+    </Theme>
   );
 }
 
