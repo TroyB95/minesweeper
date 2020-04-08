@@ -2,8 +2,13 @@ import React, { FunctionComponent } from "react";
 import { ThemeProvider } from "styled-components";
 
 const theme = {
-  mainColour: "red",
-  secondaryColour: "pink",
+  colour: {
+    tileUnturnt: "#19647E",
+    tileTurnt: "#28AFB0",
+    background: "#37392E",
+    mainFont: "#DDCECD",
+    secondaryFont: "#EEE5E5",
+  },
 };
 
 const Theme: FunctionComponent = ({ children }) => (
