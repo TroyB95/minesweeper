@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
+import { store } from "../../globalState";
+import types from "../../globalState/types";
 
 import { ModalBackground, ModalBody } from "./InformationModal.styled";
 
@@ -6,9 +8,43 @@ type ModalProps = {
   resetGame: Function;
   type: string;
   playTime: number;
+  bombCount?: number;
+  gridSize?: number;
 };
 
 const InformationModal = ({ resetGame, type, playTime }: ModalProps) => {
+  const globalState = useContext(store);
+  const { dispatch } = globalState;
+
+  const goNextLevel = (
+    bombCount: number,
+    gridSize: number,
+    difficulty: string
+  ) => {
+    let newBombCount;
+    let newGridSize;
+    switch (difficulty) {
+      case "easy":
+        newBombCount = bombCount + 5;
+        newGridSize = gridSize + 2;
+        break;
+      case "medium":
+        newBombCount = bombCount + 10;
+        newGridSize = gridSize + 4;
+        break;
+      case "hard":
+        newBombCount = bombCount + 15;
+        newGridSize = gridSize + 6;
+        break;
+      default:
+        break;
+    }
+
+    dispatch({
+      type: types.UPDATE_GRID_OPTIONS,
+      payload: { gridSize: newGridSize, bombCount: newBombCount },
+    });
+  };
   return (
     <ModalBackground>
       <ModalBody>
@@ -17,6 +53,7 @@ const InformationModal = ({ resetGame, type, playTime }: ModalProps) => {
             <h1>CONGRATS YOU HAVE WON</h1>
             <h3>Total time played: {playTime} Seconds</h3>
             <button onClick={() => resetGame()}>Play Again?</button>
+            <button onClick={() => {}}>Next Level?</button>
           </>
         )}
         {type === "loss" && (
