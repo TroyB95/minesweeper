@@ -197,8 +197,6 @@ function App() {
                           backgroundColour={
                             tileTrackingArray[y][x] === true
                               ? themeContext.colour.tileTurnt
-                              : tileTrackingArray[y][x] === "flag"
-                              ? "#3c64a3"
                               : themeContext.colour.tileUnturnt
                           }
                           renderType={renderSquare(
