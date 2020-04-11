@@ -5,7 +5,7 @@ import types, { IActionType } from "./types";
 const initialState = {
   tilesTurntCounter: 0,
   flaggedLocations: new Set(),
-  gameOptions: { bombCount: 0, gridSize: 0 }
+  gameOptions: { bombCount: 0, gridSize: 0, difficulty: "easy" },
 };
 
 interface IContextProps {
@@ -16,7 +16,7 @@ interface IContextProps {
 type StateType = {
   tilesTurntCounter: number;
   flaggedLocations: Set<string>;
-  gameOptions: { gridSize: number; bombCount: number };
+  gameOptions: { gridSize: number; bombCount: number; difficulty: string };
 };
 
 const store = createContext({} as IContextProps);
@@ -30,32 +30,32 @@ const StateProvider: FunctionComponent = ({ children }) => {
           return {
             ...state,
             tilesTurntCounter:
-              state.tilesTurntCounter + (action.payload ? action.payload : 1)
+              state.tilesTurntCounter + (action.payload ? action.payload : 1),
           };
         case types.RESET_COUNT:
           return {
             ...state,
-            tilesTurntCounter: 0
+            tilesTurntCounter: 0,
           };
         case types.UPDATE_FLAGGED_LOCATIONS:
           return {
             ...state,
-            flaggedLocations: action.payload
+            flaggedLocations: action.payload,
           };
         case types.RESET_FLAGGED_LOCATIONS:
           return {
             ...state,
-            flaggedLocations: new Set()
+            flaggedLocations: new Set(),
           };
         case types.UPDATE_GRID_OPTIONS:
           return {
             ...state,
-            gameOptions: { ...state.gameOptions, ...action.payload }
+            gameOptions: { ...state.gameOptions, ...action.payload },
           };
         case types.RESET_GRID_OPTIONS:
           return {
             ...state,
-            gameOptions: { bombCount: 0, gridSize: 0 }
+            gameOptions: { bombCount: 0, gridSize: 0 },
           };
 
         default:
