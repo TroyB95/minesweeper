@@ -8,7 +8,7 @@ import {
   StartScreenModalBackground,
   OptionsForm,
   OptionsInputDiv,
-  ToggleOptions
+  ToggleOptions,
 } from "./StartScreen.styled";
 
 type StartScreenProps = {
@@ -19,14 +19,25 @@ type StartScreenProps = {
 type GridOptions = {
   gridSize: number;
   bombCount: number;
+  difficulty: string;
 };
 
 function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
-  const [gridOptions, setGridOptions] = useState({ gridSize: 0, bombCount: 0 });
+  const [gridOptions, setGridOptions] = useState({
+    gridSize: 0,
+    bombCount: 0,
+    difficulty: "easy",
+  });
   const [optionsView, setOptionsView] = useState("basic");
-  const [difficulty, setDifficulty] = useState("");
+
   const globalState = useContext(store);
   const { dispatch } = globalState;
+
+  const {
+    state: {
+      gameOptions: { difficulty },
+    },
+  } = globalState;
 
   const { gridSize, bombCount } = gridOptions;
 
@@ -40,19 +51,19 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
       if (difficulty === "easy") {
         dispatch({
           type: types.UPDATE_GRID_OPTIONS,
-          payload: { gridSize: 10, bombCount: 15 }
+          payload: { gridSize: 10, bombCount: 15 },
         });
       }
       if (difficulty === "medium") {
         dispatch({
           type: types.UPDATE_GRID_OPTIONS,
-          payload: { gridSize: 15, bombCount: 40 }
+          payload: { gridSize: 15, bombCount: 40 },
         });
       }
       if (difficulty === "hard") {
         dispatch({
           type: types.UPDATE_GRID_OPTIONS,
-          payload: { gridSize: 25, bombCount: 100 }
+          payload: { gridSize: 25, bombCount: 100 },
         });
       }
       setStartTime(Date.now());
@@ -72,7 +83,10 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
     if (!e) {
       return;
     }
-    setDifficulty(e.currentTarget.value);
+    dispatch({
+      type: types.UPDATE_GRID_OPTIONS,
+      payload: { difficulty: e.currentTarget.value },
+    });
   }
 
   function submitButtonDisabled(
@@ -90,7 +104,7 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
   return (
     <StartScreenModalBackground>
       <StartScreenModal>
-        <OptionsForm onSubmit={e => handleSubmit(e, optionsView, difficulty)}>
+        <OptionsForm onSubmit={(e) => handleSubmit(e, optionsView, difficulty)}>
           {optionsView === "basic" && (
             <OptionsInputDiv>
               <div>
@@ -134,10 +148,10 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
                   min="10"
                   max="50"
                   value={gridSize}
-                  onChange={e => {
+                  onChange={(e) => {
                     setGridOptions({
                       ...gridOptions,
-                      gridSize: Number(e.target.value)
+                      gridSize: Number(e.target.value),
                     });
                   }}
                 ></input>
@@ -150,10 +164,10 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
                   min={Math.round(gridSize * gridSize * 0.1)}
                   max={Math.round(gridSize * gridSize * 0.5)}
                   value={bombCount}
-                  onChange={e => {
+                  onChange={(e) => {
                     setGridOptions({
                       ...gridOptions,
-                      bombCount: Number(e.target.value)
+                      bombCount: Number(e.target.value),
                     });
                   }}
                 ></input>
