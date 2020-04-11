@@ -151,6 +151,15 @@ function App() {
     setGameReset(false);
   }
 
+  function resetForNextLevel() {
+    dispatch({ type: types.RESET_COUNT });
+    dispatch({ type: types.RESET_FLAGGED_LOCATIONS });
+    setGrid([]);
+    setTileTrackingArray([]);
+    setMaxTilesTurnt(0);
+    setGameReset(false);
+  }
+
   function renderSquare(
     tileTrackingArray: Array<any>,
     gridSquare: string | boolean | number,
@@ -218,6 +227,7 @@ function App() {
       {gameState === "win" && (
         <InformationModal
           resetGame={resetGame}
+          resetForNextLevel={resetForNextLevel}
           type="win"
           playTime={playTime}
         />
@@ -225,6 +235,7 @@ function App() {
       {gameState === "loss" && (
         <InformationModal
           resetGame={resetGame}
+          resetForNextLevel={resetForNextLevel}
           type="loss"
           playTime={playTime}
         />
