@@ -6,15 +6,27 @@ import { ModalBackground, ModalBody } from "./InformationModal.styled";
 
 type ModalProps = {
   resetGame: Function;
+  resetForNextLevel: Function;
   type: string;
   playTime: number;
   bombCount?: number;
   gridSize?: number;
 };
 
-const InformationModal = ({ resetGame, type, playTime }: ModalProps) => {
+const InformationModal = ({
+  resetGame,
+  resetForNextLevel,
+  type,
+  playTime,
+}: ModalProps) => {
   const globalState = useContext(store);
   const { dispatch } = globalState;
+
+  const {
+    state: {
+      gameOptions: { bombCount, gridSize, difficulty },
+    },
+  } = globalState;
 
   const goNextLevel = (
     bombCount: number,
@@ -23,6 +35,8 @@ const InformationModal = ({ resetGame, type, playTime }: ModalProps) => {
   ) => {
     let newBombCount;
     let newGridSize;
+
+    resetForNextLevel();
     switch (difficulty) {
       case "easy":
         newBombCount = bombCount + 5;
@@ -53,7 +67,11 @@ const InformationModal = ({ resetGame, type, playTime }: ModalProps) => {
             <h1>CONGRATS YOU HAVE WON</h1>
             <h3>Total time played: {playTime} Seconds</h3>
             <button onClick={() => resetGame()}>Play Again?</button>
-            <button onClick={() => {}}>Next Level?</button>
+            <button
+              onClick={() => goNextLevel(bombCount, gridSize, difficulty)}
+            >
+              Next Level?
+            </button>
           </>
         )}
         {type === "loss" && (
