@@ -51,6 +51,9 @@ function App() {
       setBasicGrid(gridSize, create2DArray(gridSize), false)
     );
     setMaxTilesTurnt(gridSize * gridSize - bombCount);
+    if (gameState === "win") {
+      setGameState("");
+    }
   }, [bombCount, gridSize, optionsSubmitted]);
 
   useEffect(() => {
