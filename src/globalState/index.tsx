@@ -6,7 +6,7 @@ const initialState = {
   tilesTurntCounter: 0,
   flaggedLocations: new Set(),
   gameOptions: { bombCount: 0, gridSize: 0, difficulty: "easy" },
-  roundLevel: 0,
+  roundLevel: 1,
 };
 
 interface IContextProps {
@@ -67,7 +67,7 @@ const StateProvider: FunctionComponent = ({ children }) => {
         case types.RESET_ROUND_LEVEL:
           return {
             ...state,
-            roundLevel: 0,
+            roundLevel: 1,
           };
 
         default:
