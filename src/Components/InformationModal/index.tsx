@@ -25,6 +25,7 @@ const InformationModal = ({
   const {
     state: {
       gameOptions: { bombCount, gridSize, difficulty },
+      roundLevel,
     },
   } = globalState;
 
@@ -64,7 +65,7 @@ const InformationModal = ({
       <ModalBody>
         {type === "win" && (
           <>
-            <h1>CONGRATS YOU HAVE WON</h1>
+            <h1>CONGRATS YOU HAVE BEAT ROUND LEVEL {roundLevel}</h1>
             <h3>Total time played: {playTime} Seconds</h3>
             <button onClick={() => resetGame()}>Play Again?</button>
             <button
@@ -76,7 +77,7 @@ const InformationModal = ({
         )}
         {type === "loss" && (
           <>
-            <h1>YOU HAVE LOST!</h1>
+            <h1>YOU HAVE LOST AT ROUND LEVEL {roundLevel}!</h1>
             <h3>Total time played: {playTime} Seconds</h3>
             <button onClick={() => resetGame()}>Play Again?</button>
           </>
