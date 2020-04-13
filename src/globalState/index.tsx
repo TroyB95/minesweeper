@@ -6,6 +6,7 @@ const initialState = {
   tilesTurntCounter: 0,
   flaggedLocations: new Set(),
   gameOptions: { bombCount: 0, gridSize: 0, difficulty: "easy" },
+  roundLevel: 0,
 };
 
 interface IContextProps {
@@ -17,6 +18,7 @@ type StateType = {
   tilesTurntCounter: number;
   flaggedLocations: Set<string>;
   gameOptions: { gridSize: number; bombCount: number; difficulty: string };
+  roundLevel: number;
 };
 
 const store = createContext({} as IContextProps);
@@ -56,6 +58,16 @@ const StateProvider: FunctionComponent = ({ children }) => {
           return {
             ...state,
             gameOptions: { bombCount: 0, gridSize: 0 },
+          };
+        case types.INCREMENT_ROUND_LEVEL:
+          return {
+            ...state,
+            roundLevel: state.roundLevel += 1,
+          };
+        case types.RESET_ROUND_LEVEL:
+          return {
+            ...state,
+            roundLevel: 0,
           };
 
         default:
