@@ -17,7 +17,9 @@ export const StartScreenModal = styled.div`
   width: 50%;
   height: 50%;
 
-  background: grey;
+  background: ${(props) => props.theme.colour.tileTurnt};
+
+  border-radius: 20px;
 
   display: flex;
   flex-wrap: wrap;
@@ -44,15 +46,15 @@ export const OptionsForm = styled.form`
 
 export const OptionsInputDiv = styled.div`
   width: 100%;
-  height: 25%;
 
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 
   input[type="radio"] {
-    width: 2em;
-    height: 2em;
+    transform: scale(1.4);
+    margin-bottom: 8px;
   }
 
   label {
@@ -76,4 +78,13 @@ export const ToggleOptions = styled.button`
 
   bottom: 0;
   right: 0;
+`;
+
+export const StyledTitle = styled.h1`
+  width: 100%;
+
+  text-align: center;
+
+  margin: 0;
+  margin-bottom: 18px;
 `;
