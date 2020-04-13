@@ -193,7 +193,6 @@ function App() {
             restart={gameReset}
             pause={gameState === "win" || gameState === "loss"}
           />
-          <h1>ROUND LEVEL: {roundLevel}</h1>
           <button onClick={resetGame}>Restart</button>
           <GridContainer>
             {generatedGrid.map(
