@@ -4,7 +4,7 @@ export const GridSection = styled.div<{
   backgroundColour: string;
   width: number;
 }>`
-  border-right: 1px solid black;
+  border-right: ${({ theme: { colour } }) => `3px solid ${colour.background}`};
 
   flex-grow: 1;
 
@@ -12,9 +12,9 @@ export const GridSection = styled.div<{
   align-items: center;
   justify-content: center;
 
-  background: ${props => props.backgroundColour};
+  background: ${(props) => props.backgroundColour};
 
-  width: ${props => 100 / props.width + "%"};
+  width: ${(props) => 100 / props.width + "%"};
   height: 100%;
 `;
 

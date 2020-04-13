@@ -5,13 +5,14 @@ const GridRowContainer = styled.div<{ height: number }>`
   display: flex;
 
   width: 100%;
-  height: ${props => 100 / props.height + "%"};
+  height: ${(props) => 100 / props.height + "%"};
 
-  border-left: 1px solid black;
-  border-top: 1px solid black;
+  border-left: ${({ theme: { colour } }) => `3px solid ${colour.background}`};
+  border-top: ${({ theme: { colour } }) => `3px solid ${colour.background}`};
 
   &:last-of-type {
-    border-bottom: 1px solid black;
+    border-bottom: ${({ theme: { colour } }) =>
+      `3px solid ${colour.background}`};
   }
 `;
 
