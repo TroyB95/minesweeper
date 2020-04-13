@@ -51,6 +51,7 @@ function App() {
       setBasicGrid(gridSize, create2DArray(gridSize), false)
     );
     setMaxTilesTurnt(gridSize * gridSize - bombCount);
+    dispatch({ type: types.INCREMENT_ROUND_LEVEL });
     if (gameState === "win") {
       setGameState("");
     }
@@ -146,6 +147,7 @@ function App() {
     dispatch({ type: types.RESET_COUNT });
     dispatch({ type: types.RESET_FLAGGED_LOCATIONS });
     dispatch({ type: types.RESET_GRID_OPTIONS });
+    dispatch({ type: types.RESET_ROUND_LEVEL });
     setGrid([]);
     setOptionsSubmitted(false);
     setTileTrackingArray([]);
