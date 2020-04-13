@@ -33,6 +33,7 @@ function App() {
     tilesTurntCounter,
     flaggedLocations,
     gameOptions: { gridSize, bombCount },
+    roundLevel,
   } = globalState.state;
 
   const [generatedGrid, setGrid] = useState(
@@ -51,7 +52,7 @@ function App() {
       setBasicGrid(gridSize, create2DArray(gridSize), false)
     );
     setMaxTilesTurnt(gridSize * gridSize - bombCount);
-    dispatch({ type: types.INCREMENT_ROUND_LEVEL });
+
     if (gameState === "win") {
       setGameState("");
     }
@@ -159,6 +160,7 @@ function App() {
   function resetForNextLevel() {
     dispatch({ type: types.RESET_COUNT });
     dispatch({ type: types.RESET_FLAGGED_LOCATIONS });
+    dispatch({ type: types.INCREMENT_ROUND_LEVEL });
     setGrid([]);
     setTileTrackingArray([]);
     setMaxTilesTurnt(0);
@@ -191,6 +193,7 @@ function App() {
             restart={gameReset}
             pause={gameState === "win" || gameState === "loss"}
           />
+          <h1>ROUND LEVEL: {roundLevel}</h1>
           <button onClick={resetGame}>Restart</button>
           <GridContainer>
             {generatedGrid.map(
