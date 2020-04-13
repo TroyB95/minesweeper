@@ -9,6 +9,7 @@ import {
   OptionsForm,
   OptionsInputDiv,
   ToggleOptions,
+  StyledTitle,
 } from "./StartScreen.styled";
 
 type StartScreenProps = {
@@ -107,6 +108,7 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
         <OptionsForm onSubmit={(e) => handleSubmit(e, optionsView, difficulty)}>
           {optionsView === "basic" && (
             <OptionsInputDiv>
+              <StyledTitle>Difficulty</StyledTitle>
               <div>
                 <input
                   type="radio"
