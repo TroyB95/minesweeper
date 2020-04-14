@@ -178,7 +178,7 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
           )}
           <input
             type="submit"
-            value="Start"
+            value="START"
             disabled={submitButtonDisabled(
               optionsView,
               difficulty,
