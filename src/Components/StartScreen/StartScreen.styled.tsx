@@ -39,8 +39,16 @@ export const OptionsForm = styled.form`
   justify-content: space-around;
 
   input[type="submit"] {
-    width: 8em;
-    height: 4em;
+    border: none;
+    border-radius: 50%;
+
+    padding: 16px 32px;
+    margin: 4px 2px;
+
+    font-size: 32px;
+    text-decoration: none;
+
+    cursor: pointer;
   }
 `;
 
