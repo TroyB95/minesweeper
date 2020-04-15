@@ -4,7 +4,7 @@ import Timer from "react-compound-timer";
 
 const TimerContainer = styled.div`
   width: 80%;
-  height: 10%;
+  height: 5%;
 `;
 
 function TimerBar(props) {
@@ -19,10 +19,10 @@ function TimerBar(props) {
           return (
             <>
               <Timer.Minutes
-                formatValue={value => `${value}m :`}
+                formatValue={(value) => `${value}m :`}
               ></Timer.Minutes>
               <Timer.Seconds
-                formatValue={value => ` ${value}s`}
+                formatValue={(value) => ` ${value}s`}
               ></Timer.Seconds>
               <button onClick={pause}>Pause</button>
               <button onClick={resume}>Resume</button>
