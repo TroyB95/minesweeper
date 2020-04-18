@@ -19,7 +19,7 @@ import {
 
 import { GridContainer, PageContainer } from "./App.styled";
 
-import TimerBar from "./Components/TimerBar";
+import HeaderBar from "./Components/HeaderBar";
 import StartScreen from "./Components/StartScreen";
 import InformationModal from "./Components/InformationModal";
 import GridSquare from "./Components/GridSquare";
@@ -189,10 +189,7 @@ function App() {
       )}
       {optionsSubmitted && (
         <>
-          <TimerBar
-            restart={gameReset}
-            pause={gameState === "win" || gameState === "loss"}
-          />
+          <HeaderBar />
           <button onClick={resetGame}>Restart</button>
           <GridContainer>
             {generatedGrid.map(
