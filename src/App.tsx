@@ -189,8 +189,7 @@ function App() {
       )}
       {optionsSubmitted && (
         <>
-          <HeaderBar />
-          <button onClick={resetGame}>Restart</button>
+          <HeaderBar resetGame={resetGame} />
           <GridContainer>
             {generatedGrid.map(
               (row: Array<string | number | boolean>, y: number) => {

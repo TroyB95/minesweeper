@@ -10,18 +10,24 @@ const Header = styled.div`
   height: 5%;
 
   display: flex;
+  align-items: center;
+  justify-content: space-around;
 `;
 
 const RoundCounter = styled.h3``;
 
-function HeaderBar() {
+interface IProps {
+  resetGame: Function;
+}
+function HeaderBar({ resetGame }: IProps) {
   const globalState = useContext(store);
-
   const { roundLevel } = globalState.state;
+
   return (
     <Header>
       <TimerBar />
       <RoundCounter>{roundLevel}</RoundCounter>
+      <button onClick={() => resetGame()}>Restart</button>
     </Header>
   );
 }
