@@ -9,6 +9,11 @@ const theme = {
     mainFont: "#DDCECD",
     secondaryFont: "#EEE5E5",
   },
+  font: {
+    small: "16px",
+    medium: "24px",
+    large: "32px",
+  },
 };
 
 const Theme: FunctionComponent = ({ children }) => (
