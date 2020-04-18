@@ -17,8 +17,9 @@ const Header = styled.div`
 const RoundCounter = styled.h3`
   ${({ theme: { colour, font } }) => `
     color: ${colour.mainFont};
-    font-size: ${font.medium}
+    font-size: ${font.medium};
 `}
+  padding-left: 3px;
 `;
 
 interface IProps {
