@@ -2,10 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Timer from "react-compound-timer";
 
-const TimerContainer = styled.div`
-  width: 80%;
-  height: 5%;
-`;
+const TimerContainer = styled.div``;
 
 function TimerBar(props) {
   return (
