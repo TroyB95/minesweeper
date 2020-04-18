@@ -5,7 +5,7 @@ import types, { IActionType } from "./types";
 const initialState = {
   tilesTurntCounter: 0,
   flaggedLocations: new Set(),
-  gameOptions: { bombCount: 0, gridSize: 0, difficulty: "easy" },
+  gameOptions: { bombCount: 0, gridSize: 0, difficulty: "" },
   roundLevel: 1,
 };
 

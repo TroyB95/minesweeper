@@ -27,7 +27,7 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
   const [gridOptions, setGridOptions] = useState({
     gridSize: 0,
     bombCount: 0,
-    difficulty: "easy",
+    difficulty: "",
   });
   const [optionsView, setOptionsView] = useState("basic");
 
@@ -101,6 +101,7 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
     if (view === "advanced") {
       return gridOptions.gridSize === 0 || gridOptions.bombCount === 0;
     }
+    return true;
   }
   return (
     <StartScreenModalBackground>
