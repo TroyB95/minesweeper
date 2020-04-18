@@ -6,15 +6,20 @@ import { store } from "../../globalState";
 import TimerBar from "../TimerBar";
 
 const Header = styled.div`
-  width: 100%;
+  width: 80%;
   height: 5%;
 
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
-const RoundCounter = styled.h3``;
+const RoundCounter = styled.h3`
+  ${({ theme: { colour, font } }) => `
+    color: ${colour.mainFont};
+    font-size: ${font.medium}
+`}
+`;
 
 interface IProps {
   resetGame: Function;
@@ -25,8 +30,8 @@ function HeaderBar({ resetGame }: IProps) {
 
   return (
     <Header>
-      <TimerBar />
-      <RoundCounter>{roundLevel}</RoundCounter>
+      {/* <TimerBar /> */}
+      <RoundCounter>Round Level: {roundLevel}</RoundCounter>
       <button onClick={() => resetGame()}>Restart</button>
     </Header>
   );
