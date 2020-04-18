@@ -57,7 +57,7 @@ const StateProvider: FunctionComponent = ({ children }) => {
         case types.RESET_GRID_OPTIONS:
           return {
             ...state,
-            gameOptions: { bombCount: 0, gridSize: 0 },
+            gameOptions: { bombCount: 0, gridSize: 0, difficulty: "" },
           };
         case types.INCREMENT_ROUND_LEVEL:
           return {
