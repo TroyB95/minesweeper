@@ -2,7 +2,7 @@
 
 -- (COMPLETE) Pick starting level and then after every completion ramp up difficulty.
 -- (COMPLETE) Start level 1 (easy, medium or hard) then ramp based on difficulty?
--- (INPROGRESS) Keep track of level and rounds beaten.
+-- (COMPLETE) Keep track of level and rounds beaten.
 -- Add lives system, 3 lives to beat as many rounds as possible?
 
 ### Advanced features
