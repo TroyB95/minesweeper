@@ -101,6 +101,9 @@ function App() {
     x: number,
     gridSquare: boolean | string | number
   ) {
+    if (tileTrackingArray[y][x] === true) {
+      return;
+    }
     checkLocations(y, x, "left");
     let flippedTilesData = flipBlankTiles(
       y,
