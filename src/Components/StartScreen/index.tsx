@@ -52,7 +52,7 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
       if (difficulty === "easy") {
         dispatch({
           type: types.UPDATE_GRID_OPTIONS,
-          payload: { gridSize: 10, bombCount: 15 },
+          payload: { gridSize: 10, bombCount: 12 },
         });
       }
       if (difficulty === "medium") {
