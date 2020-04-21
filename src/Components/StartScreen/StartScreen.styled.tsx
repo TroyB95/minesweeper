@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 export const StartScreenModalBackground = styled.div`
+  ${({ theme: { colour } }) => `
+  background: ${colour.background};
+`}
+
   width: 100%;
   height: 100%;
-
-  ${({ theme: { colour } }) => `
-    background: ${colour.background};
-  `}
 
   position: absolute;
 
@@ -16,13 +16,15 @@ export const StartScreenModalBackground = styled.div`
 `;
 
 export const StartScreenModal = styled.div`
+  ${({ theme: { colour } }) => `
+    background: ${colour.tileUnturnt};
+    color: ${colour.secondaryFont};
+  `}
+
   width: 50%;
   height: 50%;
 
-  ${({ theme: { colour } }) => `
-    background: ${colour.tileUnturnt};
-  `}
-
+  box-shadow: 10px 10px 14px -2px rgba(0, 0, 0, 0.75);
   border-radius: 20px;
 
   display: flex;
