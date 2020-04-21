@@ -45,6 +45,10 @@ export const OptionsForm = styled.form`
   justify-content: space-around;
 
   input[type="submit"] {
+    ${({ theme: { colour } }) => `
+    background: ${colour.mainFont};
+  `}
+
     border: none;
     border-radius: 50%;
 
