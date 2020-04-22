@@ -10,3 +10,4 @@
 -- Average time taken to beat levels
 -- Achievement
 -- Global leaderboard
+-- Multiplayer support
