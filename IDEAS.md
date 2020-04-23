@@ -12,3 +12,4 @@
 -- Global leaderboard
 -- Multiplayer support
 -- Time restricted mode
+-- PowerUps
