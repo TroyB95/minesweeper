@@ -36,7 +36,7 @@ export const StartScreenModal = styled.div`
 
 export const OptionsForm = styled.form`
   ${({ theme: { font } }) => `
-    font-size: ${font.medium};
+    font-size: ${font.small};
   `}
 
   width: 80%;
@@ -60,7 +60,6 @@ export const OptionsForm = styled.form`
     padding: 16px 32px;
     margin: 4px 2px;
 
-    font-size: 32px;
     text-decoration: none;
 
     cursor: pointer;
