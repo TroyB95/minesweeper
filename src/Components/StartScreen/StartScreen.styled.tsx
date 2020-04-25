@@ -35,6 +35,10 @@ export const StartScreenModal = styled.div`
 `;
 
 export const OptionsForm = styled.form`
+  ${({ theme: { font } }) => `
+    font-size: ${font.medium};
+  `}
+
   width: 80%;
   height: 80%;
 
@@ -45,8 +49,9 @@ export const OptionsForm = styled.form`
   justify-content: space-around;
 
   input[type="submit"] {
-    ${({ theme: { colour } }) => `
+    ${({ theme: { colour, font } }) => `
     background: ${colour.mainFont};
+    font-family: ${font.family};
   `}
 
     border: none;
@@ -92,6 +97,10 @@ export const OptionsInputDiv = styled.div`
 `;
 
 export const ToggleOptions = styled.button`
+  ${({ theme: { font } }) => `
+    font-family: ${font.family};
+  `}
+
   position: relative;
 
   bottom: 0;
