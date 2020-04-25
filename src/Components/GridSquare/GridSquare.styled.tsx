@@ -4,7 +4,10 @@ export const GridSection = styled.div<{
   backgroundColour: string;
   width: number;
 }>`
-  border-right: ${({ theme: { colour } }) => `3px solid ${colour.background}`};
+  ${({ theme: { colour, font } }) => `
+  font-family: ${font.bold};
+  border-right:3px solid ${colour.background};
+`}
 
   flex-grow: 1;
 
