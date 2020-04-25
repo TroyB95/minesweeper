@@ -5,6 +5,7 @@ const theme = {
   colour: {
     tileUnturnt: "#19647E",
     tileTurnt: "#28AFB0",
+    darkHover: "#145064",
     background: "#37392E",
     mainFont: "#DDCECD",
     secondaryFont: "#EEE5E5",
