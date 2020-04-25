@@ -53,6 +53,10 @@ export const OptionsForm = styled.form`
     background: ${colour.mainFont};
     font-family: ${font.family};
     font-size: ${font.medium};
+
+    :hover {
+      background: ${colour.secondaryFont};
+    }
   `}
 
     border: none;
