@@ -13,6 +13,7 @@ const theme = {
     small: "16px",
     medium: "24px",
     large: "32px",
+    family: "HandWritten",
   },
 };
 
