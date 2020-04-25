@@ -6,10 +6,10 @@
 
 ### Advanced features
 
--- Player Profile
+-- PowerUps
 -- Average time taken to beat levels
+-- Time restricted mode
 -- Achievement
+-- Player Profile
 -- Global leaderboard
 -- Multiplayer support
--- Time restricted mode
--- PowerUps
