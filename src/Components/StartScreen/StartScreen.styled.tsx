@@ -36,7 +36,7 @@ export const StartScreenModal = styled.div`
 
 export const OptionsForm = styled.form`
   ${({ theme: { font } }) => `
-    font-size: ${font.small};
+    font-size: ${font.medium};
   `}
 
   width: 80%;
@@ -52,6 +52,7 @@ export const OptionsForm = styled.form`
     ${({ theme: { colour, font } }) => `
     background: ${colour.mainFont};
     font-family: ${font.family};
+    font-size: ${font.medium};
   `}
 
     border: none;
@@ -67,6 +68,11 @@ export const OptionsForm = styled.form`
 `;
 
 export const OptionsInputDiv = styled.div`
+  ${({ theme: { colour, font } }) => `
+    border: 1px dashed ${colour.mainFont};
+     padding-bottom: ${font.small};
+    `}
+
   width: 100%;
 
   display: flex;
@@ -75,6 +81,10 @@ export const OptionsInputDiv = styled.div`
   align-items: center;
 
   input[type="radio"] {
+    :hover {
+      cursor: pointer;
+    }
+
     transform: scale(1.4);
     margin-bottom: 8px;
   }
@@ -106,7 +116,11 @@ export const ToggleOptions = styled.button`
   right: 0;
 `;
 
-export const StyledTitle = styled.h1`
+export const StyledTitle = styled.p`
+  ${({ theme: { font } }) => `
+    padding-top: ${font.small};
+  `}
+
   width: 100%;
 
   text-align: center;

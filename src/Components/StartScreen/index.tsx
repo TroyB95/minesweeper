@@ -109,7 +109,7 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
         <OptionsForm onSubmit={(e) => handleSubmit(e, optionsView, difficulty)}>
           {optionsView === "basic" && (
             <OptionsInputDiv>
-              <StyledTitle>Difficulty</StyledTitle>
+              <StyledTitle>Please choose difficulty :</StyledTitle>
               <div>
                 <input
                   type="radio"
