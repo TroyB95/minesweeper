@@ -32,7 +32,7 @@ function HeaderBar({ resetGame }: IProps) {
   return (
     <Header>
       {/* <TimerBar /> */}
-      <RoundCounter>Round Level: {roundLevel}</RoundCounter>
+      <RoundCounter>Level: {roundLevel}</RoundCounter>
       <button onClick={() => resetGame()}>Restart</button>
     </Header>
   );
