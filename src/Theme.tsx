@@ -14,6 +14,7 @@ const theme = {
     medium: "24px",
     large: "32px",
     family: "HandWritten",
+    bold: "ClearBold",
   },
 };
 

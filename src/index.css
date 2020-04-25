@@ -3,6 +3,11 @@
   src: url("./Assets/fonts/FrederickatheGreat-Regular.ttf");
 }
 
+@font-face {
+  font-family: "ClearBold";
+  src: url("./Assets/fonts/NotoSans-Bold.ttf");
+}
+
 body {
   margin: 0;
   font-family: "HandWritten", BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
