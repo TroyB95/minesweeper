@@ -29,6 +29,6 @@ export const GridSection = styled.div<{
 `;
 
 export const TileImage = styled.img`
-  width: 90%;
-  height: 90%;
+  width: 80%;
+  height: 80%;
 `;
