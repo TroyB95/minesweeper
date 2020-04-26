@@ -90,7 +90,10 @@ const InformationModal = ({
         )}
         {type === "loss" && (
           <>
-            <h1>YOU HAVE LOST AT ROUND LEVEL {roundLevel}!</h1>
+            <h1>
+              YOU HAVE LOST AT <br />
+              ROUND LEVEL {roundLevel}!
+            </h1>
             <h3>Total time played: {playTime} Seconds</h3>
             <StyledButton
               fontSize="18px"
