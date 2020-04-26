@@ -8,9 +8,10 @@ import {
   StartScreenModalBackground,
   OptionsForm,
   OptionsInputDiv,
-  ToggleOptions,
   StyledTitle,
 } from "./StartScreen.styled";
+
+import { StyledButton } from "../Button/Button.styled";
 
 type StartScreenProps = {
   setStartTime: Function;
@@ -187,13 +188,13 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
             )}
           />
         </OptionsForm>
-        <ToggleOptions
+        <StyledButton
           onClick={() =>
             setOptionsView(optionsView === "basic" ? "advanced" : "basic")
           }
         >
           {optionsView === "basic" ? "Advanced" : "Basic"}
-        </ToggleOptions>
+        </StyledButton>
       </StartScreenModal>
     </StartScreenModalBackground>
   );
