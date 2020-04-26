@@ -9,6 +9,8 @@ interface Props {
   onContextMenu: any;
   width: number;
   backgroundColour: string;
+  hoverColour: string;
+  pointer: string;
   renderType: any;
 }
 
@@ -33,12 +35,16 @@ class GridSquare extends Component<Props, State> {
       onContextMenu,
       width,
       backgroundColour,
-      renderType
+      hoverColour,
+      pointer,
+      renderType,
     } = this.props;
 
     return (
       <GridSection
         backgroundColour={backgroundColour}
+        hoverColour={hoverColour}
+        pointer={pointer}
         width={width}
         onClick={onClick}
         onContextMenu={onContextMenu}

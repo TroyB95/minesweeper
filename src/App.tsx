@@ -214,6 +214,14 @@ function App() {
                               ? themeContext.colour.tileTurnt
                               : themeContext.colour.tileUnturnt
                           }
+                          hoverColour={
+                            tileTrackingArray[y][x] === true
+                              ? ""
+                              : themeContext.colour.darkHover
+                          }
+                          pointer={
+                            tileTrackingArray[y][x] === true ? "" : "pointer"
+                          }
                           renderType={renderSquare(
                             tileTrackingArray,
                             gridSquare,
