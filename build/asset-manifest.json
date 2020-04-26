@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b9a6fd10.chunk.css",
+    "main.js": "/static/js/main.bd454e4c.chunk.js",
+    "main.js.map": "/static/js/main.bd454e4c.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.a1c318b2.js",
+    "runtime-main.js.map": "/static/js/runtime-main.a1c318b2.js.map",
+    "static/js/2.59bca882.chunk.js": "/static/js/2.59bca882.chunk.js",
+    "static/js/2.59bca882.chunk.js.map": "/static/js/2.59bca882.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.ca9632e2fb83fdce605ae74f3862ad88.js": "/precache-manifest.ca9632e2fb83fdce605ae74f3862ad88.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.b9a6fd10.chunk.css.map": "/static/css/main.b9a6fd10.chunk.css.map",
+    "static/js/2.59bca882.chunk.js.LICENSE.txt": "/static/js/2.59bca882.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/NotoSans-Bold.98f0cacc.ttf",
+    "static/media/bomb.svg": "/static/media/bomb.1dacf089.svg",
+    "static/media/skull.svg": "/static/media/skull.ef59c71c.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a1c318b2.js",
+    "static/js/2.59bca882.chunk.js",
+    "static/css/main.b9a6fd10.chunk.css",
+    "static/js/main.bd454e4c.chunk.js"
+  ]
+}
