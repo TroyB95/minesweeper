@@ -26,8 +26,6 @@ export const GridSection = styled.div<{
     cursor: ${(props) => props.pointer};
     background: ${(props) => props.hoverColour};
   }
-
-
 `;
 
 export const TileImage = styled.img`
