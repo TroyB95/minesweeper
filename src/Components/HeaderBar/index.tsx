@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { store } from "../../globalState";
 
 import TimerBar from "../TimerBar";
+import { StyledButton } from "../Button/Button.styled";
 
 const Header = styled.div`
   width: 80%;
@@ -33,7 +34,7 @@ function HeaderBar({ resetGame }: IProps) {
     <Header>
       {/* <TimerBar /> */}
       <RoundCounter>Level: {roundLevel}</RoundCounter>
-      <button onClick={() => resetGame()}>Restart</button>
+      <StyledButton onClick={() => resetGame()}>Restart</StyledButton>
     </Header>
   );
 }

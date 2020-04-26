@@ -3,6 +3,7 @@ import { store } from "../../globalState";
 import types from "../../globalState/types";
 
 import { ModalBackground, ModalBody } from "./InformationModal.styled";
+import { StyledButton } from "../Button/Button.styled";
 
 type ModalProps = {
   resetGame: Function;
@@ -67,19 +68,38 @@ const InformationModal = ({
           <>
             <h1>CONGRATS YOU HAVE BEAT ROUND LEVEL {roundLevel}</h1>
             <h3>Total time played: {playTime} Seconds</h3>
-            <button onClick={() => resetGame()}>Play Again?</button>
-            <button
+            <StyledButton
+              fontSize="18px"
+              width="144px"
+              height="42px"
               onClick={() => goNextLevel(bombCount, gridSize, difficulty)}
             >
-              Next Level?
-            </button>
+              Next Level
+            </StyledButton>
+            <br />
+            <br />
+            <StyledButton
+              fontSize="18px"
+              width="144px"
+              height="42px"
+              onClick={() => resetGame()}
+            >
+              Restart
+            </StyledButton>
           </>
         )}
         {type === "loss" && (
           <>
             <h1>YOU HAVE LOST AT ROUND LEVEL {roundLevel}!</h1>
             <h3>Total time played: {playTime} Seconds</h3>
-            <button onClick={() => resetGame()}>Play Again?</button>
+            <StyledButton
+              fontSize="18px"
+              width="144px"
+              height="42px"
+              onClick={() => resetGame()}
+            >
+              Play Again
+            </StyledButton>
           </>
         )}
       </ModalBody>
