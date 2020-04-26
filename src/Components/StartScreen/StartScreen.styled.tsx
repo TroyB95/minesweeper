@@ -52,22 +52,18 @@ export const OptionsForm = styled.form`
     ${({ theme: { colour, font } }) => `
     background: ${colour.mainFont};
     font-family: ${font.family};
-    font-size: ${font.medium};
+    font-size: ${font.large};
 
-    :hover {
-      background: ${colour.secondaryFont};
+    :hover:enabled {
+      background: ${colour.tileTurnt};
+      cursor: pointer;
     }
   `}
 
     border: none;
     border-radius: 50%;
 
-    padding: 16px 32px;
-    margin: 4px 2px;
-
-    text-decoration: none;
-
-    cursor: pointer;
+    padding: 12px 24px;
   }
 `;
 
@@ -107,17 +103,6 @@ export const OptionsInputDiv = styled.div`
     align-items: center;
     justify-content: center;
   }
-`;
-
-export const ToggleOptions = styled.button`
-  ${({ theme: { font } }) => `
-    font-family: ${font.family};
-  `}
-
-  position: relative;
-
-  bottom: 0;
-  right: 0;
 `;
 
 export const StyledTitle = styled.p`
