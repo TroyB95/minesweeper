@@ -78,7 +78,7 @@ function App() {
 
   function checkLocations(y: number, x: number, click: string) {
     if (flaggedLocations && flaggedLocations.has(`${y},${x}`)) {
-      let deleteUpdatedSet = new Set(flaggedLocations);
+      const deleteUpdatedSet = new Set(flaggedLocations);
       deleteUpdatedSet.delete(`${y},${x}`);
       return dispatch({
         type: types.UPDATE_FLAGGED_LOCATIONS,
@@ -86,7 +86,7 @@ function App() {
       });
     }
     if (click === "right") {
-      let addUpdateSet = new Set(flaggedLocations);
+      const addUpdateSet = new Set(flaggedLocations);
       addUpdateSet.add(`${y},${x}`);
       return dispatch({
         type: types.UPDATE_FLAGGED_LOCATIONS,
@@ -105,7 +105,7 @@ function App() {
       return;
     }
     checkLocations(y, x, "left");
-    let flippedTilesData = flipBlankTiles(
+    const flippedTilesData = flipBlankTiles(
       y,
       x,
       tileTrackingArray,
