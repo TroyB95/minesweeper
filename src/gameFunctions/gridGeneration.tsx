@@ -4,7 +4,7 @@
  * @returns {Array}
  */
 export function create2DArray(rows: number) {
-  let arr = [];
+  const arr = [];
   for (let i = 0; i < rows; i++) {
     arr[i] = [];
   }
@@ -46,12 +46,12 @@ export function compareCoords(
  * @returns {Array}
  */
 export function generateBombs(width: number, bombs: number) {
-  let bombsCoordArr: Array<Array<number>> = [];
+  const bombsCoordArr: Array<Array<number>> = [];
 
   while (bombsCoordArr.length < bombs) {
-    let coordArr: Array<number> = [
+    const coordArr: Array<number> = [
       generateCoordinate(width),
-      generateCoordinate(width)
+      generateCoordinate(width),
     ];
     if (!compareCoords(bombsCoordArr, coordArr)) {
       bombsCoordArr.push(coordArr);
@@ -72,32 +72,13 @@ export function setBasicGrid(
   gridArr: Array<Array<any>>,
   value = 0 as any
 ) {
-  let filledGridArr = [...gridArr];
+  const filledGridArr = [...gridArr];
   for (let y = 0; y < width; y++) {
     for (let x = 0; x < width; x++) {
       filledGridArr[y][x] = value;
     }
   }
   return filledGridArr;
-}
-
-/**
- * Plots the bomb locations in the grid.
- * @param {Number} width - How many squares wide.
- * @param {Number} bombs - The number of bombs to include.
- * @returns {Array}
- */
-export function generateGrid(width: number, bombs: number) {
-  let gridArr = setBasicGrid(width, create2DArray(width));
-  const bombsCoordArr = generateBombs(width, bombs);
-
-  (function plotBombs() {
-    bombsCoordArr.forEach(locationArr => {
-      gridArr[locationArr[0]][locationArr[1]] = true;
-    });
-  })();
-
-  return incrementAroundBombs(width, gridArr);
 }
 
 /**
@@ -110,7 +91,7 @@ export function incrementAroundBombs(
   width: number,
   gridArr: Array<Array<any>>
 ) {
-  let fullGrid = [...gridArr];
+  const fullGrid = [...gridArr];
   for (let y = 0; y < width; y++) {
     for (let x = 0; x < width; x++) {
       // If bomb increment all coords around it
@@ -163,4 +144,23 @@ export function incrementAroundBombs(
     }
   }
   return fullGrid;
+}
+
+/**
+ * Plots the bomb locations in the grid.
+ * @param {Number} width - How many squares wide.
+ * @param {Number} bombs - The number of bombs to include.
+ * @returns {Array}
+ */
+export function generateGrid(width: number, bombs: number) {
+  const gridArr = setBasicGrid(width, create2DArray(width));
+  const bombsCoordArr = generateBombs(width, bombs);
+
+  (function plotBombs() {
+    bombsCoordArr.forEach((locationArr) => {
+      gridArr[locationArr[0]][locationArr[1]] = true;
+    });
+  })();
+
+  return incrementAroundBombs(width, gridArr);
 }
