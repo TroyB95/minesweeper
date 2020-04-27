@@ -23,10 +23,10 @@ const RoundCounter = styled.h3`
   padding-left: 3px;
 `;
 
-interface IProps {
+interface Props {
   resetGame: Function;
 }
-function HeaderBar({ resetGame }: IProps) {
+function HeaderBar({ resetGame }: Props) {
   const globalState = useContext(store);
   const { roundLevel } = globalState.state;
 

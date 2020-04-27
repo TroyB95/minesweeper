@@ -14,9 +14,7 @@ interface Props {
   renderType: any;
 }
 
-interface State {}
-
-class GridSquare extends Component<Props, State> {
+class GridSquare extends Component<Props, {}> {
   showImage(type: string | number) {
     if (type === "bomb") {
       return <TileImage alt="Dynamite sticks with timer" src={BombSVG} />;
