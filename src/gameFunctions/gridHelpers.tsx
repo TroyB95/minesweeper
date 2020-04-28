@@ -24,7 +24,7 @@ export function mutateTrackingArray(
   trackingArr: Array<any>,
   value: string | number | boolean
 ) {
-  let tileTrackingArr: Array<any> = [...trackingArr];
+  const tileTrackingArr: Array<any> = [...trackingArr];
   tileTrackingArr[y][x] = value;
 
   return tileTrackingArr;
@@ -67,10 +67,10 @@ export function flipBlankTiles(
   generatedGrid: Array<Array<any>>,
   width: number
 ) {
-  let modifiedTrackingArr = [...trackingArr];
+  const modifiedTrackingArr = [...trackingArr];
   let numberOfTilesTurnt = 0;
 
-  let clickedSquare = generatedGrid[y][x];
+  const clickedSquare = generatedGrid[y][x];
 
   if (clickedSquare > 0) {
     modifiedTrackingArr[y][x] = true;
@@ -82,7 +82,7 @@ export function flipBlankTiles(
   }
 
   function recurseGrid(y: number, x: number) {
-    let currentSquare = generatedGrid[y][x];
+    const currentSquare = generatedGrid[y][x];
 
     if (currentSquare === 0) {
       modifiedTrackingArr[y][x] = true;
@@ -90,7 +90,7 @@ export function flipBlankTiles(
 
       // check tile to north
       if (y + 1 !== width) {
-        let newY = y + 1;
+        const newY = y + 1;
         if (modifiedTrackingArr[newY][x] !== true) {
           recurseGrid(newY, x);
         }
@@ -98,8 +98,8 @@ export function flipBlankTiles(
 
       // check tile to north east
       if (y + 1 !== width && x + 1 !== width) {
-        let newY = y + 1;
-        let newX = x + 1;
+        const newY = y + 1;
+        const newX = x + 1;
         if (modifiedTrackingArr[newY][newX] !== true) {
           recurseGrid(newY, newX);
         }
@@ -107,7 +107,7 @@ export function flipBlankTiles(
 
       // check tile to east
       if (x + 1 !== width) {
-        let newX = x + 1;
+        const newX = x + 1;
         if (modifiedTrackingArr[y][newX] !== true) {
           recurseGrid(y, newX);
         }
@@ -115,8 +115,8 @@ export function flipBlankTiles(
 
       // check tile to south east
       if (y - 1 >= 0 && x + 1 !== width) {
-        let newY = y - 1;
-        let newX = x + 1;
+        const newY = y - 1;
+        const newX = x + 1;
         if (modifiedTrackingArr[newY][newX] !== true) {
           recurseGrid(newY, newX);
         }
@@ -124,7 +124,7 @@ export function flipBlankTiles(
 
       // check tile to south
       if (y - 1 >= 0) {
-        let newY = y - 1;
+        const newY = y - 1;
         if (modifiedTrackingArr[newY][x] !== true) {
           recurseGrid(newY, x);
         }
@@ -132,8 +132,8 @@ export function flipBlankTiles(
 
       // check tile to south west
       if (y - 1 >= 0 && x - 1 >= 0) {
-        let newY = y - 1;
-        let newX = x - 1;
+        const newY = y - 1;
+        const newX = x - 1;
         if (modifiedTrackingArr[newY][newX] !== true) {
           recurseGrid(newY, newX);
         }
@@ -141,7 +141,7 @@ export function flipBlankTiles(
 
       // check tile to west
       if (x - 1 >= 0) {
-        let newX = x - 1;
+        const newX = x - 1;
         if (modifiedTrackingArr[y][newX] !== true) {
           recurseGrid(y, newX);
         }
@@ -149,8 +149,8 @@ export function flipBlankTiles(
 
       // check tile to north west
       if (y + 1 !== width && x - 1 >= 0) {
-        let newY = y + 1;
-        let newX = x - 1;
+        const newY = y + 1;
+        const newX = x - 1;
         if (modifiedTrackingArr[newY][newX] !== true) {
           recurseGrid(newY, newX);
         }
