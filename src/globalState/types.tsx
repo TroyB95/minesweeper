@@ -25,7 +25,7 @@ export default {
   RESET_ROUND_LEVEL,
 };
 
-export interface IActionType {
+export interface ActionType {
   type: typeof INCREMENT_COUNT;
   payload: any;
 }

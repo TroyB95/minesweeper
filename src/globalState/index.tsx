@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, FunctionComponent } from "react";
 
-import types, { IActionType } from "./types";
+import types, { ActionType } from "./types";
 
 const initialState = {
   tilesTurntCounter: 0,
@@ -26,7 +26,7 @@ const { Provider } = store;
 
 const StateProvider: FunctionComponent = ({ children }) => {
   const [state, dispatch] = useReducer(
-    (state: StateType, action: IActionType) => {
+    (state: StateType, action: ActionType) => {
       switch (action.type) {
         case types.INCREMENT_COUNT:
           return {
