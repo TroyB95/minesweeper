@@ -3,7 +3,7 @@
 -- (COMPLETE) Pick starting level and then after every completion ramp up difficulty.
 -- (COMPLETE) Start level 1 (easy, medium or hard) then ramp based on difficulty?
 -- (COMPLETE) Keep track of level and rounds beaten.
--- Make Universal button component
+-- (COMPLETE) Make Universal button component
 
 ### Advanced features
 
