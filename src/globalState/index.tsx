@@ -9,7 +9,7 @@ const initialState = {
   roundLevel: 1,
 };
 
-interface IContextProps {
+interface ContextProps {
   state: StateType;
   dispatch: React.Dispatch<any>;
 }
@@ -21,7 +21,7 @@ type StateType = {
   roundLevel: number;
 };
 
-const store = createContext({} as IContextProps);
+const store = createContext({} as ContextProps);
 const { Provider } = store;
 
 const StateProvider: FunctionComponent = ({ children }) => {
