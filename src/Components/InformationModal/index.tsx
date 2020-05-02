@@ -14,7 +14,7 @@ type ModalProps = {
   gridSize?: number;
 };
 
-const InformationModal = ({
+const InformationModal: React.FunctionComponent<ModalProps> = ({
   resetGame,
   resetForNextLevel,
   type,
@@ -34,7 +34,7 @@ const InformationModal = ({
     bombCount: number,
     gridSize: number,
     difficulty: string
-  ) => {
+  ): void => {
     let newBombCount;
     let newGridSize;
 
