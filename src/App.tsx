@@ -39,7 +39,9 @@ function App(): JSX.Element {
     [] as Array<Array<number | string | boolean>>
   );
   const [optionsSubmitted, setOptionsSubmitted] = useState(false as boolean);
-  const [tileTrackingArray, setTileTrackingArray] = useState([] as Array<any>);
+  const [tileTrackingArray, setTileTrackingArray] = useState(
+    [] as Array<Array<number | string | boolean>>
+  );
   const [maxTilesTurnt, setMaxTilesTurnt] = useState(0);
   const [gameState, setGameState] = useState("");
   const [startTime, setStartTime] = useState(0);
@@ -74,7 +76,7 @@ function App(): JSX.Element {
     startTime,
   ]);
 
-  function checkLocations(y: number, x: number, click: string) {
+  function checkLocations(y: number, x: number, click: string): void {
     if (flaggedLocations && flaggedLocations.has(`${y},${x}`)) {
       const deleteUpdatedSet = new Set(flaggedLocations);
       deleteUpdatedSet.delete(`${y},${x}`);
@@ -98,7 +100,7 @@ function App(): JSX.Element {
     y: number,
     x: number,
     gridSquare: boolean | string | number
-  ) {
+  ): void {
     if (tileTrackingArray[y][x] === true) {
       return;
     }
@@ -128,7 +130,7 @@ function App(): JSX.Element {
     e: React.MouseEvent<HTMLElement>,
     y: number,
     x: number
-  ) {
+  ): void {
     e.preventDefault();
     if (tileTrackingArray[y][x] === "flag") {
       setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, false));
@@ -145,7 +147,7 @@ function App(): JSX.Element {
     }
   }
 
-  function resetGame() {
+  function resetGame(): void {
     dispatch({ type: types.RESET_COUNT });
     dispatch({ type: types.RESET_FLAGGED_LOCATIONS });
     dispatch({ type: types.RESET_GRID_OPTIONS });
@@ -157,7 +159,7 @@ function App(): JSX.Element {
     setGameState("");
   }
 
-  function resetForNextLevel() {
+  function resetForNextLevel(): void {
     dispatch({ type: types.RESET_COUNT });
     dispatch({ type: types.RESET_FLAGGED_LOCATIONS });
     dispatch({ type: types.INCREMENT_ROUND_LEVEL });
@@ -167,11 +169,11 @@ function App(): JSX.Element {
   }
 
   function renderSquare(
-    tileTrackingArray: Array<any>,
+    tileTrackingArray: Array<Array<number | string | boolean>>,
     gridSquare: string | boolean | number,
     y: number,
     x: number
-  ) {
+  ): string | number | boolean | undefined {
     if (tileTrackingArray[y][x] === true) {
       if (gridSquare === true) return "bomb";
       return gridSquare;
