@@ -69,7 +69,7 @@ export function generateBombs(width: number, bombs: number) {
  */
 export function setBasicGrid(
   width: number,
-  gridArr: Array<Array<any>>,
+  gridArr: Array<Array<number | string | boolean>>,
   value = 0 as any
 ) {
   const filledGridArr = [...gridArr];
