@@ -4,6 +4,7 @@
 -- (COMPLETE) Start level 1 (easy, medium or hard) then ramp based on difficulty?
 -- (COMPLETE) Keep track of level and rounds beaten.
 -- (COMPLETE) Make Universal button component
+-- In game sound effects
 
 ### Advanced features
 
