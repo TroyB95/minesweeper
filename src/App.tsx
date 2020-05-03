@@ -25,7 +25,7 @@ import InformationModal from "./Components/InformationModal";
 import GridSquare from "./Components/GridSquare";
 import GridRow from "./Components/GridRow";
 
-function App() {
+function App(): JSX.Element {
   const themeContext = useContext(ThemeContext);
   const globalState = useContext(store);
   const { dispatch } = globalState;
@@ -33,7 +33,6 @@ function App() {
     tilesTurntCounter,
     flaggedLocations,
     gameOptions: { gridSize, bombCount },
-    roundLevel,
   } = globalState.state;
 
   const [generatedGrid, setGrid] = useState(
@@ -42,7 +41,6 @@ function App() {
   const [optionsSubmitted, setOptionsSubmitted] = useState(false as boolean);
   const [tileTrackingArray, setTileTrackingArray] = useState([] as Array<any>);
   const [maxTilesTurnt, setMaxTilesTurnt] = useState(0);
-  const [gameReset, setGameReset] = useState(false);
   const [gameState, setGameState] = useState("");
   const [startTime, setStartTime] = useState(0);
   const [playTime, setPlayTime] = useState(0);
@@ -157,7 +155,6 @@ function App() {
     setTileTrackingArray([]);
     setMaxTilesTurnt(0);
     setGameState("");
-    setGameReset(false);
   }
 
   function resetForNextLevel() {
@@ -167,7 +164,6 @@ function App() {
     setGrid([]);
     setTileTrackingArray([]);
     setMaxTilesTurnt(0);
-    setGameReset(false);
   }
 
   function renderSquare(
