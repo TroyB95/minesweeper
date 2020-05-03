@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const GridRowContainer = styled.div<{ height: number }>`
@@ -18,22 +18,13 @@ const GridRowContainer = styled.div<{ height: number }>`
 
 interface Props {
   height: number;
-  children: any;
+  children: Array<JSX.Element>;
 }
 
-class GridRow extends Component<Props> {
-  shouldComponentUpdate(nextProps: any, nextState: any) {
-    console.log(nextProps, nextState);
-    console.log(this.props, this.state);
+function GridRow(props: Props): JSX.Element {
+  const { height, children } = props;
 
-    return false;
-  }
-
-  render() {
-    const { height, children } = this.props;
-
-    return <GridRowContainer height={height}>{children}</GridRowContainer>;
-  }
+  return <GridRowContainer height={height}>{children}</GridRowContainer>;
 }
 
 export default GridRow;
