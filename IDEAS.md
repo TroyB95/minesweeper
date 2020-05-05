@@ -13,5 +13,6 @@
 -- Time restricted mode
 -- Achievement
 -- Player Profile
+-- Friends list
 -- Global leaderboard
 -- Multiplayer support
