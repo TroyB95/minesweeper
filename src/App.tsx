@@ -24,6 +24,7 @@ import StartScreen from "./Components/StartScreen";
 import InformationModal from "./Components/InformationModal";
 import GridSquare from "./Components/GridSquare";
 import GridRow from "./Components/GridRow";
+import tileFlagSound from "./Assets/tile-flag.mp3";
 
 function App(): JSX.Element {
   const themeContext = useContext(ThemeContext);
@@ -132,6 +133,12 @@ function App(): JSX.Element {
     x: number
   ): void {
     e.preventDefault();
+
+    const sound = new Audio(tileFlagSound);
+
+    sound.play();
+    sound.currentTime = 0;
+
     if (tileTrackingArray[y][x] === "flag") {
       setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, false));
       checkLocations(y, x, "right");
