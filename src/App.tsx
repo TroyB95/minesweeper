@@ -26,6 +26,7 @@ import GridSquare from "./Components/GridSquare";
 import GridRow from "./Components/GridRow";
 import tileFlagSound from "./Assets/sounds/tile-flag.mp3";
 import tileTurnSound from "./Assets/sounds/tile-turn.mp3";
+import explosionSound from "./Assets/sounds/explosion.mp3";
 
 function App(): JSX.Element {
   const themeContext = useContext(ThemeContext);
@@ -116,6 +117,9 @@ function App(): JSX.Element {
     );
     if (checkForBomb(gridSquare)) {
       const playTime = Math.round((Date.now() - startTime) / 1000);
+      const sound = new Audio(explosionSound);
+      sound.play();
+      sound.currentTime = 0;
       setPlayTime(playTime);
       setTimeout(() => {
         setGameState("loss");
