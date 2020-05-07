@@ -27,6 +27,7 @@ import GridRow from "./Components/GridRow";
 import tileFlagSound from "./Assets/sounds/tile-flag.mp3";
 import tileTurnSound from "./Assets/sounds/tile-turn.mp3";
 import explosionSound from "./Assets/sounds/explosion.mp3";
+import roundCompleteSound from "./Assets/sounds/round-complete.mp3";
 
 function App(): JSX.Element {
   const themeContext = useContext(ThemeContext);
@@ -67,6 +68,9 @@ function App(): JSX.Element {
       checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, bombCount)
     ) {
       const playTime = Math.round((Date.now() - startTime) / 1000);
+      const sound = new Audio(roundCompleteSound);
+      sound.play();
+      sound.currentTime = 0;
       setPlayTime(playTime);
       setGameState("win");
     }
