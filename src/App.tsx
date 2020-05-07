@@ -24,7 +24,8 @@ import StartScreen from "./Components/StartScreen";
 import InformationModal from "./Components/InformationModal";
 import GridSquare from "./Components/GridSquare";
 import GridRow from "./Components/GridRow";
-import tileFlagSound from "./Assets/tile-flag.mp3";
+import tileFlagSound from "./Assets/sounds/tile-flag.mp3";
+import tileTurnSound from "./Assets/sounds/tile-turn.mp3";
 
 function App(): JSX.Element {
   const themeContext = useContext(ThemeContext);
@@ -120,6 +121,9 @@ function App(): JSX.Element {
         setGameState("loss");
       }, 500);
     }
+    const sound = new Audio(tileTurnSound);
+    sound.play();
+    sound.currentTime = 0;
     setTileTrackingArray(flippedTilesData.modifiedTrackingArr);
     dispatch({
       type: types.INCREMENT_COUNT,
@@ -133,9 +137,7 @@ function App(): JSX.Element {
     x: number
   ): void {
     e.preventDefault();
-
     const sound = new Audio(tileFlagSound);
-
     sound.play();
     sound.currentTime = 0;
 
