@@ -13,6 +13,8 @@ import {
 
 import { StyledButton } from "../Button/Button.styled";
 
+import buttonSelectSound from "../../Assets/sounds/button-select.mp3";
+
 type StartScreenProps = {
   setStartTime: Function;
   setOptionsSubmitted: Function;
@@ -85,6 +87,9 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
     if (!e) {
       return;
     }
+    const sound = new Audio(buttonSelectSound);
+    sound.play();
+    sound.currentTime = 0;
     dispatch({
       type: types.UPDATE_GRID_OPTIONS,
       payload: { difficulty: e.currentTarget.value },
