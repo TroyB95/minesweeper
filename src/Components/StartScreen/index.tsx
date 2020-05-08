@@ -24,6 +24,7 @@ type GridOptions = {
   gridSize: number;
   bombCount: number;
   difficulty: string;
+  custom?: boolean;
 };
 
 function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
@@ -77,7 +78,10 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
 
     if (optionsView === "advanced") {
       e.preventDefault();
-      dispatch({ type: types.UPDATE_GRID_OPTIONS, payload: gridOptions });
+      dispatch({
+        type: types.UPDATE_GRID_OPTIONS,
+        payload: { ...gridOptions, custom: true },
+      });
       setStartTime(Date.now());
       setOptionsSubmitted(true);
     }
@@ -154,7 +158,7 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
                 <label>Grid size: </label>
                 <input
                   type="number"
-                  min="10"
+                  min="7"
                   max="50"
                   value={gridSize}
                   onChange={(e) => {
@@ -170,7 +174,7 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
                 <input
                   disabled={gridSize > 0 ? false : true}
                   type="number"
-                  min={Math.round(gridSize * gridSize * 0.1)}
+                  min={Math.round(gridSize * gridSize * 0.08)}
                   max={Math.round(gridSize * gridSize * 0.5)}
                   value={bombCount}
                   onChange={(e) => {
