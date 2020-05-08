@@ -43,7 +43,7 @@ export function checkIfWon(
   flaggedLocations: Set<string>,
   bombCount: number
 ) {
-  if (tilesTurntCount >= maxTilesTurnt) {
+  if (tilesTurntCount === maxTilesTurnt) {
     if (flaggedLocations.size === bombCount) {
       return true;
     }
