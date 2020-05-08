@@ -66,7 +66,12 @@ const InformationModal: React.FunctionComponent<ModalProps> = ({
       <ModalBody>
         {type === "win" && (
           <>
-            <h1>CONGRATS YOU HAVE BEAT ROUND LEVEL {roundLevel}</h1>
+            {!custom ? (
+              <h1>CONGRATS YOU HAVE BEAT ROUND LEVEL {roundLevel}</h1>
+            ) : (
+              <h1>CONGRATS YOU HAVE WON!</h1>
+            )}
+
             <h3>Total time played: {playTime} Seconds</h3>
             {!custom && (
               <StyledButton
