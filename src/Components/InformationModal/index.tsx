@@ -25,7 +25,7 @@ const InformationModal: React.FunctionComponent<ModalProps> = ({
 
   const {
     state: {
-      gameOptions: { bombCount, gridSize, difficulty },
+      gameOptions: { bombCount, gridSize, difficulty, custom },
       roundLevel,
     },
   } = globalState;
@@ -68,14 +68,16 @@ const InformationModal: React.FunctionComponent<ModalProps> = ({
           <>
             <h1>CONGRATS YOU HAVE BEAT ROUND LEVEL {roundLevel}</h1>
             <h3>Total time played: {playTime} Seconds</h3>
-            <StyledButton
-              fontSize="18px"
-              width="144px"
-              height="42px"
-              onClick={() => goNextLevel(bombCount, gridSize, difficulty)}
-            >
-              Next Level
-            </StyledButton>
+            {!custom && (
+              <StyledButton
+                fontSize="18px"
+                width="144px"
+                height="42px"
+                onClick={() => goNextLevel(bombCount, gridSize, difficulty)}
+              >
+                Next Level
+              </StyledButton>
+            )}
             <br />
             <br />
             <StyledButton
