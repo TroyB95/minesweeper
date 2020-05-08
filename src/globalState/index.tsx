@@ -17,7 +17,12 @@ interface ContextProps {
 type StateType = {
   tilesTurntCounter: number;
   flaggedLocations: Set<string>;
-  gameOptions: { gridSize: number; bombCount: number; difficulty: string };
+  gameOptions: {
+    gridSize: number;
+    bombCount: number;
+    difficulty: string;
+    custom?: boolean;
+  };
   roundLevel: number;
 };
 
