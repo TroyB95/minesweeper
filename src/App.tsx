@@ -51,6 +51,8 @@ function App(): JSX.Element {
   const [gameState, setGameState] = useState("");
   const [startTime, setStartTime] = useState(0);
   const [playTime, setPlayTime] = useState(0);
+
+  // Set grid at start
   useEffect(() => {
     setGrid(generateGrid(gridSize, bombCount));
     setTileTrackingArray(
@@ -63,6 +65,7 @@ function App(): JSX.Element {
     }
   }, [bombCount, gridSize, optionsSubmitted]);
 
+  // Check if won
   useEffect(() => {
     if (
       optionsSubmitted &&
@@ -193,6 +196,7 @@ function App(): JSX.Element {
     }
     if (tileTrackingArray[y][x] === "flag") return "flag";
   }
+
   return (
     <PageContainer>
       {!optionsSubmitted && (
