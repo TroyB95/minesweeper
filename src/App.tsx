@@ -16,6 +16,7 @@ import {
   checkIfWon,
   flipBlankTiles,
 } from "./gameFunctions/gridHelpers";
+import { playSound } from "./gameFunctions/utils/sound";
 
 import { GridContainer, PageContainer } from "./App.styled";
 
@@ -121,18 +122,14 @@ function App(): JSX.Element {
     );
     if (checkForBomb(gridSquare)) {
       const playTime = Math.round((Date.now() - startTime) / 1000);
-      const sound = new Audio(explosionSound);
-      sound.play();
-      sound.currentTime = 0;
+      playSound(explosionSound, 1);
       setPlayTime(playTime);
       setTimeout(() => {
         setGameState("loss");
       }, 500);
     }
-    const sound = new Audio(tileTurnSound);
-    sound.volume = 0.7;
-    sound.play();
-    sound.currentTime = 0;
+    playSound(tileTurnSound, 0.7);
+
     setTileTrackingArray(flippedTilesData.modifiedTrackingArr);
     dispatch({
       type: types.INCREMENT_COUNT,
@@ -146,10 +143,7 @@ function App(): JSX.Element {
     x: number
   ): void {
     e.preventDefault();
-    const sound = new Audio(tileFlagSound);
-    sound.volume = 0.7;
-    sound.play();
-    sound.currentTime = 0;
+    playSound(tileFlagSound, 0.7);
 
     if (tileTrackingArray[y][x] === "flag") {
       setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, false));

@@ -1,4 +1,5 @@
 import restOfTilesTurn from "../Assets/sounds/rest-of-tiles-turn.mp3";
+import { playSound } from "./utils/sound";
 
 /**
  * Check if value is a bomb.
@@ -89,10 +90,7 @@ export function flipBlankTiles(
     if (currentSquare === 0) {
       modifiedTrackingArr[y][x] = true;
       numberOfTilesTurnt += 1;
-      const sound = new Audio(restOfTilesTurn);
-      sound.volume = 0.01;
-      sound.play();
-      sound.currentTime = 0;
+      playSound(restOfTilesTurn, 0.7);
 
       // check tile to north
       if (y + 1 !== width) {
