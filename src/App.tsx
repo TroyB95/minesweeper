@@ -130,6 +130,7 @@ function App(): JSX.Element {
       }, 500);
     }
     const sound = new Audio(tileTurnSound);
+    sound.volume = 0.7;
     sound.play();
     sound.currentTime = 0;
     setTileTrackingArray(flippedTilesData.modifiedTrackingArr);
@@ -146,6 +147,7 @@ function App(): JSX.Element {
   ): void {
     e.preventDefault();
     const sound = new Audio(tileFlagSound);
+    sound.volume = 0.7;
     sound.play();
     sound.currentTime = 0;
 
