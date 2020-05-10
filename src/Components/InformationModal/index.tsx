@@ -4,6 +4,8 @@ import types from "../../globalState/types";
 
 import { ModalBackground, ModalBody } from "./InformationModal.styled";
 import { StyledButton } from "../Button/Button.styled";
+import { playSound } from "../../gameFunctions/utils/sound";
+import buttonSelectSound from "../../Assets/sounds/button-select.mp3";
 
 type ModalProps = {
   resetGame: Function;
@@ -37,7 +39,7 @@ const InformationModal: React.FunctionComponent<ModalProps> = ({
   ): void => {
     let newBombCount;
     let newGridSize;
-
+    playSound(buttonSelectSound, 0.7);
     resetForNextLevel();
     switch (difficulty) {
       case "easy":
@@ -89,7 +91,10 @@ const InformationModal: React.FunctionComponent<ModalProps> = ({
               fontSize="18px"
               width="144px"
               height="42px"
-              onClick={() => resetGame()}
+              onClick={() => {
+                playSound(buttonSelectSound, 0.7);
+                resetGame();
+              }}
             >
               Restart
             </StyledButton>
@@ -106,7 +111,10 @@ const InformationModal: React.FunctionComponent<ModalProps> = ({
               fontSize="18px"
               width="144px"
               height="42px"
-              onClick={() => resetGame()}
+              onClick={() => {
+                playSound(buttonSelectSound, 0.7);
+                resetGame();
+              }}
             >
               Play Again
             </StyledButton>
