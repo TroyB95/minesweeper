@@ -14,6 +14,7 @@ import {
 import { StyledButton } from "../Button/Button.styled";
 
 import buttonSelectSound from "../../Assets/sounds/button-select.mp3";
+import { playSound } from "../../gameFunctions/utils/sound";
 
 type StartScreenProps = {
   setStartTime: Function;
@@ -51,6 +52,7 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
     optionsView: string,
     difficulty: string
   ) {
+    playSound(buttonSelectSound, 0.7);
     if (optionsView === "basic") {
       e.preventDefault();
       if (difficulty === "easy") {
@@ -91,9 +93,7 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
     if (!e) {
       return;
     }
-    const sound = new Audio(buttonSelectSound);
-    sound.play();
-    sound.currentTime = 0;
+    playSound(buttonSelectSound, 0.7);
     dispatch({
       type: types.UPDATE_GRID_OPTIONS,
       payload: { difficulty: e.currentTarget.value },
