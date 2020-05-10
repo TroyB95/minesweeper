@@ -69,7 +69,7 @@ const InformationModal: React.FunctionComponent<ModalProps> = ({
         {type === "win" && (
           <>
             {!custom ? (
-              <h1>CONGRATS YOU HAVE BEAT ROUND LEVEL {roundLevel}</h1>
+              <h1>CONGRATS YOU HAVE BEAT LEVEL {roundLevel}</h1>
             ) : (
               <h1>CONGRATS YOU HAVE WON!</h1>
             )}
