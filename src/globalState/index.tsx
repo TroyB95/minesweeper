@@ -7,6 +7,7 @@ const initialState = {
   flaggedLocations: new Set(),
   gameOptions: { bombCount: 0, gridSize: 0, difficulty: "" },
   roundLevel: 1,
+  sound: true,
 };
 
 interface ContextProps {
@@ -24,6 +25,7 @@ type StateType = {
     custom?: boolean;
   };
   roundLevel: number;
+  sound: boolean;
 };
 
 const store = createContext({} as ContextProps);
