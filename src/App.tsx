@@ -38,6 +38,7 @@ function App(): JSX.Element {
     tilesTurntCounter,
     flaggedLocations,
     gameOptions: { gridSize, bombCount },
+    sound,
   } = globalState.state;
 
   const [generatedGrid, setGrid] = useState(
@@ -125,13 +126,13 @@ function App(): JSX.Element {
     );
     if (checkForBomb(gridSquare)) {
       const playTime = Math.round((Date.now() - startTime) / 1000);
-      playSound(explosionSound, 1);
+      playSound(explosionSound, sound ? 1 : 0);
       setPlayTime(playTime);
       setTimeout(() => {
         setGameState("loss");
       }, 500);
     }
-    playSound(tileTurnSound, 0.7);
+    playSound(tileTurnSound, sound ? 0.7 : 0);
 
     setTileTrackingArray(flippedTilesData.modifiedTrackingArr);
     dispatch({
@@ -146,7 +147,7 @@ function App(): JSX.Element {
     x: number
   ): void {
     e.preventDefault();
-    playSound(tileFlagSound, 0.7);
+    playSound(tileFlagSound, sound ? 0.7 : 0);
 
     if (tileTrackingArray[y][x] === "flag") {
       setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, false));
