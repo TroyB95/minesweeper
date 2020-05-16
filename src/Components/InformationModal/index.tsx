@@ -29,6 +29,7 @@ const InformationModal: React.FunctionComponent<ModalProps> = ({
     state: {
       gameOptions: { bombCount, gridSize, difficulty, custom },
       roundLevel,
+      sound,
     },
   } = globalState;
 
@@ -39,7 +40,7 @@ const InformationModal: React.FunctionComponent<ModalProps> = ({
   ): void => {
     let newBombCount;
     let newGridSize;
-    playSound(buttonSelectSound, 0.7);
+    playSound(buttonSelectSound, sound ? 0.7 : 0);
     resetForNextLevel();
     switch (difficulty) {
       case "easy":
@@ -92,7 +93,7 @@ const InformationModal: React.FunctionComponent<ModalProps> = ({
               width="144px"
               height="42px"
               onClick={() => {
-                playSound(buttonSelectSound, 0.7);
+                playSound(buttonSelectSound, sound ? 0.7 : 0);
                 resetGame();
               }}
             >
@@ -112,7 +113,7 @@ const InformationModal: React.FunctionComponent<ModalProps> = ({
               width="144px"
               height="42px"
               onClick={() => {
-                playSound(buttonSelectSound, 0.7);
+                playSound(buttonSelectSound, sound ? 0.7 : 0);
                 resetGame();
               }}
             >
