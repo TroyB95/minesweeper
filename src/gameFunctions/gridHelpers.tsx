@@ -68,7 +68,8 @@ export function flipBlankTiles(
   x: number,
   trackingArr: Array<any>,
   generatedGrid: Array<Array<any>>,
-  width: number
+  width: number,
+  sound?: boolean
 ) {
   const modifiedTrackingArr = [...trackingArr];
   let numberOfTilesTurnt = 0;
@@ -81,16 +82,16 @@ export function flipBlankTiles(
   }
 
   if (clickedSquare === 0) {
-    recurseGrid(y, x);
+    recurseGrid(y, x, sound);
   }
 
-  function recurseGrid(y: number, x: number) {
+  function recurseGrid(y: number, x: number, sound?: boolean) {
     const currentSquare = generatedGrid[y][x];
 
     if (currentSquare === 0) {
       modifiedTrackingArr[y][x] = true;
       numberOfTilesTurnt += 1;
-      playSound(restOfTilesTurn, 0.7);
+      playSound(restOfTilesTurn, sound ? 0.7 : 0);
 
       // check tile to north
       if (y + 1 !== width) {
