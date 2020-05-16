@@ -117,3 +117,16 @@ export const StyledTitle = styled.p`
   margin: 0;
   margin-bottom: 18px;
 `;
+
+export const StyledImg = styled.img`
+  height: 36px;
+  width: 36px;
+`;
+
+export const StyledButtonContainer = styled.div`
+  width: 80%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+`;

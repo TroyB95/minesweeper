@@ -9,12 +9,16 @@ import {
   OptionsForm,
   OptionsInputDiv,
   StyledTitle,
+  StyledImg,
+  StyledButtonContainer,
 } from "./StartScreen.styled";
 
 import { StyledButton } from "../Button/Button.styled";
 
 import buttonSelectSound from "../../Assets/sounds/button-select.mp3";
 import { playSound } from "../../gameFunctions/utils/sound";
+import speaker from "../../Assets/speaker.svg";
+import speakerMute from "../../Assets/speaker-mute.svg";
 
 type StartScreenProps = {
   setStartTime: Function;
@@ -198,13 +202,23 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
             )}
           />
         </OptionsForm>
-        <StyledButton
-          onClick={() =>
-            setOptionsView(optionsView === "basic" ? "advanced" : "basic")
-          }
-        >
-          {optionsView === "basic" ? "Advanced" : "Basic"}
-        </StyledButton>
+        <StyledButtonContainer>
+          <StyledImg
+            src={sound ? speaker : speakerMute}
+            onClick={() =>
+              dispatch({
+                type: types.TOGGLE_SOUND,
+              })
+            }
+          ></StyledImg>
+          <StyledButton
+            onClick={() =>
+              setOptionsView(optionsView === "basic" ? "advanced" : "basic")
+            }
+          >
+            {optionsView === "basic" ? "Advanced" : "Basic"}
+          </StyledButton>
+        </StyledButtonContainer>
       </StartScreenModal>
     </StartScreenModalBackground>
   );
