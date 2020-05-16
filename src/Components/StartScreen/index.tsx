@@ -42,6 +42,7 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
   const {
     state: {
       gameOptions: { difficulty },
+      sound,
     },
   } = globalState;
 
@@ -52,7 +53,7 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
     optionsView: string,
     difficulty: string
   ) {
-    playSound(buttonSelectSound, 0.7);
+    playSound(buttonSelectSound, sound ? 0.7 : 0);
     if (optionsView === "basic") {
       e.preventDefault();
       if (difficulty === "easy") {
@@ -93,7 +94,7 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
     if (!e) {
       return;
     }
-    playSound(buttonSelectSound, 0.7);
+    playSound(buttonSelectSound, sound ? 0.7 : 0);
     dispatch({
       type: types.UPDATE_GRID_OPTIONS,
       payload: { difficulty: e.currentTarget.value },
