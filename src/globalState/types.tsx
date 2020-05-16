@@ -14,6 +14,9 @@ const RESET_GRID_OPTIONS = "RESET_GRID_OPTIONS";
 const INCREMENT_ROUND_LEVEL = "INCREMENT_ROUND_LEVEL";
 const RESET_ROUND_LEVEL = "RESET_ROUND_LEVEL";
 
+// toggleSound
+const TOGGLE_SOUND = "TOGGLE_SOUND";
+
 export default {
   INCREMENT_COUNT,
   RESET_COUNT,
@@ -23,9 +26,10 @@ export default {
   RESET_GRID_OPTIONS,
   INCREMENT_ROUND_LEVEL,
   RESET_ROUND_LEVEL,
+  TOGGLE_SOUND,
 };
 
 export interface ActionType {
-  type: typeof INCREMENT_COUNT;
+  type: string;
   payload: any;
 }

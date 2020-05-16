@@ -76,6 +76,11 @@ const StateProvider: FunctionComponent = ({ children }) => {
             ...state,
             roundLevel: 1,
           };
+        case types.TOGGLE_SOUND:
+          return {
+            ...state,
+            sound: !state.sound,
+          };
 
         default:
           throw new Error();
