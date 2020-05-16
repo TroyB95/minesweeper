@@ -122,7 +122,8 @@ function App(): JSX.Element {
       x,
       tileTrackingArray,
       generatedGrid,
-      gridSize
+      gridSize,
+      sound
     );
     if (checkForBomb(gridSquare)) {
       const playTime = Math.round((Date.now() - startTime) / 1000);
