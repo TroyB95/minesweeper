@@ -24,10 +24,12 @@ export function checkForBomb(value: boolean | number | string) {
 export function mutateTrackingArray(
   y: number,
   x: number,
-  trackingArr: Array<any>,
+  trackingArr: Array<Array<string | number | boolean>>,
   value: string | number | boolean
 ) {
-  const tileTrackingArr: Array<any> = [...trackingArr];
+  const tileTrackingArr: Array<Array<string | number | boolean>> = [
+    ...trackingArr,
+  ];
   tileTrackingArr[y][x] = value;
 
   return tileTrackingArr;
