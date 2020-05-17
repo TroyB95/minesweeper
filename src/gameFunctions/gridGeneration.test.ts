@@ -48,10 +48,10 @@ describe("compareCoords", () => {
 });
 
 describe("generateBombs", () => {
-  let generatedBombs = generateBombs(5, 5, 3);
+  let generatedBombs = generateBombs(5, 3);
 
   it("should generate an array with as many sets of coordinates as bombs", () => {
-    expect(generateBombs).toHaveLength(3);
+    expect(generatedBombs).toHaveLength(3);
   });
 
   test.each(generatedBombs)(
@@ -81,7 +81,7 @@ describe("setBasicGrid", () => {
 });
 
 describe("incrementArondBombs", () => {
-  it.only("should increment three squares around the bomb (the true value within the grid)", () => {
+  it("should increment three squares around the bomb (the true value within the grid)", () => {
     let basicGrid = [
       [true, 0, 0, 0, 0],
       [0, 0, 0, 0, 0],
