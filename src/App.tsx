@@ -73,9 +73,7 @@ function App(): JSX.Element {
       checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, bombCount)
     ) {
       const playTime = Math.round((Date.now() - startTime) / 1000);
-      const sound = new Audio(roundCompleteSound);
-      sound.play();
-      sound.currentTime = 0;
+      playSound(roundCompleteSound, sound ? 1 : 0);
       setPlayTime(playTime);
       setGameState("win");
     }
