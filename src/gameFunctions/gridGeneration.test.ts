@@ -82,12 +82,13 @@ describe("setBasicGrid", () => {
 
 describe("incrementArondBombs", () => {
   it.only("should increment three squares around the bomb (the true value within the grid)", () => {
-    let basicGrid = [];
-    basicGrid[0] = new Array(true, 0, 0, 0, 0);
-    basicGrid[1] = new Array(0, 0, 0, 0, 0);
-    basicGrid[2] = new Array(0, 0, 0, 0, 0);
-    basicGrid[3] = new Array(0, 0, 0, 0, 0);
-    basicGrid[4] = new Array(0, 0, 0, 0, 0);
+    let basicGrid = [
+      [true, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+    ];
 
     let incrementedArray = incrementAroundBombs(5, basicGrid);
 
