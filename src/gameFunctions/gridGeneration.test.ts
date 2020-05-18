@@ -30,7 +30,7 @@ describe("compareCoords", () => {
           [2, 1],
           [3, 4],
         ],
-        [[1, 2]]
+        [1, 2]
       )
     ).toBe(false);
   });
@@ -41,7 +41,7 @@ describe("compareCoords", () => {
           [1, 2],
           [3, 4],
         ],
-        [[1, 2]]
+        [1, 2]
       )
     ).toBe(true);
   });
