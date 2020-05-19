@@ -80,7 +80,7 @@ describe("setBasicGrid", () => {
   );
 });
 
-describe("incrementArondBombs", () => {
+describe("incrementAroundBombs", () => {
   it("should increment three squares around the bomb (the true value within the grid)", () => {
     let basicGrid = [
       [true, 0, 0, 0, 0],
