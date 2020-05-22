@@ -32,7 +32,7 @@ type GridOptions = {
   custom?: boolean;
 };
 
-function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
+function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps): JSX.Element {
   const [gridOptions, setGridOptions] = useState({
     gridSize: 0,
     bombCount: 0,
@@ -56,7 +56,7 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
     e: React.FormEvent<HTMLFormElement>,
     optionsView: string,
     difficulty: string
-  ) {
+  ): void {
     playSound(buttonSelectSound, sound ? 0.7 : 0);
     if (optionsView === "basic") {
       e.preventDefault();
@@ -94,7 +94,7 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
     }
   }
 
-  function handleOnChange(e: ChangeEvent<HTMLInputElement>) {
+  function handleOnChange(e: ChangeEvent<HTMLInputElement>): void {
     if (!e) {
       return;
     }
@@ -109,7 +109,7 @@ function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps) {
     view: string,
     difficulty: string,
     gridOptions: GridOptions
-  ) {
+  ): boolean {
     if (view === "basic") {
       return difficulty === "";
     }
