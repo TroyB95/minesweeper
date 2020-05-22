@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 import { store } from "../../globalState";
 
-import TimerBar from "../TimerBar";
 import { StyledButton } from "../Button/Button.styled";
 
 const Header = styled.div`
@@ -28,7 +27,7 @@ const RoundCounter = styled.h3`
 interface Props {
   resetGame: Function;
 }
-function HeaderBar({ resetGame }: Props) {
+function HeaderBar({ resetGame }: Props): JSX.Element {
   const globalState = useContext(store);
   const { roundLevel } = globalState.state;
 
