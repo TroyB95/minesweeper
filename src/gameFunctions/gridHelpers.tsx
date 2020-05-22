@@ -6,7 +6,7 @@ import { playSound } from "./utils/sound";
  * @param {Boolean} value - The value of the square.
  * @param {Object} e - The click event.
  */
-export function checkForBomb(value: boolean | number | string) {
+export function checkForBomb(value: boolean | number | string): boolean {
   if (value === true) {
     return true;
   }
@@ -26,7 +26,7 @@ export function mutateTrackingArray(
   x: number,
   trackingArr: Array<Array<string | number | boolean>>,
   value: string | number | boolean
-) {
+): Array<Array<string | number | boolean>>{
   const tileTrackingArr: Array<Array<string | number | boolean>> = [
     ...trackingArr,
   ];
@@ -47,7 +47,7 @@ export function checkIfWon(
   maxTilesTurnt: number,
   flaggedLocations: Set<string>,
   bombCount: number
-) {
+): boolean {
   if (tilesTurntCount === maxTilesTurnt) {
     if (flaggedLocations.size === bombCount) {
       return true;
@@ -72,7 +72,7 @@ export function flipBlankTiles(
   generatedGrid: Array<Array<any>>,
   width: number,
   sound?: boolean
-) {
+ ) {
   const modifiedTrackingArr = [...trackingArr];
   let numberOfTilesTurnt = 0;
 
