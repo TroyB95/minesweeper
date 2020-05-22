@@ -5,17 +5,17 @@ import BombSVG from "../../Assets/bomb.svg";
 import FlagSVG from "../../Assets/skull.svg";
 
 interface Props {
-  onClick: any;
-  onContextMenu: any;
+  onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  onContextMenu: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   width: number;
   backgroundColour: string;
   hoverColour: string;
   pointer: string;
-  renderType: any;
+  renderType: string | number | boolean | undefined;
 }
 
 class GridSquare extends Component<Props, {}> {
-  showImage(type: string | number) {
+  showImage(type: string | number | boolean | undefined): JSX.Element | string | number | boolean | undefined {
     if (type === "bomb") {
       return <TileImage alt="Dynamite sticks with timer" src={BombSVG} />;
     }
@@ -27,7 +27,7 @@ class GridSquare extends Component<Props, {}> {
     return type;
   }
 
-  render() {
+  render(): JSX.Element {
     const {
       onClick,
       onContextMenu,
