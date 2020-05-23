@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React from "react";
 import { ThemeProvider } from "styled-components";
 
 const theme = {
@@ -19,7 +19,7 @@ const theme = {
   },
 };
 
-const Theme: FunctionComponent = ({ children }) => (
+const Theme = ({ children }: { children: React.ReactNode }): JSX.Element => (
   <ThemeProvider theme={theme}>{children}</ThemeProvider>
 );
 
