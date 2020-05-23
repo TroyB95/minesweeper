@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, FunctionComponent } from "react";
+import React, { createContext, useReducer } from "react";
 
 import types, { ActionType } from "./types";
 
@@ -12,7 +12,7 @@ const initialState = {
 
 interface ContextProps {
   state: StateType;
-  dispatch: React.Dispatch<any>;
+  dispatch: React.Dispatch<ActionType>;
 }
 
 type StateType = {
@@ -31,7 +31,11 @@ type StateType = {
 const store = createContext({} as ContextProps);
 const { Provider } = store;
 
-const StateProvider: FunctionComponent = ({ children }) => {
+const StateProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}): JSX.Element => {
   const [state, dispatch] = useReducer(
     (state: StateType, action: ActionType) => {
       switch (action.type) {
