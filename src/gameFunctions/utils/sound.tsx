@@ -1,4 +1,4 @@
-export function playSound(soundFile: any, volume: number) {
+export function playSound(soundFile: string, volume: number): void {
   const sound = new Audio(soundFile);
   sound.volume = volume;
   sound.play();
