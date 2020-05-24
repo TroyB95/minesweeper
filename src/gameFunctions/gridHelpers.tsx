@@ -26,7 +26,7 @@ export function mutateTrackingArray(
   x: number,
   trackingArr: Array<Array<string | number | boolean>>,
   value: string | number | boolean
-): Array<Array<string | number | boolean>>{
+): Array<Array<string | number | boolean>> {
   const tileTrackingArr: Array<Array<string | number | boolean>> = [
     ...trackingArr,
   ];
@@ -68,11 +68,11 @@ export function checkIfWon(
 export function flipBlankTiles(
   y: number,
   x: number,
-  trackingArr: Array<any>,
-  generatedGrid: Array<Array<any>>,
+  trackingArr: Array<Array<boolean>>,
+  generatedGrid: Array<Array<string | number | boolean>>,
   width: number,
   sound?: boolean
- ) {
+): object {
   const modifiedTrackingArr = [...trackingArr];
   let numberOfTilesTurnt = 0;
 
@@ -84,10 +84,10 @@ export function flipBlankTiles(
   }
 
   if (clickedSquare === 0) {
-    recurseGrid(y, x, sound);
+    recurseGrid(y, x, sound); // eslint-disable-line @typescript-eslint/no-use-before-define
   }
 
-  function recurseGrid(y: number, x: number, sound?: boolean) {
+  function recurseGrid(y: number, x: number, sound?: boolean): void {
     const currentSquare = generatedGrid[y][x];
 
     if (currentSquare === 0) {
