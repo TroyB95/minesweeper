@@ -3,7 +3,7 @@
  * @param {number} rows - How many nested arrays.
  * @returns {Array}
  */
-export function create2DArray(rows: number) {
+export function create2DArray(rows: number): never[][] {
   const arr = [];
   for (let i = 0; i < rows; i++) {
     arr[i] = [];
@@ -16,7 +16,7 @@ export function create2DArray(rows: number) {
  * @param {Number} gridDimensions - Max width of grid.
  * @returns {Number}
  */
-export function generateCoordinate(gridDimension: number) {
+export function generateCoordinate(gridDimension: number): number {
   return Math.round(Math.random() * (gridDimension - 1));
 }
 
@@ -29,7 +29,7 @@ export function generateCoordinate(gridDimension: number) {
 export function compareCoords(
   bombCoordArr: Array<Array<number>>,
   array2: Array<number>
-) {
+): boolean {
   if (!array2) return false;
 
   if (bombCoordArr.toString().includes(array2.toString())) {
@@ -45,11 +45,11 @@ export function compareCoords(
  * @param {Number} Bombs - Number of bombs.
  * @returns {Array}
  */
-export function generateBombs(width: number, bombs: number) {
-  const bombsCoordArr: Array<Array<number>> = [];
+export function generateBombs(width: number, bombs: number): number[][] {
+  const bombsCoordArr: number[][] = [];
 
   while (bombsCoordArr.length < bombs) {
-    const coordArr: Array<number> = [
+    const coordArr: number[] = [
       generateCoordinate(width),
       generateCoordinate(width),
     ];
@@ -71,7 +71,7 @@ export function setBasicGrid(
   width: number,
   gridArr: Array<Array<number | string | boolean>>,
   value = 0 as number | string | boolean
-) {
+): Array<Array<number | string | boolean>> {
   const filledGridArr = [...gridArr];
   for (let y = 0; y < width; y++) {
     for (let x = 0; x < width; x++) {
@@ -89,8 +89,8 @@ export function setBasicGrid(
  */
 export function incrementAroundBombs(
   width: number,
-  gridArr: Array<Array<any>>
-) {
+  gridArr: Array<Array<string | number | boolean>>
+): Array<Array<string | number | boolean>> {
   const fullGrid = [...gridArr];
   for (let y = 0; y < width; y++) {
     for (let x = 0; x < width; x++) {
@@ -98,6 +98,7 @@ export function incrementAroundBombs(
       if (fullGrid[y][x] === true) {
         // north
         if (y + 1 !== width && fullGrid[y + 1][x] !== true) {
+          // @ts-ignore
           fullGrid[y + 1][x] += 1;
         }
         // north east
@@ -106,10 +107,12 @@ export function incrementAroundBombs(
           x + 1 !== width &&
           fullGrid[y + 1][x + 1] !== true
         ) {
+          // @ts-ignore
           fullGrid[y + 1][x + 1] += 1;
         }
         // east
         if (x + 1 !== width && fullGrid[y][x + 1] !== true) {
+          // @ts-ignore
           fullGrid[y][x + 1] += 1;
         }
         // south east
@@ -118,18 +121,22 @@ export function incrementAroundBombs(
           x + 1 !== width &&
           fullGrid[y - 1][x + 1] !== true
         ) {
+          // @ts-ignore
           fullGrid[y - 1][x + 1] += 1;
         }
         // south
         if (y - 1 !== -1 && fullGrid[y - 1][x] !== true) {
+          // @ts-ignore
           fullGrid[y - 1][x] += 1;
         }
         // south west
         if (y - 1 !== -1 && x - 1 !== -1 && fullGrid[y - 1][x - 1] !== true) {
+          // @ts-ignore
           fullGrid[y - 1][x - 1] += 1;
         }
         // west
         if (x - 1 !== -1 && fullGrid[y][x - 1] !== true) {
+          // @ts-ignore
           fullGrid[y][x - 1] += 1;
         }
         // north west
@@ -138,6 +145,7 @@ export function incrementAroundBombs(
           x - 1 !== -1 &&
           fullGrid[y + 1][x - 1] !== true
         ) {
+          // @ts-ignore
           fullGrid[y + 1][x - 1] += 1;
         }
       }
@@ -152,7 +160,10 @@ export function incrementAroundBombs(
  * @param {Number} bombs - The number of bombs to include.
  * @returns {Array}
  */
-export function generateGrid(width: number, bombs: number) {
+export function generateGrid(
+  width: number,
+  bombs: number
+): Array<Array<string | number | boolean>> {
   const gridArr = setBasicGrid(width, create2DArray(width));
   const bombsCoordArr = generateBombs(width, bombs);
 
