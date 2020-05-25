@@ -31,5 +31,5 @@ export default {
 
 export interface ActionType {
   type: string;
-  payload: object;
+  payload?: any;
 }
