@@ -68,11 +68,11 @@ export function checkIfWon(
 export function flipBlankTiles(
   y: number,
   x: number,
-  trackingArr: Array<Array<boolean>>,
+  trackingArr: Array<Array<boolean | string | number>>,
   generatedGrid: Array<Array<string | number | boolean>>,
   width: number,
   sound?: boolean
-): object {
+): { modifiedTrackingArr: Array<any>; numberOfTilesTurnt: number } {
   const modifiedTrackingArr = [...trackingArr];
   let numberOfTilesTurnt = 0;
 
