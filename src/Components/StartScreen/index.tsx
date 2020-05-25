@@ -32,7 +32,10 @@ type GridOptions = {
   custom?: boolean;
 };
 
-function StartScreen({ setStartTime, setOptionsSubmitted }: StartScreenProps): JSX.Element {
+function StartScreen({
+  setStartTime,
+  setOptionsSubmitted,
+}: StartScreenProps): JSX.Element {
   const [gridOptions, setGridOptions] = useState({
     gridSize: 0,
     bombCount: 0,

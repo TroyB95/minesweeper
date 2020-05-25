@@ -15,7 +15,9 @@ interface Props {
 }
 
 class GridSquare extends Component<Props, {}> {
-  showImage(type: string | number | boolean | undefined): JSX.Element | string | number | boolean | undefined {
+  showImage(
+    type: string | number | boolean | undefined
+  ): JSX.Element | string | number | boolean | undefined {
     if (type === "bomb") {
       return <TileImage alt="Dynamite sticks with timer" src={BombSVG} />;
     }
