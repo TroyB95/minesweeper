@@ -7,7 +7,7 @@ const initialState = {
   flaggedLocations: new Set(),
   gameOptions: { bombCount: 0, gridSize: 0, difficulty: "" },
   roundLevel: 1,
-  sound: true,
+  sound: 1,
 };
 
 interface ContextProps {
@@ -25,7 +25,7 @@ type StateType = {
     custom?: boolean;
   };
   roundLevel: number;
-  sound: boolean;
+  sound: number;
 };
 
 const store = createContext({} as ContextProps);
@@ -83,7 +83,7 @@ const StateProvider = ({
         case types.TOGGLE_SOUND:
           return {
             ...state,
-            sound: !state.sound,
+            sound: action.payload,
           };
 
         default:

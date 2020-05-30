@@ -71,7 +71,7 @@ export function flipBlankTiles(
   trackingArr: Array<Array<boolean | string | number>>,
   generatedGrid: Array<Array<string | number | boolean>>,
   width: number,
-  sound?: boolean
+  sound?: number
 ): { modifiedTrackingArr: Array<any>; numberOfTilesTurnt: number } {
   const modifiedTrackingArr = [...trackingArr];
   let numberOfTilesTurnt = 0;
@@ -87,13 +87,13 @@ export function flipBlankTiles(
     recurseGrid(y, x, sound); // eslint-disable-line @typescript-eslint/no-use-before-define
   }
 
-  function recurseGrid(y: number, x: number, sound?: boolean): void {
+  function recurseGrid(y: number, x: number, sound?: number): void {
     const currentSquare = generatedGrid[y][x];
 
     if (currentSquare === 0) {
       modifiedTrackingArr[y][x] = true;
       numberOfTilesTurnt += 1;
-      playSound(restOfTilesTurn, sound ? 0.7 : 0);
+      playSound(restOfTilesTurn, sound ? sound * 0.7 : 0);
 
       // check tile to north
       if (y + 1 !== width) {
