@@ -16,8 +16,10 @@ import {
 import { StyledButton } from "../Button/Button.styled";
 
 import buttonSelectSound from "../../Assets/sounds/button-select.mp3";
-import { playSound } from "../../gameFunctions/utils/sound";
+import { playSound, toggleSound } from "../../gameFunctions/utils/sound";
 import speaker from "../../Assets/speaker.svg";
+import speakerMid from "../../Assets/mid-volume.svg";
+import speakerLow from "../../Assets/low-volume.svg";
 import speakerMute from "../../Assets/speaker-mute.svg";
 
 type StartScreenProps = {
@@ -60,7 +62,7 @@ function StartScreen({
     optionsView: string,
     difficulty: string
   ): void {
-    playSound(buttonSelectSound, sound ? 0.7 : 0);
+    playSound(buttonSelectSound, sound * 0.7);
     if (optionsView === "basic") {
       e.preventDefault();
       if (difficulty === "easy") {
@@ -101,7 +103,7 @@ function StartScreen({
     if (!e) {
       return;
     }
-    playSound(buttonSelectSound, sound ? 0.7 : 0);
+    playSound(buttonSelectSound, sound * 0.7);
     dispatch({
       type: types.UPDATE_GRID_OPTIONS,
       payload: { difficulty: e.currentTarget.value },
@@ -207,10 +209,19 @@ function StartScreen({
         </OptionsForm>
         <StyledButtonContainer>
           <StyledImg
-            src={sound ? speaker : speakerMute}
+            src={
+              sound === 1
+                ? speaker
+                : sound === 0.7
+                ? speakerMid
+                : sound === 0.3
+                ? speakerLow
+                : speakerMute
+            }
             onClick={() =>
               dispatch({
                 type: types.TOGGLE_SOUND,
+                payload: toggleSound(sound),
               })
             }
           ></StyledImg>
