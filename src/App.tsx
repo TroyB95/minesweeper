@@ -73,7 +73,7 @@ function App(): JSX.Element {
       checkIfWon(tilesTurntCounter, maxTilesTurnt, flaggedLocations, bombCount)
     ) {
       const playTime = Math.round((Date.now() - startTime) / 1000);
-      playSound(roundCompleteSound, sound ? 1 : 0);
+      playSound(roundCompleteSound, sound * 1);
       setPlayTime(playTime);
       setGameState("win");
     }
@@ -125,13 +125,13 @@ function App(): JSX.Element {
     );
     if (checkForBomb(gridSquare)) {
       const playTime = Math.round((Date.now() - startTime) / 1000);
-      playSound(explosionSound, sound ? 1 : 0);
+      playSound(explosionSound, sound * 1);
       setPlayTime(playTime);
       setTimeout(() => {
         setGameState("loss");
       }, 500);
     }
-    playSound(tileTurnSound, sound ? 0.7 : 0);
+    playSound(tileTurnSound, sound * 0.7);
 
     setTileTrackingArray(flippedTilesData.modifiedTrackingArr);
     dispatch({
@@ -146,7 +146,7 @@ function App(): JSX.Element {
     x: number
   ): void {
     e.preventDefault();
-    playSound(tileFlagSound, sound ? 0.7 : 0);
+    playSound(tileFlagSound, sound * 0.7);
 
     if (tileTrackingArray[y][x] === "flag") {
       setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, false));
