@@ -5,6 +5,7 @@
 -- (COMPLETE) Keep track of level and rounds beaten.
 -- (COMPLETE) Make Universal button component
 -- (COMPLETE) In game sound effects
+-- Allow different sound levels to be selected
 
 ### Advanced features
 
