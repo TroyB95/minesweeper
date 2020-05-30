@@ -4,3 +4,16 @@ export function playSound(soundFile: string, volume: number): void {
   sound.play();
   sound.currentTime = 0;
 }
+
+export function toggleSound(sound: number) {
+  switch (sound) {
+    case 1:
+      return 0.7;
+    case 0.7:
+      return 0.3;
+    case 0.3:
+      return 0;
+    case 0:
+      return 1;
+  }
+}
