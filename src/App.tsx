@@ -186,16 +186,14 @@ function App(): JSX.Element {
   }
 
   function renderSquare(
-    tileTrackingArray: Array<Array<number | string | boolean>>,
-    gridSquare: string | boolean | number,
-    y: number,
-    x: number
+    tileTrackingValue: number | string | boolean,
+    gridSquare: string | boolean | number
   ): string | number | boolean | undefined {
-    if (tileTrackingArray[y][x] === true) {
+    if (tileTrackingValue === true) {
       if (gridSquare === true) return "bomb";
       return gridSquare;
     }
-    if (tileTrackingArray[y][x] === "flag") return "flag";
+    if (tileTrackingValue === "flag") return "flag";
   }
 
   return (
@@ -212,9 +210,8 @@ function App(): JSX.Element {
           <GridContainer>
             {generatedGrid.map(
               (row: Array<string | number | boolean>, y: number) => {
-                console.log(generatedGrid);
                 return (
-                  <GridRow key={uniqid("grid-row-")} height={gridSize}>
+                  <GridRow key={"grid-row" + y} height={gridSize} row={row}>
                     {row.map((gridSquare, x) => {
                       return (
                         <GridSquare
@@ -224,7 +221,7 @@ function App(): JSX.Element {
                           onContextMenu={(e: React.MouseEvent<HTMLElement>) =>
                             handleRightClick(e, y, x)
                           }
-                          key={uniqid("grid-square-")}
+                          key={"grid-square-" + x}
                           width={gridSize}
                           backgroundColour={
                             tileTrackingArray[y][x] === true
@@ -240,10 +237,8 @@ function App(): JSX.Element {
                             tileTrackingArray[y][x] === true ? "" : "pointer"
                           }
                           renderType={renderSquare(
-                            tileTrackingArray,
-                            gridSquare,
-                            y,
-                            x
+                            tileTrackingArray[y][x],
+                            gridSquare
                           )}
                         ></GridSquare>
                       );
