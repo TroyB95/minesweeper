@@ -146,11 +146,11 @@ function App(): JSX.Element {
     x: number
   ): void {
     e.preventDefault();
-    playSound(tileFlagSound, sound * 0.7);
 
     if (tileTrackingArray[y][x] === "flag") {
       setTileTrackingArray(mutateTrackingArray(y, x, tileTrackingArray, false));
       checkLocations(y, x, "right");
+      playSound(tileFlagSound, sound * 0.7);
       return;
     }
 
@@ -159,6 +159,7 @@ function App(): JSX.Element {
         mutateTrackingArray(y, x, tileTrackingArray, "flag")
       );
       checkLocations(y, x, "right");
+      playSound(tileFlagSound, sound * 0.7);
       return;
     }
   }
@@ -211,6 +212,7 @@ function App(): JSX.Element {
           <GridContainer>
             {generatedGrid.map(
               (row: Array<string | number | boolean>, y: number) => {
+                console.log(generatedGrid);
                 return (
                   <GridRow key={uniqid("grid-row-")} height={gridSize}>
                     {row.map((gridSquare, x) => {
