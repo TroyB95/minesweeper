@@ -125,13 +125,13 @@ function App(): JSX.Element {
     );
     if (checkForBomb(gridSquare)) {
       const playTime = Math.round((Date.now() - startTime) / 1000);
-      playSound(explosionSound, sound * 1);
+      playSound(explosionSound, sound * 0.2);
       setPlayTime(playTime);
       setTimeout(() => {
         setGameState("loss");
       }, 500);
     }
-    playSound(tileTurnSound, sound * 0.7);
+    playSound(tileTurnSound, sound * 0.6);
 
     setTileTrackingArray(flippedTilesData.modifiedTrackingArr);
     dispatch({
