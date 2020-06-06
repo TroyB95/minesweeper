@@ -169,7 +169,7 @@ function StartScreen({
                 <input
                   type="number"
                   min="7"
-                  max="50"
+                  max="100"
                   value={gridSize}
                   onChange={(e) => {
                     setGridOptions({
