@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 
 const GridRowContainer = styled.div<{ height: number }>`
@@ -16,24 +16,28 @@ const GridRowContainer = styled.div<{ height: number }>`
   }
 `;
 
-function areEqual(prevProps: any, nextProps: any): any {
-  const prevRow = prevProps.row.toString();
-  const nextRow = nextProps.row.toString();
-
-  if (prevRow === nextRow) return false;
-  return true;
-}
-
 interface Props {
   height: number;
   children: Array<JSX.Element>;
   row: Array<string | number | boolean>;
 }
 
-function GridRow(props: Props): JSX.Element {
-  const { height, children } = props;
-
-  return <GridRowContainer height={height}>{children}</GridRowContainer>;
+class GridRow extends Component<Props, {}> {
+  shouldComponentUpdate(nextProps: Props) {
+    for (let i = 0; i < this.props.children.length; i++) {
+      if (
+        this.props.children[i].props.renderType !==
+        nextProps.children[i].props.renderType
+      ) {
+        return true;
+      }
+    }
+    return false;
+  }
+  render() {
+    const { height, children } = this.props;
+    return <GridRowContainer height={height}>{children}</GridRowContainer>;
+  }
 }
 
-export default React.memo(GridRow, areEqual);
+export default GridRow;
