@@ -129,7 +129,7 @@ function App(): JSX.Element {
       setPlayTime(playTime);
       setTimeout(() => {
         setGameState("loss");
-      }, 500);
+      }, 325);
     }
     playSound(tileTurnSound, sound * 0.6);
 
