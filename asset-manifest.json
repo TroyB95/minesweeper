@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/minesweeper/static/css/main.0a4c25d3.chunk.css",
+    "main.js": "/minesweeper/static/js/main.8a2e25b5.chunk.js",
+    "main.js.map": "/minesweeper/static/js/main.8a2e25b5.chunk.js.map",
+    "runtime-main.js": "/minesweeper/static/js/runtime-main.e1079ecc.js",
+    "runtime-main.js.map": "/minesweeper/static/js/runtime-main.e1079ecc.js.map",
+    "static/js/2.824458df.chunk.js": "/minesweeper/static/js/2.824458df.chunk.js",
+    "static/js/2.824458df.chunk.js.map": "/minesweeper/static/js/2.824458df.chunk.js.map",
+    "index.html": "/minesweeper/index.html",
+    "precache-manifest.87d52b2139e98045456b159ffe030ab5.js": "/minesweeper/precache-manifest.87d52b2139e98045456b159ffe030ab5.js",
+    "service-worker.js": "/minesweeper/service-worker.js",
+    "static/css/main.0a4c25d3.chunk.css.map": "/minesweeper/static/css/main.0a4c25d3.chunk.css.map",
+    "static/js/2.824458df.chunk.js.LICENSE.txt": "/minesweeper/static/js/2.824458df.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/minesweeper/static/media/NotoSans-Bold.98f0cacc.ttf",
+    "static/media/bomb.svg": "/minesweeper/static/media/bomb.1dacf089.svg",
+    "static/media/button-select.mp3": "/minesweeper/static/media/button-select.a3d33fe2.mp3",
+    "static/media/explosion.mp3": "/minesweeper/static/media/explosion.c0ece845.mp3",
+    "static/media/low-volume.svg": "/minesweeper/static/media/low-volume.22bb4aa6.svg",
+    "static/media/mid-volume.svg": "/minesweeper/static/media/mid-volume.5fd330c2.svg",
+    "static/media/rest-of-tiles-turn.mp3": "/minesweeper/static/media/rest-of-tiles-turn.33a1c2e3.mp3",
+    "static/media/round-complete.mp3": "/minesweeper/static/media/round-complete.5f865215.mp3",
+    "static/media/skull.svg": "/minesweeper/static/media/skull.ef59c71c.svg",
+    "static/media/speaker-mute.svg": "/minesweeper/static/media/speaker-mute.31104fb2.svg",
+    "static/media/speaker.svg": "/minesweeper/static/media/speaker.cb5eedc9.svg",
+    "static/media/tile-flag.mp3": "/minesweeper/static/media/tile-flag.f4bd3625.mp3",
+    "static/media/tile-turn.mp3": "/minesweeper/static/media/tile-turn.627557d5.mp3"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e1079ecc.js",
+    "static/js/2.824458df.chunk.js",
+    "static/css/main.0a4c25d3.chunk.css",
+    "static/js/main.8a2e25b5.chunk.js"
+  ]
+}
