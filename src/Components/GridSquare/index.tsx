@@ -15,12 +15,12 @@ interface Props {
 }
 
 class GridSquare extends Component<Props, {}> {
-  shouldComponentUpdate(nextProps: Props) {
-    if (this.props.renderType === nextProps.renderType) {
-      return false;
-    }
-    return true;
-  }
+  // shouldComponentUpdate(nextProps: Props) {
+  //   if (this.props.renderType === nextProps.renderType) {
+  //     return false;
+  //   }
+  //   return true;
+  // }
 
   showImage(
     type: string | number | boolean | undefined
