@@ -23,17 +23,17 @@ interface Props {
 }
 
 class GridRow extends Component<Props, {}> {
-  shouldComponentUpdate(nextProps: Props) {
-    for (let i = 0; i < this.props.children.length; i++) {
-      if (
-        this.props.children[i].props.renderType !==
-        nextProps.children[i].props.renderType
-      ) {
-        return true;
-      }
-    }
-    return false;
-  }
+  // shouldComponentUpdate(nextProps: Props) {
+  //   for (let i = 0; i < this.props.children.length; i++) {
+  //     if (
+  //       this.props.children[i].props.renderType !==
+  //       nextProps.children[i].props.renderType
+  //     ) {
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // }
   render() {
     const { height, children } = this.props;
     return <GridRowContainer height={height}>{children}</GridRowContainer>;

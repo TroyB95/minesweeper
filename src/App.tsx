@@ -86,7 +86,15 @@ function App(): JSX.Element {
     startTime,
   ]);
 
-  function checkLocations(y: number, x: number, click: string): void {
+  const checkLocations = (y: number, x: number, click: string): void => {
+    if (click === "right" && !flaggedLocations.has(`${y},${x}`)) {
+      const addUpdateSet = new Set(flaggedLocations);
+      addUpdateSet.add(`${y},${x}`);
+      return dispatch({
+        type: types.UPDATE_FLAGGED_LOCATIONS,
+        payload: addUpdateSet,
+      });
+    }
     if (flaggedLocations && flaggedLocations.has(`${y},${x}`)) {
       const deleteUpdatedSet = new Set(flaggedLocations);
       deleteUpdatedSet.delete(`${y},${x}`);
@@ -95,22 +103,14 @@ function App(): JSX.Element {
         payload: deleteUpdatedSet,
       });
     }
-    if (click === "right") {
-      const addUpdateSet = new Set(flaggedLocations);
-      addUpdateSet.add(`${y},${x}`);
-      return dispatch({
-        type: types.UPDATE_FLAGGED_LOCATIONS,
-        payload: addUpdateSet,
-      });
-    }
-  }
+  };
 
-  function handleClick(
+  const handleClick = (
     e: React.MouseEvent<HTMLElement>,
     y: number,
     x: number,
     gridSquare: boolean | string | number
-  ): void {
+  ): void => {
     if (tileTrackingArray[y][x] === true) {
       return;
     }
@@ -138,13 +138,13 @@ function App(): JSX.Element {
       type: types.INCREMENT_COUNT,
       payload: flippedTilesData.numberOfTilesTurnt,
     });
-  }
+  };
 
-  function handleRightClick(
+  const handleRightClick = (
     e: React.MouseEvent<HTMLElement>,
     y: number,
     x: number
-  ): void {
+  ): void => {
     e.preventDefault();
 
     if (tileTrackingArray[y][x] === "flag") {
@@ -162,7 +162,7 @@ function App(): JSX.Element {
       playSound(tileFlagSound, sound * 0.7);
       return;
     }
-  }
+  };
 
   function resetGame(): void {
     dispatch({ type: types.RESET_COUNT });

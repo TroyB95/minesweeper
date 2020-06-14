@@ -54,7 +54,9 @@ class GridSquare extends Component<Props, {}> {
         pointer={pointer}
         width={width}
         onClick={onClick}
-        onContextMenu={onContextMenu}
+        onContextMenu={(e) => {
+          onContextMenu(e);
+        }}
       >
         {this.showImage(renderType)}
       </GridSection>
