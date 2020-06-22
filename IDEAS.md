@@ -17,3 +17,7 @@
 -- Friends list
 -- Global leaderboard
 -- Multiplayer support
+
+### Improvements
+
+-- Get shouldComponentUpdate working and not break the game
