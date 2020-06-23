@@ -1,6 +1,6 @@
 ### How to play
 
-TLDR: Right-click and flag squares which have mines under, uncover the rest of the squares without hitting a mine.
+TLDR: Right-click and flag squares which have mines under, uncover the rest of the squares without hitting a mine. You win once all correct squares have been flagged and flipped
 
 - Step 1: Select a Difficulty from the menu.
 
