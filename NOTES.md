@@ -1,0 +1,1 @@
+Spent a few hours debugging and finally found a solution. Context wont work when trying to use shouldComponentUpdate as it requires all squares to re-render due to the way context keeps its state unified. Refactor to use new state library?
