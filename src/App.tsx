@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from "react";
-import uniqid from "uniqid";
 import { store } from "./globalState";
 import types from "./globalState/types";
 
@@ -87,7 +86,7 @@ function App(): JSX.Element {
   ]);
 
   const checkLocations = (y: number, x: number, click: string): void => {
-    if (click === "right" && !flaggedLocations.has(`${y},${x}`)) {
+    if (click === "right" && !flaggedLocations.has(`${y},${x}`)) {   
       const addUpdateSet = new Set(flaggedLocations);
       addUpdateSet.add(`${y},${x}`);
       return dispatch({
