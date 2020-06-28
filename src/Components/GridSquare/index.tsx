@@ -30,7 +30,7 @@ class GridSquare extends Component<Props, {}> {
     }
     if (type === "flag") {
       return (
-        <TileImage alt="Black flag with skull and crosbones on" src={FlagSVG} />
+        <TileImage alt="Black flag with skull and crossbones on" src={FlagSVG} />
       );
     }
     return type;
