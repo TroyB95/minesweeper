@@ -15,13 +15,6 @@ interface Props {
 }
 
 class GridSquare extends Component<Props, {}> {
-  // shouldComponentUpdate(nextProps: Props) {
-  //   if (this.props.renderType === nextProps.renderType) {
-  //     return false;
-  //   }
-  //   return true;
-  // }
-
   showImage(
     type: string | number | boolean | undefined
   ): JSX.Element | string | number | boolean | undefined {
@@ -30,7 +23,10 @@ class GridSquare extends Component<Props, {}> {
     }
     if (type === "flag") {
       return (
-        <TileImage alt="Black flag with skull and crossbones on" src={FlagSVG} />
+        <TileImage
+          alt="Black flag with skull and crossbones on"
+          src={FlagSVG}
+        />
       );
     }
     return type;
