@@ -48,7 +48,7 @@ function App(): JSX.Element {
     [] as Array<Array<number | string | boolean>>
   );
   const [maxTilesTurnt, setMaxTilesTurnt] = useState(0);
-  const [gameState, setGameState] = useState("");
+  const [gameState, setGameState] = useState(null as null | string);
   const [startTime, setStartTime] = useState(0);
   const [playTime, setPlayTime] = useState(0);
 
@@ -61,7 +61,7 @@ function App(): JSX.Element {
     setMaxTilesTurnt(gridSize * gridSize - bombCount);
 
     if (gameState === "win") {
-      setGameState("");
+      setGameState(null);
     }
   }, [bombCount, gridSize, optionsSubmitted]);
 
@@ -86,7 +86,7 @@ function App(): JSX.Element {
   ]);
 
   const checkLocations = (y: number, x: number, click: string): void => {
-    if (click === "right" && !flaggedLocations.has(`${y},${x}`)) {   
+    if (click === "right" && !flaggedLocations.has(`${y},${x}`)) {
       const addUpdateSet = new Set(flaggedLocations);
       addUpdateSet.add(`${y},${x}`);
       return dispatch({
@@ -172,7 +172,7 @@ function App(): JSX.Element {
     setOptionsSubmitted(false);
     setTileTrackingArray([]);
     setMaxTilesTurnt(0);
-    setGameState("");
+    setGameState(null);
   }
 
   function resetForNextLevel(): void {
@@ -249,19 +249,11 @@ function App(): JSX.Element {
           </GridContainer>
         </>
       )}
-      {gameState === "win" && (
+      {gameState !== null && (
         <InformationModal
           resetGame={resetGame}
           resetForNextLevel={resetForNextLevel}
-          type="win"
-          playTime={playTime}
-        />
-      )}
-      {gameState === "loss" && (
-        <InformationModal
-          resetGame={resetGame}
-          resetForNextLevel={resetForNextLevel}
-          type="loss"
+          type={gameState}
           playTime={playTime}
         />
       )}
