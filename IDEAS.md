@@ -12,7 +12,7 @@
 -- PowerUps
 -- Average time taken to beat levels
 -- Time restricted mode
--- Achievement
+-- Achievements
 -- Player Profile
 -- Friends list
 -- Global leaderboard
