@@ -5,7 +5,7 @@ export function playSound(soundFile: string, volume: number): void {
   sound.currentTime = 0;
 }
 
-export function toggleSound(sound: number) {
+export function toggleSound(sound: number): number | undefined {
   switch (sound) {
     case 1:
       return 0.7;
