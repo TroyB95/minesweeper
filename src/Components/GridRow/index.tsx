@@ -23,7 +23,7 @@ interface Props {
 }
 
 class GridRow extends Component<Props, {}> {
-  render() {
+  render(): JSX.Element {
     const { height, children } = this.props;
     return <GridRowContainer height={height}>{children}</GridRowContainer>;
   }
