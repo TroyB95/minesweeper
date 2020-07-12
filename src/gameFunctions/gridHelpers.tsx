@@ -72,7 +72,10 @@ export function flipBlankTiles(
   generatedGrid: Array<Array<string | number | boolean>>,
   width: number,
   sound?: number
-): { modifiedTrackingArr: Array<any>; numberOfTilesTurnt: number } {
+): {
+  modifiedTrackingArr: Array<Array<boolean | string | number>>;
+  numberOfTilesTurnt: number;
+} {
   const modifiedTrackingArr = [...trackingArr];
   let numberOfTilesTurnt = 0;
 
