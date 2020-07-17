@@ -11,7 +11,15 @@ jobs:
           steps:
             - run: npm install
             - run: npm test
+  two: # This is our second job.
+    docker: # it runs inside a docker image, the same as above.
+      - image: circleci/ruby:2.4.1
+    steps:
+      - checkout
+      - run: echo "A more familiar hi" # We run a similar echo command to above.
+      - run: sleep 15 # and then sleep for 15 seconds.
 workflows:
-    build-and-test:
-      jobs:
-        - build-and-test
+  build-and-test:
+    jobs:
+      - build-and-test
+      - two
