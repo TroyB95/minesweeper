@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+This was a project based around an interview pair programming session I had. I used it as a fun project to learn typescript when I was getting up to speed with the language.
+
 ## How to play
 
 Please see HOW_TO_PLAY.md for guidelines
