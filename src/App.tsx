@@ -28,6 +28,7 @@ import tileFlagSound from "./Assets/sounds/tile-flag.mp3";
 import tileTurnSound from "./Assets/sounds/tile-turn.mp3";
 import explosionSound from "./Assets/sounds/explosion.mp3";
 import roundCompleteSound from "./Assets/sounds/round-complete.mp3";
+import { Grid, GridRowType } from "./types";
 
 function App(): JSX.Element {
   const themeContext = useContext(ThemeContext);
@@ -40,15 +41,11 @@ function App(): JSX.Element {
     sound,
   } = globalState.state;
 
-  const [generatedGrid, setGrid] = useState(
-    [] as Array<Array<number | string | boolean>>
-  );
-  const [optionsSubmitted, setOptionsSubmitted] = useState(false as boolean);
-  const [tileTrackingArray, setTileTrackingArray] = useState(
-    [] as Array<Array<number | string | boolean>>
-  );
+  const [generatedGrid, setGrid] = useState<Grid>([]);
+  const [optionsSubmitted, setOptionsSubmitted] = useState<boolean>(false);
+  const [tileTrackingArray, setTileTrackingArray] = useState<Grid>([]);
   const [maxTilesTurnt, setMaxTilesTurnt] = useState(0);
-  const [gameState, setGameState] = useState(null as null | string);
+  const [gameState, setGameState] = useState<null | string>(null);
   const [startTime, setStartTime] = useState(0);
   const [playTime, setPlayTime] = useState(0);
 
@@ -207,45 +204,40 @@ function App(): JSX.Element {
         <>
           <HeaderBar resetGame={resetGame} />
           <GridContainer>
-            {generatedGrid.map(
-              (row: Array<string | number | boolean>, y: number) => {
-                return (
-                  <GridRow key={"grid-row" + y} height={gridSize} row={row}>
-                    {row.map((gridSquare, x) => {
-                      return (
-                        <GridSquare
-                          onClick={(e: React.MouseEvent<HTMLElement>) =>
-                            handleClick(e, y, x, gridSquare)
-                          }
-                          onContextMenu={(e: React.MouseEvent<HTMLElement>) =>
-                            handleRightClick(e, y, x)
-                          }
-                          key={"grid-square-" + x}
-                          width={gridSize}
-                          backgroundColour={
-                            tileTrackingArray[y][x] === true
-                              ? themeContext.colour.tileTurnt
-                              : themeContext.colour.tileUnturnt
-                          }
-                          hoverColour={
-                            tileTrackingArray[y][x] === true
-                              ? ""
-                              : themeContext.colour.darkHover
-                          }
-                          pointer={
-                            tileTrackingArray[y][x] === true ? "" : "pointer"
-                          }
-                          renderType={renderSquare(
-                            tileTrackingArray[y][x],
-                            gridSquare
-                          )}
-                        ></GridSquare>
-                      );
-                    })}
-                  </GridRow>
-                );
-              }
-            )}
+            {generatedGrid.map((row: GridRowType, y: number) => {
+              return (
+                <GridRow key={"grid-row" + y} height={gridSize} row={row}>
+                  {row.map((gridSquare, x) => {
+                    const tileTurnt = tileTrackingArray[y][x] === true;
+                    return (
+                      <GridSquare
+                        onClick={(e: React.MouseEvent<HTMLElement>) =>
+                          handleClick(e, y, x, gridSquare)
+                        }
+                        onContextMenu={(e: React.MouseEvent<HTMLElement>) =>
+                          handleRightClick(e, y, x)
+                        }
+                        key={"grid-square-" + x}
+                        width={gridSize}
+                        backgroundColour={
+                          tileTurnt
+                            ? themeContext.colour.tileTurnt
+                            : themeContext.colour.tileUnturnt
+                        }
+                        hoverColour={
+                          tileTurnt ? "" : themeContext.colour.darkHover
+                        }
+                        pointer={tileTurnt ? "" : "pointer"}
+                        renderType={renderSquare(
+                          tileTrackingArray[y][x],
+                          gridSquare
+                        )}
+                      ></GridSquare>
+                    );
+                  })}
+                </GridRow>
+              );
+            })}
           </GridContainer>
         </>
       )}

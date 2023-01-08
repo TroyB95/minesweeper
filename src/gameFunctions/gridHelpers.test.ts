@@ -14,7 +14,7 @@ describe("checkForBomb", () => {
 
 describe("mutateTrackingArray", () => {
   it("should mutate the array and add the value to the correct x, y cordinate", () => {
-    let trackingArr = [
+    const trackingArr = [
       [0, 0, 0],
       [0, 0, 0],
       [0, 0, 0],

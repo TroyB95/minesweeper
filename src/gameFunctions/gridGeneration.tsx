@@ -1,3 +1,5 @@
+import { Grid } from "../types";
+
 /**
  * Creates a 2d array.
  * @param {number} rows - How many nested arrays.
@@ -69,9 +71,9 @@ export function generateBombs(width: number, bombs: number): number[][] {
  */
 export function setBasicGrid(
   width: number,
-  gridArr: Array<Array<number | string | boolean>>,
+  gridArr: Grid,
   value = 0 as number | string | boolean
-): Array<Array<number | string | boolean>> {
+): Grid {
   const filledGridArr = [...gridArr];
   for (let y = 0; y < width; y++) {
     for (let x = 0; x < width; x++) {
@@ -87,10 +89,7 @@ export function setBasicGrid(
  * @param {Array} gridArr - The nested grid array.
  * @returns {Array}
  */
-export function incrementAroundBombs(
-  width: number,
-  gridArr: Array<Array<string | number | boolean>>
-): Array<Array<string | number | boolean>> {
+export function incrementAroundBombs(width: number, gridArr: Grid): Grid {
   const fullGrid = [...gridArr];
   for (let y = 0; y < width; y++) {
     for (let x = 0; x < width; x++) {
@@ -160,10 +159,7 @@ export function incrementAroundBombs(
  * @param {Number} bombs - The number of bombs to include.
  * @returns {Array}
  */
-export function generateGrid(
-  width: number,
-  bombs: number
-): Array<Array<string | number | boolean>> {
+export function generateGrid(width: number, bombs: number): Grid {
   const gridArr = setBasicGrid(width, create2DArray(width));
   const bombsCoordArr = generateBombs(width, bombs);
 

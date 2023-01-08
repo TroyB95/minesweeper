@@ -1,4 +1,5 @@
 import restOfTilesTurn from "../Assets/sounds/rest-of-tiles-turn.mp3";
+import { Grid } from "../types";
 import { playSound } from "./utils/sound";
 
 /**
@@ -24,12 +25,10 @@ export function checkForBomb(value: boolean | number | string): boolean {
 export function mutateTrackingArray(
   y: number,
   x: number,
-  trackingArr: Array<Array<string | number | boolean>>,
+  trackingArr: Grid,
   value: string | number | boolean
-): Array<Array<string | number | boolean>> {
-  const tileTrackingArr: Array<Array<string | number | boolean>> = [
-    ...trackingArr,
-  ];
+): Grid {
+  const tileTrackingArr: Grid = [...trackingArr];
   tileTrackingArr[y][x] = value;
 
   return tileTrackingArr;
@@ -68,12 +67,12 @@ export function checkIfWon(
 export function flipBlankTiles(
   y: number,
   x: number,
-  trackingArr: Array<Array<boolean | string | number>>,
-  generatedGrid: Array<Array<string | number | boolean>>,
+  trackingArr: Grid,
+  generatedGrid: Grid,
   width: number,
   sound?: number
 ): {
-  modifiedTrackingArr: Array<Array<boolean | string | number>>;
+  modifiedTrackingArr: Grid;
   numberOfTilesTurnt: number;
 } {
   const modifiedTrackingArr = [...trackingArr];
